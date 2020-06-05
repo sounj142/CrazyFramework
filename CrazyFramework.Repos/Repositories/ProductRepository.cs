@@ -8,6 +8,7 @@ using CrazyFramework.Repos.Mapper;
 using System.Threading.Tasks;
 using CrazyFramework.Core.Common.Exceptions;
 using Microsoft.Extensions.Logging;
+using CrazyFramework.Repos.Models.Products;
 
 namespace CrazyFramework.Repos.Repositories
 {
@@ -22,8 +23,9 @@ namespace CrazyFramework.Repos.Repositories
 			_logger = logger;
 		}
 
-		private IQueryable<Product> ProductsNoTracking => _dbContext.Products
-				.AsNoTracking()
+		private DbSet<ProductDAO> ProductDAOs => _dbContext.Set<ProductDAO>();
+
+		private IQueryable<Product> ProductsNoTracking => ProductDAOs.AsNoTracking()
 				.Select(p => new Product
 				{
 					Id = p.Id,
@@ -50,14 +52,14 @@ namespace CrazyFramework.Repos.Repositories
 		public async Task Create(Product product)
 		{
 			var productDAO = product.MapToDAO();
-			_dbContext.Products.Add(productDAO);
+			ProductDAOs.Add(productDAO);
 
 			await _dbContext.SaveChangesAsync();
 		}
 
 		public async Task Update(Product product)
 		{
-			var productDAO = await _dbContext.Products
+			var productDAO = await ProductDAOs
 				.FirstOrDefaultAsync(p => p.Id == product.Id);
 
 			if (productDAO == null)
@@ -73,7 +75,7 @@ namespace CrazyFramework.Repos.Repositories
 
 		public async Task Delete(Guid id)
 		{
-			var productDAO = await _dbContext.Products
+			var productDAO = await ProductDAOs
 				.FirstOrDefaultAsync(p => p.Id == id);
 
 			if (productDAO == null)
@@ -82,7 +84,7 @@ namespace CrazyFramework.Repos.Repositories
 				throw new NotFoundException("Product", id);
 			}
 
-			_dbContext.Products.Remove(productDAO);
+			ProductDAOs.Remove(productDAO);
 
 			await _dbContext.SaveChangesAsync();
 		}

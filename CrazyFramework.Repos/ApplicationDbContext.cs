@@ -72,9 +72,5 @@ namespace CrazyFramework.Repos
 				}
 			}
 		}
-
-		public DbSet<ProductDAO> Products { get; set; }
-		public DbSet<OrderDAO> Orders { get; set; }
-		public DbSet<OrderItemDAO> OrderItems { get; set; }
 	}
 }

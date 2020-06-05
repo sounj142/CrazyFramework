@@ -8,6 +8,8 @@ namespace CrazyFramework.Repos.Configurations
 	{
 		public void Configure(EntityTypeBuilder<OrderDAO> builder)
 		{
+			builder.ToTable("Orders");
+
 			builder.HasMany(x => x.Items)
 				.WithOne(p => p.Order)
 				.HasForeignKey(p => p.OrderId)
