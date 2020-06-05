@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CrazyFramework.WebAPI.Models
+﻿namespace CrazyFramework.WebAPI.Models
 {
 	public class ErrorDto
 	{

@@ -5,31 +5,32 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CrazyFramework.Core.Domain.Products.Commands.CreateProduct
+namespace CrazyFramework.Core.Domain.Products.Commands.UpdateProduct
 {
-	public class CreateProductCommand : IRequest<Guid>
+	public class UpdateProductCommand : IRequest<Guid>
 	{
+		public Guid Id { get; set; }
 		public string Name { get; set; }
 		public decimal Price { get; set; }
 
-		public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Guid>
+		public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Guid>
 		{
 			private readonly IProductRepository _productRepository;
 
-			public CreateProductCommandHandler(IProductRepository productRepository)
+			public UpdateProductCommandHandler(IProductRepository productRepository)
 			{
 				_productRepository = productRepository;
 			}
 
-			public async Task<Guid> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+			public async Task<Guid> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
 			{
 				var product = new Product
 				{
-					Id = Guid.NewGuid(),
+					Id = request.Id,
 					Name = request.Name,
 					Price = request.Price
 				};
-				await _productRepository.Create(product);
+				await _productRepository.Update(product);
 				return product.Id;
 			}
 		}

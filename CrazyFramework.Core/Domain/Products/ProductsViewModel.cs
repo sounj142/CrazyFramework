@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace CrazyFramework.Core.Models.Products
+namespace CrazyFramework.Core.Domain.Products
 {
-	public class Product
+	public class ProductsViewModel
 	{
 		public Guid Id { get; set; }
 		public string Name { get; set; }

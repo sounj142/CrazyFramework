@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CrazyFramework.Repos
+﻿namespace CrazyFramework.Repos
 {
 	/// <summary>
 	/// Internal errors, only use for log and troubleshooting error, don't check these error codes in other layer. It's private in Repository

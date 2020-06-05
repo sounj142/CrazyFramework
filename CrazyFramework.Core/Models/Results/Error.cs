@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CrazyFramework.Core.Domain.Results
+﻿namespace CrazyFramework.Core.Models.Results
 {
 	public class Error
 	{

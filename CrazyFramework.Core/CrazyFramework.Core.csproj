@@ -12,8 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\Enums\" />
-    <Folder Include="Domain\Products\Queries\" />
+    <Folder Include="Models\Enums\" />
     <Folder Include="Services\Common\" />
     <Folder Include="Services\Users\" />
   </ItemGroup>

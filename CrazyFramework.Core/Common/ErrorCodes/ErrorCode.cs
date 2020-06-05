@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CrazyFramework.Core.Common.ErrorCodes
+﻿namespace CrazyFramework.Core.Common.ErrorCodes
 {
 	/// <summary>
 	/// common error codes

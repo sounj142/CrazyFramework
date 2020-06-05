@@ -1,9 +1,6 @@
 ﻿using CrazyFramework.Repos.Models.Products;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CrazyFramework.Repos.Configurations
 {

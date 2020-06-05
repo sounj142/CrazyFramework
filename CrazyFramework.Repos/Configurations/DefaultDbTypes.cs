@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CrazyFramework.Repos.Configurations
+﻿namespace CrazyFramework.Repos.Configurations
 {
 	internal static class DefaultDbTypes
 	{

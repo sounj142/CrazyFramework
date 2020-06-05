@@ -2,9 +2,6 @@
 using CrazyFramework.Services.Common;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CrazyFramework.Services
 {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CrazyFramework.Core.Common.ErrorCodes
+﻿namespace CrazyFramework.Core.Common.ErrorCodes
 {
 	/// <summary>
 	/// Common errors that should be thrown by Repository. Other layers can catch exceptions and check these errors to know what happened

@@ -1,7 +1,5 @@
 ﻿using CrazyFramework.Repos.Models.Products;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CrazyFramework.Repos.Models.Orders
 {

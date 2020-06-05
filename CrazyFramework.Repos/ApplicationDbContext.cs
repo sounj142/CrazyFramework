@@ -25,11 +25,6 @@ namespace CrazyFramework.Repos
 			_dateTimeService = dateTimeService;
 		}
 
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-		{
-			optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-		}
-
 		public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
 		{
 			AutomaticSetupAuditData();

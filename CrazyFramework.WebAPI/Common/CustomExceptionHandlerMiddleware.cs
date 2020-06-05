@@ -3,10 +3,7 @@ using CrazyFramework.Core.Helpers;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace CrazyFramework.WebAPI.Common
@@ -48,8 +45,9 @@ namespace CrazyFramework.WebAPI.Common
 					result = JsonConvert.SerializeObject(validationException.Failures);
 					break;
 
-				case NotFoundException _:
+				case NotFoundException notFoundException:
 					code = HttpStatusCode.NotFound;
+					result = JsonConvert.SerializeObject(DictionaryHelper.CreateErrorObject(notFoundException.ErrorCode, notFoundException.Message));
 					break;
 
 				case FrameworkException frameworkException:
