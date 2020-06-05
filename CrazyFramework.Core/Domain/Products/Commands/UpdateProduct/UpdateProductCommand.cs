@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace CrazyFramework.Core.Domain.Products.Commands.UpdateProduct
 {
-	public class UpdateProductCommand : IRequest<Guid>
+	public class UpdateProductCommand : IRequest
 	{
 		public Guid Id { get; set; }
 		public string Name { get; set; }
 		public decimal Price { get; set; }
 
-		public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Guid>
+		public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand>
 		{
 			private readonly IProductRepository _productRepository;
 
@@ -22,7 +22,7 @@ namespace CrazyFramework.Core.Domain.Products.Commands.UpdateProduct
 				_productRepository = productRepository;
 			}
 
-			public async Task<Guid> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
+			public async Task<Unit> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
 			{
 				var product = new Product
 				{
@@ -31,7 +31,7 @@ namespace CrazyFramework.Core.Domain.Products.Commands.UpdateProduct
 					Price = request.Price
 				};
 				await _productRepository.Update(product);
-				return product.Id;
+				return Unit.Value;
 			}
 		}
 	}

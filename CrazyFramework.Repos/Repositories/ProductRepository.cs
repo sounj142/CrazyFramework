@@ -7,27 +7,29 @@ using Microsoft.EntityFrameworkCore;
 using CrazyFramework.Repos.Mapper;
 using System.Threading.Tasks;
 using CrazyFramework.Core.Common.Exceptions;
+using Microsoft.Extensions.Logging;
 
 namespace CrazyFramework.Repos.Repositories
 {
 	internal class ProductRepository : IProductRepository
 	{
 		private readonly ApplicationDbContext _dbContext;
+		private readonly ILogger<ProductRepository> _logger;
 
-		public ProductRepository(ApplicationDbContext dbContext)
+		public ProductRepository(ApplicationDbContext dbContext, ILogger<ProductRepository> logger)
 		{
 			_dbContext = dbContext;
+			_logger = logger;
 		}
 
-		private IQueryable<Product> Products => _dbContext.Products
+		private IQueryable<Product> ProductsNoTracking => _dbContext.Products
+				.AsNoTracking()
 				.Select(p => new Product
 				{
 					Id = p.Id,
 					Name = p.Name,
 					Price = p.Price
 				});
-
-		private IQueryable<Product> ProductsNoTracking => Products.AsNoTracking();
 
 		public async Task<Product> GetById(Guid id)
 		{
@@ -60,10 +62,27 @@ namespace CrazyFramework.Repos.Repositories
 
 			if (productDAO == null)
 			{
+				_logger.LogInformation($"Update rejected. Product ({product.Id}) was not found.");
 				throw new NotFoundException("Product", product.Id);
 			}
 
 			product.MapToDAO(productDAO);
+
+			await _dbContext.SaveChangesAsync();
+		}
+
+		public async Task Delete(Guid id)
+		{
+			var productDAO = await _dbContext.Products
+				.FirstOrDefaultAsync(p => p.Id == id);
+
+			if (productDAO == null)
+			{
+				_logger.LogInformation($"Deletion rejected. Product ({id}) was not found.");
+				throw new NotFoundException("Product", id);
+			}
+
+			_dbContext.Products.Remove(productDAO);
 
 			await _dbContext.SaveChangesAsync();
 		}

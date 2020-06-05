@@ -1,5 +1,6 @@
 ﻿using CrazyFramework.Core.Domain.Products;
 using CrazyFramework.Core.Domain.Products.Commands.CreateProduct;
+using CrazyFramework.Core.Domain.Products.Commands.DeleteProduct;
 using CrazyFramework.Core.Domain.Products.Commands.UpdateProduct;
 using CrazyFramework.Core.Domain.Products.Queries.GetProducts;
 using Microsoft.AspNetCore.Mvc;
@@ -22,10 +23,22 @@ namespace CrazyFramework.WebAPI.Controllers
 			return await Mediator.Send(command);
 		}
 
-		[HttpPut]
-		public async Task<ActionResult<Guid>> Update(UpdateProductCommand command)
+		[HttpPut("{id}")]
+		public async Task<ActionResult> Update(Guid id, UpdateProductCommand command)
 		{
-			return await Mediator.Send(command);
+			if (id != command.Id)
+			{
+				return BadRequest();
+			}
+			await Mediator.Send(command);
+			return NoContent();
+		}
+
+		[HttpDelete("{id}")]
+		public async Task<ActionResult> Delete(Guid id)
+		{
+			await Mediator.Send(new DeleteProductCommand { Id = id });
+			return NoContent();
 		}
 	}
 }

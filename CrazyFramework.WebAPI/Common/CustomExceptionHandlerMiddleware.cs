@@ -1,6 +1,7 @@
 ﻿using CrazyFramework.Core.Common.Exceptions;
 using CrazyFramework.Core.Helpers;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Net;
@@ -11,10 +12,12 @@ namespace CrazyFramework.WebAPI.Common
 	public class CustomExceptionHandlerMiddleware
 	{
 		private readonly RequestDelegate _next;
+		private readonly ILogger<CustomExceptionHandlerMiddleware> _logger;
 
-		public CustomExceptionHandlerMiddleware(RequestDelegate next)
+		public CustomExceptionHandlerMiddleware(RequestDelegate next, ILogger<CustomExceptionHandlerMiddleware> logger)
 		{
 			_next = next;
+			_logger = logger;
 		}
 
 		public async Task Invoke(HttpContext context)
@@ -35,8 +38,8 @@ namespace CrazyFramework.WebAPI.Common
 
 		private (int Code, string Content) HandleException(Exception exception)
 		{
-			var code = HttpStatusCode.InternalServerError;
-			var result = string.Empty;
+			HttpStatusCode code;
+			string result;
 
 			switch (exception)
 			{
@@ -56,8 +59,10 @@ namespace CrazyFramework.WebAPI.Common
 					break;
 
 				default:
+					code = HttpStatusCode.InternalServerError;
 					// TODO: apply multi languages
 					result = JsonConvert.SerializeObject(DictionaryHelper.CreateErrorObject("Errors", "Unknown error"));
+					_logger.LogError(exception, exception.Message);
 					break;
 			}
 
