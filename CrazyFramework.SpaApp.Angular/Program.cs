@@ -2,25 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CrazyFramework.Repos;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace CrazyFramework.WebAPI
+namespace CrazyFramework.SpaApp.Angular
 {
 	public class Program
 	{
-		public async static Task Main(string[] args)
+		public static void Main(string[] args)
 		{
-			var host = CreateHostBuilder(args).Build();
-
-			await MigrationRepository.MigrateDatabase(host.Services);
-			await MigrationRepository.SeedInitialData(host.Services);
-
-			host.Run();
+			CreateHostBuilder(args).Build().Run();
 		}
 
 		public static IHostBuilder CreateHostBuilder(string[] args) =>
