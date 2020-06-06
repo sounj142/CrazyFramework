@@ -39,7 +39,7 @@ namespace CrazyFramework.WebAPI.IntegrationTests.ProductsController
 			var client = _factory.CreateClient();
 
 			// Act
-			var response = await client.PutAsync($"/api/Products/{updateProductData.Id}", updateProductData.SerializeToStringContent());
+			var response = await client.PutAsync($"{TestConstants.ProductApiBaseUrl}/{updateProductData.Id}", updateProductData.SerializeToStringContent());
 
 			// Assert
 			response.EnsureSuccessStatusCode(); // Status Code 200-299
@@ -77,7 +77,7 @@ namespace CrazyFramework.WebAPI.IntegrationTests.ProductsController
 			var client = _factory.CreateClient();
 
 			// Act
-			var response = await client.PutAsync($"/api/Products/{updateProductData.Id}", updateProductData.SerializeToStringContent());
+			var response = await client.PutAsync($"{TestConstants.ProductApiBaseUrl}/{updateProductData.Id}", updateProductData.SerializeToStringContent());
 
 			var errors = await response.DeserializeResponseContent<Dictionary<string, string[]>>();
 

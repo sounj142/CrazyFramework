@@ -20,7 +20,7 @@ namespace CrazyFramework.WebAPI.IntegrationTests.ProductsController
 			var client = _factory.CreateClient();
 
 			// Act
-			var response = await client.GetAsync("/api/Products");
+			var response = await client.GetAsync(TestConstants.ProductApiBaseUrl);
 			var products = await response.DeserializeResponseContent<ProductsViewModel[]>();
 
 			// Assert
