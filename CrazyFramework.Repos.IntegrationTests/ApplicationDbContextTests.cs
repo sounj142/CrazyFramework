@@ -24,14 +24,14 @@ namespace CrazyFramework.Repos.IntegrationTests
 				Price = 100.2M
 			};
 
-			var productDAOs = _dbContext.Set<ProductDAO>();
+			var productsDbSet = _dbContext.Set<ProductDAO>();
 
 			// Act
-			productDAOs.Add(product);
+			productsDbSet.Add(product);
 			await _dbContext.SaveChangesAsync();
 
 			// Assert
-			var products = await productDAOs.ToListAsync();
+			var products = await productsDbSet.ToListAsync();
 			Assert.Single(products);
 
 			var responseProduct = products[0];
@@ -67,9 +67,9 @@ namespace CrazyFramework.Repos.IntegrationTests
 				Price = 100.2M
 			};
 
-			var productDAOs = _dbContext.Set<ProductDAO>();
+			var productsDbSet = _dbContext.Set<ProductDAO>();
 
-			productDAOs.Add(productToCreate);
+			productsDbSet.Add(productToCreate);
 			await _dbContext.SaveChangesAsync();
 
 			_dateTimeMock.Setup(m => m.UtcNow)
@@ -77,20 +77,20 @@ namespace CrazyFramework.Repos.IntegrationTests
 			_currentRequestContextMock.Setup(m => m.UserId)
 				.Returns(lastUpdatedBy);
 
-			var productToUpdate = await productDAOs.FirstAsync(p => p.Id == productId);
+			var productToUpdate = await productsDbSet.FirstAsync(p => p.Id == productId);
 			productToUpdate.Name = newProductName;
 
 			// Act
 			await _dbContext.SaveChangesAsync();
 
-			var product = await productDAOs.FirstAsync(p => p.Id == productId);
+			var product = await productsDbSet.FirstAsync(p => p.Id == productId);
 
 			// Assert
-			var products = await productDAOs.ToListAsync();
+			var products = await productsDbSet.ToListAsync();
 			Assert.Single(products);
 			var responseProduct = products[0];
 
-			Assert.Equal(product.Id, responseProduct.Id);
+			Assert.Equal(product.Id, productId);
 			Assert.Equal(product.Name, newProductName);
 			Assert.Equal(product.Price, responseProduct.Price);
 

@@ -15,14 +15,14 @@ namespace CrazyFramework.Repos.IntegrationTests
 				new ProductDAO
 				{
 					Id = Guid.NewGuid(),
-					Name = "Toyota",
-					Price = 100.2M
+					Name = "Honda",
+					Price = 38
 				},
 				new ProductDAO
 				{
 					Id = Guid.NewGuid(),
-					Name = "Honda",
-					Price = 38
+					Name = "Toyota",
+					Price = 100.2M
 				}
 			};
 		}
