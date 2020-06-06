@@ -25,7 +25,7 @@ namespace CrazyFramework.WebAPI
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddApplication();
-			services.AddRepositories(Configuration, Environment.IsEnvironment("Test") ? "CrazyDb_IntegrationTests" : "CrazyDb");
+			services.AddRepositories(Configuration, "CrazyDb");
 			services.AddServices(Configuration);
 			services.ConfigWebApi(Configuration);
 		}

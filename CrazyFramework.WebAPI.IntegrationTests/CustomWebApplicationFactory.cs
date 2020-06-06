@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using CrazyFramework.Repos;
 using CrazyFramework.Repos.Models.Products;
+using Microsoft.EntityFrameworkCore;
 
 namespace CrazyFramework.WebAPI.IntegrationTests
 {
@@ -14,6 +15,23 @@ namespace CrazyFramework.WebAPI.IntegrationTests
 		{
 			builder.ConfigureServices(services =>
 			{
+				// Remove the app's ApplicationDbContext registration.
+				var descriptor = services.SingleOrDefault(
+					d => d.ServiceType ==
+						typeof(DbContextOptions<ApplicationDbContext>));
+
+				if (descriptor != null)
+				{
+					services.Remove(descriptor);
+				}
+
+				// Add ApplicationDbContext using a test database for testing
+				services.AddDbContext<ApplicationDbContext>(options =>
+					options.UseSqlServer(
+						TestConstants.DbConnection,
+						b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
+					);
+
 				// Build the service provider.
 				var serviceProvider = services.BuildServiceProvider();
 
@@ -21,6 +39,7 @@ namespace CrazyFramework.WebAPI.IntegrationTests
 				MigrationRepository.MigrateDatabase(serviceProvider).Wait();
 				MigrationRepository.SeedInitialData(serviceProvider).Wait();
 
+				// seed some sample data
 				PrepareSampleData(serviceProvider);
 			})
 			.UseEnvironment("Test");
