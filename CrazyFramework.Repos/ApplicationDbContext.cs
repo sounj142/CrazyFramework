@@ -24,22 +24,19 @@ namespace CrazyFramework.Repos
 
 		public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
 		{
-			AutomaticSetupAuditData();
 			return base.SaveChangesAsync(cancellationToken);
 		}
 
+		// Note: we don't need to override SaveChangesAsync(CancellationToken cancellationToken = default) overload
+		// because that method will call the method bellow, so we avoid calling AutomaticSetupAuditData method twice
 		public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
 		{
 			AutomaticSetupAuditData();
 			return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
 		}
 
-		public override int SaveChanges()
-		{
-			AutomaticSetupAuditData();
-			return base.SaveChanges();
-		}
-
+		// Note: we don't need to override SaveChanges() overload
+		// because that method will call the method bellow, so we avoid calling AutomaticSetupAuditData method twice
 		public override int SaveChanges(bool acceptAllChangesOnSuccess)
 		{
 			AutomaticSetupAuditData();
