@@ -1,8 +1,6 @@
 ﻿using CrazyFramework.Repos.Models.Products;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -35,10 +33,17 @@ namespace CrazyFramework.Repos.IntegrationTests
 			// Assert
 			var products = await productDAOs.ToListAsync();
 			Assert.Single(products);
+
 			var responseProduct = products[0];
-			Assert.True(product.Name == responseProduct.Name && product.Price == responseProduct.Price && product.Id == responseProduct.Id);
-			Assert.True(responseProduct.CreatedBy == TestConstants.CurrentUserId && responseProduct.CreatedDate == TestConstants.FixUtcNow);
-			Assert.True(responseProduct.LastModifiedBy == null && responseProduct.LastModifyDate == null);
+			Assert.Equal(product.Id, responseProduct.Id);
+			Assert.Equal(product.Name, responseProduct.Name);
+			Assert.Equal(product.Price, responseProduct.Price);
+
+			Assert.Equal(responseProduct.CreatedBy, TestConstants.CurrentUserId);
+			Assert.Equal(responseProduct.CreatedDate, TestConstants.FixUtcNow);
+
+			Assert.Null(responseProduct.LastModifiedBy);
+			Assert.Null(responseProduct.LastModifyDate);
 		}
 
 		[Fact]
@@ -79,9 +84,16 @@ namespace CrazyFramework.Repos.IntegrationTests
 			var products = await productDAOs.ToListAsync();
 			Assert.Single(products);
 			var responseProduct = products[0];
-			Assert.True(product.Name == newProductName && product.Price == responseProduct.Price && product.Id == responseProduct.Id);
-			Assert.True(responseProduct.CreatedBy == TestConstants.CurrentUserId && responseProduct.CreatedDate == TestConstants.FixUtcNow);
-			Assert.True(responseProduct.LastModifiedBy == lastUpdatedBy && responseProduct.LastModifyDate == lastUpdatedDate);
+
+			Assert.Equal(product.Id, responseProduct.Id);
+			Assert.Equal(product.Name, newProductName);
+			Assert.Equal(product.Price, responseProduct.Price);
+
+			Assert.Equal(responseProduct.CreatedBy, TestConstants.CurrentUserId);
+			Assert.Equal(responseProduct.CreatedDate, TestConstants.FixUtcNow);
+
+			Assert.Equal(responseProduct.LastModifiedBy, lastUpdatedBy);
+			Assert.Equal(responseProduct.LastModifyDate, lastUpdatedDate);
 		}
 	}
 }

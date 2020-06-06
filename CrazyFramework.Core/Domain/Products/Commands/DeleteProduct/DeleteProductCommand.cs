@@ -1,5 +1,4 @@
-﻿using CrazyFramework.Core.Models.Products;
-using CrazyFramework.Core.Repositories;
+﻿using CrazyFramework.Core.Repositories;
 using MediatR;
 using System;
 using System.Threading;

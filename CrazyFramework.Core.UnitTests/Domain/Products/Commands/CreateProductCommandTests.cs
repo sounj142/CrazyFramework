@@ -3,8 +3,6 @@ using CrazyFramework.Core.Models.Products;
 using CrazyFramework.Core.Repositories;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;

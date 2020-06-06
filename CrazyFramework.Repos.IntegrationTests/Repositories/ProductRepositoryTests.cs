@@ -1,12 +1,6 @@
-﻿using CrazyFramework.Core.Repositories;
-using CrazyFramework.Repos.Models.Products;
-using CrazyFramework.Repos.Repositories;
+﻿using CrazyFramework.Repos.Repositories;
 using Microsoft.Extensions.Logging;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -41,8 +35,14 @@ namespace CrazyFramework.Repos.IntegrationTests.Repositories
 
 			// Assert
 			Assert.Equal(2, products.Count);
-			Assert.True(dbProducts[0].Name == products[0].Name && dbProducts[0].Price == products[0].Price && dbProducts[0].Id == products[0].Id);
-			Assert.True(dbProducts[1].Name == products[1].Name && dbProducts[1].Price == products[1].Price && dbProducts[1].Id == products[1].Id);
+
+			Assert.Equal(dbProducts[0].Id, products[0].Id);
+			Assert.Equal(dbProducts[0].Name, products[0].Name);
+			Assert.Equal(dbProducts[0].Price, products[0].Price);
+
+			Assert.Equal(dbProducts[1].Id, products[1].Id);
+			Assert.Equal(dbProducts[1].Name, products[1].Name);
+			Assert.Equal(dbProducts[1].Price, products[1].Price);
 		}
 	}
 }

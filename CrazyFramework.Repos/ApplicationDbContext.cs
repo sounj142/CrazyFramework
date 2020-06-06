@@ -1,10 +1,7 @@
 ﻿using CrazyFramework.Core.Common;
 using CrazyFramework.Core.Services;
 using CrazyFramework.Repos.Models;
-using CrazyFramework.Repos.Models.Orders;
-using CrazyFramework.Repos.Models.Products;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;

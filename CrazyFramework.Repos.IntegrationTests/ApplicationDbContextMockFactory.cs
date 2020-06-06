@@ -2,11 +2,8 @@
 using CrazyFramework.Core.Services;
 using CrazyFramework.Repos.Models.Products;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Moq;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CrazyFramework.Repos.IntegrationTests

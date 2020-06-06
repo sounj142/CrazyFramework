@@ -1,10 +1,7 @@
 ﻿using CrazyFramework.Core.Common;
 using CrazyFramework.Core.Services;
-using CrazyFramework.Repos.Models.Products;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CrazyFramework.Repos.IntegrationTests
 {
