@@ -59,17 +59,17 @@ namespace CrazyFramework.Repos.IntegrationTests
 			_currentRequestContextMock.Setup(m => m.UserId)
 				.Returns(TestConstants.CurrentUserId);
 
-			var product = new ProductDAO
+			var productId = Guid.NewGuid();
+			var productToCreate = new ProductDAO
 			{
-				Id = Guid.NewGuid(),
+				Id = productId,
 				Name = "Toyota",
 				Price = 100.2M
 			};
 
 			var productDAOs = _dbContext.Set<ProductDAO>();
 
-			// Act
-			productDAOs.Add(product);
+			productDAOs.Add(productToCreate);
 			await _dbContext.SaveChangesAsync();
 
 			_dateTimeMock.Setup(m => m.UtcNow)
@@ -77,8 +77,13 @@ namespace CrazyFramework.Repos.IntegrationTests
 			_currentRequestContextMock.Setup(m => m.UserId)
 				.Returns(lastUpdatedBy);
 
-			product.Name = newProductName;
+			var productToUpdate = await productDAOs.FirstAsync(p => p.Id == productId);
+			productToUpdate.Name = newProductName;
+
+			// Act
 			await _dbContext.SaveChangesAsync();
+
+			var product = await productDAOs.FirstAsync(p => p.Id == productId);
 
 			// Assert
 			var products = await productDAOs.ToListAsync();
