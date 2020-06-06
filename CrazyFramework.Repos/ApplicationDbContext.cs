@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CrazyFramework.Repos
 {
-	internal class ApplicationDbContext : DbContext
+	public class ApplicationDbContext : DbContext
 	{
 		private readonly ICurrentRequestContext _currentUserService;
 		private readonly IDateTime _dateTimeService;
@@ -39,12 +39,14 @@ namespace CrazyFramework.Repos
 
 		public override int SaveChanges()
 		{
-			throw new InvalidOperationException("Don't support synchronous versions of SaveChanges");
+			AutomaticSetupAuditData();
+			return base.SaveChanges();
 		}
 
 		public override int SaveChanges(bool acceptAllChangesOnSuccess)
 		{
-			throw new InvalidOperationException("Don't support synchronous versions of SaveChanges");
+			AutomaticSetupAuditData();
+			return base.SaveChanges(acceptAllChangesOnSuccess);
 		}
 
 		protected override void OnModelCreating(ModelBuilder builder)

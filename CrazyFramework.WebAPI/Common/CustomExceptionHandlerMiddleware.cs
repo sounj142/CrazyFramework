@@ -62,6 +62,9 @@ namespace CrazyFramework.WebAPI.Common
 					code = HttpStatusCode.InternalServerError;
 					// TODO: apply multi languages
 					result = JsonConvert.SerializeObject(DictionaryHelper.CreateErrorObject("Errors", "Unknown error"));
+
+					// we expect that before throw FrameworkException and its derived exceptions, developers should write necessary logs
+					// so we only need to write log for other kinds of unhandled exception
 					_logger.LogError(exception, exception.Message);
 					break;
 			}

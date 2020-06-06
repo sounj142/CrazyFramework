@@ -6,5 +6,6 @@ namespace CrazyFramework.Core.Services
 	{
 		Guid? UserId { get; }
 		string UserName { get; }
+		int MaxTimeForRunningRequest { get; }
 	}
 }

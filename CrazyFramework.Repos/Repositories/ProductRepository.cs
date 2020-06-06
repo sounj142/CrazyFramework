@@ -12,7 +12,7 @@ using CrazyFramework.Repos.Models.Products;
 
 namespace CrazyFramework.Repos.Repositories
 {
-	internal class ProductRepository : IProductRepository
+	public class ProductRepository : IProductRepository
 	{
 		private readonly ApplicationDbContext _dbContext;
 		private readonly ILogger<ProductRepository> _logger;

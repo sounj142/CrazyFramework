@@ -1,4 +1,5 @@
 ﻿using CrazyFramework.Core.Services;
+using CrazyFramework.Repos;
 using CrazyFramework.WebAPI.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,9 @@ namespace CrazyFramework.WebAPI
 	{
 		public static IServiceCollection ConfigWebApi(this IServiceCollection services, IConfiguration configuration)
 		{
+			services.AddHealthChecks()
+				.AddDbContextCheck<ApplicationDbContext>();
+
 			services.AddScoped<ICurrentRequestContext, CurrentRequestContext>();
 
 			services.AddControllers()
@@ -27,7 +31,7 @@ namespace CrazyFramework.WebAPI
 			// Register the Swagger generator, defining 1 or more Swagger documents
 			services.AddSwaggerGen(c =>
 			{
-				c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+				c.SwaggerDoc("v1", new OpenApiInfo { Title = "Crazy API", Version = "v1" });
 			});
 
 			return services;

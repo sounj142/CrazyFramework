@@ -14,7 +14,7 @@ namespace CrazyFramework.Repos.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: true),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    LastModifyDate = table.Column<DateTime>(nullable: false),
+                    LastModifyDate = table.Column<DateTime>(nullable: true),
                     LastModifiedBy = table.Column<Guid>(nullable: true),
                     OrderTime = table.Column<DateTime>(nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
@@ -31,7 +31,7 @@ namespace CrazyFramework.Repos.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: true),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    LastModifyDate = table.Column<DateTime>(nullable: false),
+                    LastModifyDate = table.Column<DateTime>(nullable: true),
                     LastModifiedBy = table.Column<Guid>(nullable: true),
                     Name = table.Column<string>(maxLength: 200, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
@@ -48,7 +48,7 @@ namespace CrazyFramework.Repos.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: true),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    LastModifyDate = table.Column<DateTime>(nullable: false),
+                    LastModifyDate = table.Column<DateTime>(nullable: true),
                     LastModifiedBy = table.Column<Guid>(nullable: true),
                     OrderId = table.Column<Guid>(nullable: false),
                     ProductId = table.Column<Guid>(nullable: false),

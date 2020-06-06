@@ -24,10 +24,8 @@ namespace CrazyFramework.WebAPI
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			var healthChecksBuilder = services.AddHealthChecks();
-
 			services.AddApplication();
-			services.AddRepositories(Configuration, healthChecksBuilder);
+			services.AddRepositories(Configuration);
 			services.AddServices(Configuration);
 			services.ConfigWebApi(Configuration);
 		}

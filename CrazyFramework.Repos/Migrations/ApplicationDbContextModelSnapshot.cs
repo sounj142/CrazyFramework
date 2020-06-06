@@ -37,7 +37,7 @@ namespace CrazyFramework.Repos.Migrations
                     b.Property<Guid?>("LastModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("LastModifyDate")
+                    b.Property<DateTime?>("LastModifyDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("OrderTime")
@@ -63,7 +63,7 @@ namespace CrazyFramework.Repos.Migrations
                     b.Property<Guid?>("LastModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("LastModifyDate")
+                    b.Property<DateTime?>("LastModifyDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("OrderId")
@@ -102,7 +102,7 @@ namespace CrazyFramework.Repos.Migrations
                     b.Property<Guid?>("LastModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("LastModifyDate")
+                    b.Property<DateTime?>("LastModifyDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")

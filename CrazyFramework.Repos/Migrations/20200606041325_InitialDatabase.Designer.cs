@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CrazyFramework.Repos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200605090707_InitialDatabase")]
+    [Migration("20200606041325_InitialDatabase")]
     partial class InitialDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,7 +39,7 @@ namespace CrazyFramework.Repos.Migrations
                     b.Property<Guid?>("LastModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("LastModifyDate")
+                    b.Property<DateTime?>("LastModifyDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("OrderTime")
@@ -65,7 +65,7 @@ namespace CrazyFramework.Repos.Migrations
                     b.Property<Guid?>("LastModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("LastModifyDate")
+                    b.Property<DateTime?>("LastModifyDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("OrderId")
@@ -104,7 +104,7 @@ namespace CrazyFramework.Repos.Migrations
                     b.Property<Guid?>("LastModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("LastModifyDate")
+                    b.Property<DateTime?>("LastModifyDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")

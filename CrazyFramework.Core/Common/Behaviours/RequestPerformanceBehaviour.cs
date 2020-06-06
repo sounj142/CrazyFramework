@@ -33,11 +33,11 @@ namespace CrazyFramework.Core.Common.Behaviours
 
 			var elapsedMilliseconds = _timer.ElapsedMilliseconds;
 
-			if (elapsedMilliseconds > 500)
+			if (elapsedMilliseconds > _currentRequestContext.MaxTimeForRunningRequest)
 			{
 				var requestName = typeof(TRequest).Name;
 
-				_logger.LogWarning("CleanArchitecture Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@Request}",
+				_logger.LogWarning("Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@Request}",
 					requestName, elapsedMilliseconds, _currentRequestContext.UserId, _currentRequestContext.UserName, request);
 			}
 
