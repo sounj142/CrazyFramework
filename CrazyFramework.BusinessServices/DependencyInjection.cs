@@ -1,9 +1,9 @@
 ﻿using CrazyFramework.Core.Common;
-using CrazyFramework.Services.Common;
+using CrazyFramework.BusinessServices.Common;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CrazyFramework.Services
+namespace CrazyFramework.BusinessServices
 {
 	public static class DependencyInjection
 	{

@@ -1,5 +1,5 @@
 using CrazyFramework.Core;
-using CrazyFramework.Services;
+using CrazyFramework.BusinessServices;
 using CrazyFramework.Repos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,7 +25,7 @@ namespace CrazyFramework.WebAPI
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddApplication();
-			services.AddRepositories(Configuration);
+			services.AddRepositories(Configuration, Environment.IsEnvironment("Test") ? "CrazyDb_IntegrationTests" : "CrazyDb");
 			services.AddServices(Configuration);
 			services.ConfigWebApi(Configuration);
 		}

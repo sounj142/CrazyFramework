@@ -23,9 +23,9 @@ namespace CrazyFramework.Repos.Repositories
 			_logger = logger;
 		}
 
-		private DbSet<ProductDAO> ProductDAOs => _dbContext.Set<ProductDAO>();
+		private DbSet<ProductDAO> ProductsDbSet => _dbContext.Set<ProductDAO>();
 
-		private IQueryable<Product> ProductsNoTracking => ProductDAOs.AsNoTracking()
+		private IQueryable<Product> ProductsNoTrackingDbSet => ProductsDbSet.AsNoTracking()
 				.Select(p => new Product
 				{
 					Id = p.Id,
@@ -35,7 +35,7 @@ namespace CrazyFramework.Repos.Repositories
 
 		public async Task<Product> GetById(Guid id)
 		{
-			var product = await ProductsNoTracking
+			var product = await ProductsNoTrackingDbSet
 				.FirstOrDefaultAsync(p => p.Id == id);
 
 			return product;
@@ -43,7 +43,8 @@ namespace CrazyFramework.Repos.Repositories
 
 		public async Task<IList<Product>> GetAll()
 		{
-			var products = await ProductsNoTracking
+			var products = await ProductsNoTrackingDbSet
+				.OrderBy(p => p.Name)
 				.ToListAsync();
 
 			return products;
@@ -52,14 +53,14 @@ namespace CrazyFramework.Repos.Repositories
 		public async Task Create(Product product)
 		{
 			var productDAO = product.MapToDAO();
-			ProductDAOs.Add(productDAO);
+			ProductsDbSet.Add(productDAO);
 
 			await _dbContext.SaveChangesAsync();
 		}
 
 		public async Task Update(Product product)
 		{
-			var productDAO = await ProductDAOs
+			var productDAO = await ProductsDbSet
 				.FirstOrDefaultAsync(p => p.Id == product.Id);
 
 			if (productDAO == null)
@@ -75,7 +76,7 @@ namespace CrazyFramework.Repos.Repositories
 
 		public async Task Delete(Guid id)
 		{
-			var productDAO = await ProductDAOs
+			var productDAO = await ProductsDbSet
 				.FirstOrDefaultAsync(p => p.Id == id);
 
 			if (productDAO == null)
@@ -84,7 +85,7 @@ namespace CrazyFramework.Repos.Repositories
 				throw new NotFoundException("Product", id);
 			}
 
-			ProductDAOs.Remove(productDAO);
+			ProductsDbSet.Remove(productDAO);
 
 			await _dbContext.SaveChangesAsync();
 		}

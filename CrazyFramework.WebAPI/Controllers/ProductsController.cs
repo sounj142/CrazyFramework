@@ -1,8 +1,8 @@
-﻿using CrazyFramework.Core.Domain.Products;
-using CrazyFramework.Core.Domain.Products.Commands.CreateProduct;
-using CrazyFramework.Core.Domain.Products.Commands.DeleteProduct;
-using CrazyFramework.Core.Domain.Products.Commands.UpdateProduct;
-using CrazyFramework.Core.Domain.Products.Queries.GetProducts;
+﻿using CrazyFramework.Core.Business.Products;
+using CrazyFramework.Core.Business.Products.Commands.CreateProduct;
+using CrazyFramework.Core.Business.Products.Commands.DeleteProduct;
+using CrazyFramework.Core.Business.Products.Commands.UpdateProduct;
+using CrazyFramework.Core.Business.Products.Queries.GetProducts;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;

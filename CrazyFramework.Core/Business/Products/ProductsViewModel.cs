@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CrazyFramework.Core.Domain.Products
+namespace CrazyFramework.Core.Business.Products
 {
 	public class ProductsViewModel
 	{

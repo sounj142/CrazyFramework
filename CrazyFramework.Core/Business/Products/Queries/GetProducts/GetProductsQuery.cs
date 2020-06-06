@@ -1,10 +1,11 @@
-﻿using CrazyFramework.Core.Repositories;
+﻿using CrazyFramework.Core.Business.Products;
+using CrazyFramework.Core.Repositories;
 using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CrazyFramework.Core.Domain.Products.Queries.GetProducts
+namespace CrazyFramework.Core.Business.Products.Queries.GetProducts
 {
 	public class GetProductsQuery : IRequest<ProductsViewModel[]>
 	{

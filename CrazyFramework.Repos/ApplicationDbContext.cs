@@ -1,5 +1,5 @@
-﻿using CrazyFramework.Core.Common;
-using CrazyFramework.Core.Services;
+﻿using CrazyFramework.Core.BusinessServices;
+using CrazyFramework.Core.Common;
 using CrazyFramework.Repos.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;

@@ -5,7 +5,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CrazyFramework.Core.Domain.Products.Commands.CreateProduct
+namespace CrazyFramework.Core.Business.Products.Commands.CreateProduct
 {
 	public class CreateProductCommand : IRequest<Guid>
 	{

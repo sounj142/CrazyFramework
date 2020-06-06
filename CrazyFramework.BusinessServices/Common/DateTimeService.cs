@@ -1,7 +1,7 @@
 ﻿using CrazyFramework.Core.Common;
 using System;
 
-namespace CrazyFramework.Services.Common
+namespace CrazyFramework.BusinessServices.Common
 {
 	// note: this class should be thread safe because its scope is Singleton
 	public class DateTimeService : IDateTime

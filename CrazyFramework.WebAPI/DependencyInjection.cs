@@ -1,4 +1,4 @@
-﻿using CrazyFramework.Core.Services;
+﻿using CrazyFramework.Core.BusinessServices;
 using CrazyFramework.Repos;
 using CrazyFramework.WebAPI.Services;
 using FluentValidation.AspNetCore;

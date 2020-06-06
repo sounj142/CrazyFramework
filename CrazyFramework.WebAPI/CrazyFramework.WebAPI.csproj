@@ -18,7 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CrazyFramework.Core\CrazyFramework.Core.csproj" />
     <ProjectReference Include="..\CrazyFramework.Repos\CrazyFramework.Repos.csproj" />
-    <ProjectReference Include="..\CrazyFramework.Services\CrazyFramework.Services.csproj" />
+    <ProjectReference Include="..\CrazyFramework.BusinessServices\CrazyFramework.BusinessServices.csproj" />
   </ItemGroup>
 
 

@@ -4,7 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CrazyFramework.Core.Domain.Products.Commands.DeleteProduct
+namespace CrazyFramework.Core.Business.Products.Commands.DeleteProduct
 {
 	public class DeleteProductCommand : IRequest
 	{
