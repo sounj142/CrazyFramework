@@ -1,11 +1,14 @@
 ﻿using FluentValidation;
 
-namespace CrazyFramework.App.BusinessHandlers.Products.Commands.CreateProduct
+namespace CrazyFramework.App.Handlers.Products.Commands.UpdateProduct
 {
-	public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
+	public class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
 	{
-		public CreateProductCommandValidator()
+		public UpdateProductCommandValidator()
 		{
+			RuleFor(v => v.Id)
+				.NotEmpty().WithMessage("Id is required.");
+
 			// TODO: apply multiple languages to validation messages
 			RuleFor(v => v.Name)
 				.NotEmpty().WithMessage("Name is required.")

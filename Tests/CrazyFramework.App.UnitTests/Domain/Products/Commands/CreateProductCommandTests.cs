@@ -1,5 +1,5 @@
-﻿using CrazyFramework.App.BusinessHandlers.Products.Commands.CreateProduct;
-using CrazyFramework.App.Entities.Products;
+﻿using CrazyFramework.App.Entities.Products;
+using CrazyFramework.App.Handlers.Products.Commands.CreateProduct;
 using CrazyFramework.App.Infrastructure.Repos;
 using Moq;
 using System;

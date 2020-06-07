@@ -1,8 +1,8 @@
-﻿using CrazyFramework.App.BusinessHandlers.Products.Commands.CreateProduct;
-using CrazyFramework.App.BusinessHandlers.Products.Commands.DeleteProduct;
-using CrazyFramework.App.BusinessHandlers.Products.Commands.UpdateProduct;
-using CrazyFramework.App.BusinessHandlers.Products.Queries.GetProducts;
-using CrazyFramework.App.Dtos.Products;
+﻿using CrazyFramework.App.Dtos.Products;
+using CrazyFramework.App.Handlers.Products.Commands.CreateProduct;
+using CrazyFramework.App.Handlers.Products.Commands.DeleteProduct;
+using CrazyFramework.App.Handlers.Products.Commands.UpdateProduct;
+using CrazyFramework.App.Handlers.Products.Queries.GetProducts;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;

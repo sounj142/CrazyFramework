@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CrazyFramework.App.BusinessHandlers.Products.Queries.GetProducts
+namespace CrazyFramework.App.Handlers.Products.Queries.GetProducts
 {
 	public class GetProductsQuery : IRequest<ProductsDto[]>
 	{

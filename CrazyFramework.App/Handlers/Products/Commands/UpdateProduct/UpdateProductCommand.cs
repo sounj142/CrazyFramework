@@ -5,7 +5,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CrazyFramework.App.BusinessHandlers.Products.Commands.UpdateProduct
+namespace CrazyFramework.App.Handlers.Products.Commands.UpdateProduct
 {
 	public class UpdateProductCommand : IRequest
 	{
