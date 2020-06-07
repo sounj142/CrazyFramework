@@ -1,4 +1,4 @@
-﻿using CrazyFramework.Core.Models.Products;
+﻿using CrazyFramework.Core.Entities.Products;
 using CrazyFramework.Repos.Models.Products;
 
 namespace CrazyFramework.Repos.Mapper

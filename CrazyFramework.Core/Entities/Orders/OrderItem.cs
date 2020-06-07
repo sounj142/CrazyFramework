@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CrazyFramework.Core.Models.Orders
+namespace CrazyFramework.Core.Entities.Orders
 {
 	public class OrderItem
 	{

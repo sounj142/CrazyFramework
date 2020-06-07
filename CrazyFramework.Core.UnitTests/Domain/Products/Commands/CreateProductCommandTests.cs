@@ -1,5 +1,5 @@
 ﻿using CrazyFramework.Core.Business.Products.Commands.CreateProduct;
-using CrazyFramework.Core.Models.Products;
+using CrazyFramework.Core.Entities.Products;
 using CrazyFramework.Core.Repositories;
 using Moq;
 using System;

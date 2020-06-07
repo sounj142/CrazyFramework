@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CrazyFramework.Core.Models.Products
+namespace CrazyFramework.Core.Entities.Products
 {
 	public class Product
 	{

@@ -1,5 +1,4 @@
-﻿using CrazyFramework.Core.Models.Products;
-using CrazyFramework.Core.Repositories;
+﻿using CrazyFramework.Core.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +8,7 @@ using System.Threading.Tasks;
 using CrazyFramework.Core.Common.Exceptions;
 using Microsoft.Extensions.Logging;
 using CrazyFramework.Repos.Models.Products;
+using CrazyFramework.Core.Entities.Products;
 
 namespace CrazyFramework.Repos.Repositories
 {

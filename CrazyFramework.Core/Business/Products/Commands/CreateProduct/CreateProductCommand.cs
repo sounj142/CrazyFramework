@@ -1,4 +1,4 @@
-﻿using CrazyFramework.Core.Models.Products;
+﻿using CrazyFramework.Core.Entities.Products;
 using CrazyFramework.Core.Repositories;
 using MediatR;
 using System;

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Enums\" />
+    <Folder Include="Entities\Enums\" />
     <Folder Include="BusinessServices\Common\" />
     <Folder Include="BusinessServices\Users\" />
   </ItemGroup>

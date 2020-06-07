@@ -1,4 +1,4 @@
-﻿using CrazyFramework.Core.Models.Products;
+﻿using CrazyFramework.Core.Entities.Products;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
