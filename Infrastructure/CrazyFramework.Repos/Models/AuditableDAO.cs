@@ -4,9 +4,9 @@ namespace CrazyFramework.Infrastructure.Repos.Models
 {
 	public abstract class AuditableDAO : BaseDAO
 	{
-		public DateTime? CreatedDate { get; set; }
+		public DateTimeOffset? CreatedDate { get; set; }
 		public Guid? CreatedBy { get; set; }
-		public DateTime? LastModifyDate { get; set; }
+		public DateTimeOffset? LastModifyDate { get; set; }
 		public Guid? LastModifiedBy { get; set; }
 	}
 }

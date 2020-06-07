@@ -50,7 +50,7 @@ namespace CrazyFramework.Infrastructure.Repos.IntegrationTests
 		public async Task SaveChangesAsync_WhenUpdateProduct_ShouldAutomaticlySetUpdatedDateAndUpdatedByButCreatedDateAndCreatedByShoudNotChange()
 		{
 			const string newProductName = "New name";
-			DateTime lastUpdatedDate = DateTime.UtcNow;
+			var lastUpdatedDate = DateTimeOffset.UtcNow;
 			Guid lastUpdatedBy = Guid.NewGuid();
 
 			// Arrange

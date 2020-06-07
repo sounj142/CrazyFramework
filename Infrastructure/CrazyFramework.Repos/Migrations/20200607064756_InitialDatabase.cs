@@ -12,11 +12,11 @@ namespace CrazyFramework.Infrastructure.Repos.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: true),
+                    CreatedDate = table.Column<DateTimeOffset>(nullable: true),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    LastModifyDate = table.Column<DateTime>(nullable: true),
+                    LastModifyDate = table.Column<DateTimeOffset>(nullable: true),
                     LastModifiedBy = table.Column<Guid>(nullable: true),
-                    OrderTime = table.Column<DateTime>(nullable: false),
+                    OrderTime = table.Column<DateTimeOffset>(nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
@@ -29,9 +29,9 @@ namespace CrazyFramework.Infrastructure.Repos.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: true),
+                    CreatedDate = table.Column<DateTimeOffset>(nullable: true),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    LastModifyDate = table.Column<DateTime>(nullable: true),
+                    LastModifyDate = table.Column<DateTimeOffset>(nullable: true),
                     LastModifiedBy = table.Column<Guid>(nullable: true),
                     Name = table.Column<string>(maxLength: 200, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
@@ -46,9 +46,9 @@ namespace CrazyFramework.Infrastructure.Repos.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: true),
+                    CreatedDate = table.Column<DateTimeOffset>(nullable: true),
                     CreatedBy = table.Column<Guid>(nullable: true),
-                    LastModifyDate = table.Column<DateTime>(nullable: true),
+                    LastModifyDate = table.Column<DateTimeOffset>(nullable: true),
                     LastModifiedBy = table.Column<Guid>(nullable: true),
                     OrderId = table.Column<Guid>(nullable: false),
                     ProductId = table.Column<Guid>(nullable: false),

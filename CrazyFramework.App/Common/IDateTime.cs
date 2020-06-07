@@ -4,7 +4,7 @@ namespace CrazyFramework.App.Common
 {
 	public interface IDateTime
 	{
-		DateTime Now { get; }
-		DateTime UtcNow { get; }
+		DateTimeOffset Now { get; }
+		DateTimeOffset UtcNow { get; }
 	}
 }
