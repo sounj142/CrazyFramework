@@ -1,3 +1,4 @@
+using CrazyFramework.SpaApp.Angular.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -38,17 +39,16 @@ namespace CrazyFramework.SpaApp.Angular
 			}
 
 			app.UseHttpsRedirection();
-			app.UseStaticFiles();
 
+			app.UseRequiredAuthentication();
+
+			app.UseStaticFiles();
 			if (!env.IsDevelopment())
 			{
 				app.UseSpaStaticFiles();
 			}
 
 			app.UseRouting();
-
-			//app.UseAuthentication();
-			//app.UseAuthorization();
 
 			app.UseSpa(spa =>
 			{
