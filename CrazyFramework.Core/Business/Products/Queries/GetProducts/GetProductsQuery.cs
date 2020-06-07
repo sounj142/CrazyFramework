@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CrazyFramework.Core.Business.Products.Queries.GetProducts
 {
-	public class GetProductsQuery : IRequest<ProductsViewModel[]>
+	public class GetProductsQuery : IRequest<ProductsDTO[]>
 	{
-		public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, ProductsViewModel[]>
+		public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, ProductsDTO[]>
 		{
 			private readonly IProductRepository _productRepository;
 
@@ -17,11 +17,11 @@ namespace CrazyFramework.Core.Business.Products.Queries.GetProducts
 				_productRepository = productRepository;
 			}
 
-			public async Task<ProductsViewModel[]> Handle(GetProductsQuery request, CancellationToken cancellationToken)
+			public async Task<ProductsDTO[]> Handle(GetProductsQuery request, CancellationToken cancellationToken)
 			{
 				var products = await _productRepository.GetAll();
 
-				return products.Select(p => new ProductsViewModel
+				return products.Select(p => new ProductsDTO
 				{
 					Id = p.Id,
 					Name = p.Name,

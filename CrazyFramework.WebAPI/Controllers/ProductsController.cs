@@ -12,7 +12,7 @@ namespace CrazyFramework.WebAPI.Controllers
 	public class ProductsController : ApiController
 	{
 		[HttpGet]
-		public async Task<ActionResult<ProductsViewModel[]>> Get()
+		public async Task<ActionResult<ProductsDTO[]>> Get()
 		{
 			return await Mediator.Send(new GetProductsQuery());
 		}

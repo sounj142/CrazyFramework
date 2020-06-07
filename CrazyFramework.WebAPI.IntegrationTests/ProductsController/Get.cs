@@ -21,7 +21,7 @@ namespace CrazyFramework.WebAPI.IntegrationTests.ProductsController
 
 			// Act
 			var response = await client.GetAsync(TestConstants.ProductApiBaseUrl);
-			var products = await response.DeserializeResponseContent<ProductsViewModel[]>();
+			var products = await response.DeserializeResponseContent<ProductsDTO[]>();
 
 			// Assert
 			response.EnsureSuccessStatusCode(); // Status Code 200-299
