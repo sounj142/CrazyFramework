@@ -75,7 +75,12 @@ namespace CrazyFramework.Core.Common.Types
 
 		public override int GetHashCode()
 		{
-			return ((Year << 9) | (Month << 5) | Day).GetHashCode();
+			return AsDate.GetHashCode();
+		}
+
+		public override string ToString()
+		{
+			return $"{Year}-{Month}-{Day}";
 		}
 	}
 }
