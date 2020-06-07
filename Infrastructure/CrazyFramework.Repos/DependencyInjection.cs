@@ -19,10 +19,10 @@ namespace CrazyFramework.Infrastructure.Repos
 			)
 		{
 			services.AddDbContext<ApplicationDbContext>(options =>
-					options.UseSqlServer(
-						configuration.GetConnectionString(connectionStringName),
-						b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
-					);
+				options.UseSqlServer(
+					configuration.GetConnectionString(connectionStringName),
+					b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
+				);
 
 			services.AddScoped<IProductRepository, ProductRepository>();
 

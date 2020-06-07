@@ -1,4 +1,5 @@
-﻿using CrazyFramework.App.Common;
+﻿using CrazyFramework.App.Business.Products;
+using CrazyFramework.App.Common;
 using CrazyFramework.App.Common.Behaviours;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,8 @@ namespace CrazyFramework.App
 			services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
 			services.AddSingleton<IDateTime, DateTimeService>();
+
+			services.AddScoped<IProductBusiness, ProductBusiness>();
 
 			return services;
 		}
