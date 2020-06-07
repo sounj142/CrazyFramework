@@ -1,4 +1,4 @@
-﻿using CrazyFramework.Core.Common;
+﻿using CrazyFramework.App.Common;
 using System;
 
 namespace CrazyFramework.BusinessServices.Common

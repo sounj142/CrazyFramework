@@ -1,4 +1,4 @@
-﻿using CrazyFramework.Core.Common;
+﻿using CrazyFramework.App.Common;
 using CrazyFramework.BusinessServices.Common;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

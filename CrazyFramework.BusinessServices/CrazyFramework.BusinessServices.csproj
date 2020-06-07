@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CrazyFramework.Core\CrazyFramework.Core.csproj" />
+    <ProjectReference Include="..\CrazyFramework.App\CrazyFramework.App.csproj" />
   </ItemGroup>
 
 </Project>
