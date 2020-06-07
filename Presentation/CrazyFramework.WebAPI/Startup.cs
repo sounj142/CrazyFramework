@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CrazyFramework.WebAPI.Common;
+using CrazyFramework.Infrastructure.GitHub;
 
 namespace CrazyFramework.WebAPI
 {
@@ -25,6 +26,7 @@ namespace CrazyFramework.WebAPI
 		{
 			services.AddApplication();
 			services.AddRepositories(Configuration, "CrazyDb");
+			services.AddGitHub(Configuration); // an example of Infrastructure from third-party
 			services.ConfigWebApi(Configuration);
 		}
 

@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SingleProjectUsingAspNetIde
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{10BA9D4E-8D2F-4A1C-BA79-71C89DA305C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyFramework.Infrastructure.GitHub", "Infrastructure\CrazyFramework.Infrastructure.GitHub\CrazyFramework.Infrastructure.GitHub.csproj", "{10A7E1A7-517D-4446-98B2-DBF12746BC02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{EACE1DB2-28B8-49AB-B623-1146489FE958}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EACE1DB2-28B8-49AB-B623-1146489FE958}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EACE1DB2-28B8-49AB-B623-1146489FE958}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10A7E1A7-517D-4446-98B2-DBF12746BC02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10A7E1A7-517D-4446-98B2-DBF12746BC02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10A7E1A7-517D-4446-98B2-DBF12746BC02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10A7E1A7-517D-4446-98B2-DBF12746BC02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +83,7 @@ Global
 		{EACE1DB2-28B8-49AB-B623-1146489FE958} = {8542F4AC-888C-477A-A917-B7E19E099385}
 		{361A3BDF-0359-40C9-8EB9-64B240A8B03A} = {244D43C0-5B34-4054-B029-DCFC26142054}
 		{066D80EB-5839-4A31-869B-DC5F8931D206} = {244D43C0-5B34-4054-B029-DCFC26142054}
+		{10A7E1A7-517D-4446-98B2-DBF12746BC02} = {19EE3526-D1F9-4B16-8FA5-A512D5A46C6B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A3599B6-3015-4C65-BC0B-6D85BD941805}
