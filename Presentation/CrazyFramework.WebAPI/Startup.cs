@@ -28,6 +28,15 @@ namespace CrazyFramework.WebAPI
 			services.AddRepositories(Configuration, "CrazyDb");
 			services.AddGitHub(Configuration); // an example of Infrastructure from third-party
 			services.ConfigWebApi(Configuration);
+
+			services.AddCors((options =>
+			{
+				options.AddPolicy("DevelopmentCors", builder => builder
+							.AllowAnyOrigin()
+							.AllowAnyMethod()
+							.AllowAnyHeader()
+				 );
+			}));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +45,7 @@ namespace CrazyFramework.WebAPI
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
+				app.UseCors("DevelopmentCors");
 			}
 
 			app.UseCustomExceptionHandler();
