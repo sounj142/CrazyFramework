@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CrazyFramework.App.Business.Products
+namespace CrazyFramework.App.Dtos.Products
 {
 	public class ProductsDto
 	{

@@ -1,11 +1,11 @@
 ﻿using CrazyFramework.App.Entities.Products;
-using CrazyFramework.App.Repositories;
+using CrazyFramework.App.Infrastructure.Repos;
 using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CrazyFramework.App.Business.Products.Commands.UpdateProduct
+namespace CrazyFramework.App.BusinessHandlers.Products.Commands.UpdateProduct
 {
 	public class UpdateProductCommand : IRequest
 	{

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CrazyFramework.App.Repositories
+namespace CrazyFramework.App.Infrastructure.Repos
 {
 	public interface IProductRepository
 	{

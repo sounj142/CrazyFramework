@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CrazyFramework.BusinessServices\CrazyFramework.BusinessServices.csproj" />
     <ProjectReference Include="..\..\CrazyFramework.App\CrazyFramework.App.csproj" />
     <ProjectReference Include="..\..\Infrastructure\CrazyFramework.Repos\CrazyFramework.Infrastructure.Repos.csproj" />
   </ItemGroup>

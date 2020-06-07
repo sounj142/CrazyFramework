@@ -1,4 +1,4 @@
-﻿using CrazyFramework.App.Business.Products.Commands.UpdateProduct;
+﻿using CrazyFramework.App.BusinessHandlers.Products.Commands.UpdateProduct;
 using System;
 using System.Collections.Generic;
 using System.Linq;

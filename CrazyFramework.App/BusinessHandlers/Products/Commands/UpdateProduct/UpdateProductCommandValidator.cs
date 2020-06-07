@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace CrazyFramework.App.Business.Products.Commands.UpdateProduct
+namespace CrazyFramework.App.BusinessHandlers.Products.Commands.UpdateProduct
 {
 	public class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
 	{

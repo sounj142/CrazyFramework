@@ -1,4 +1,4 @@
-﻿using CrazyFramework.App.Business.Products;
+﻿using CrazyFramework.App.Dtos.Products;
 using System.Threading.Tasks;
 using Xunit;
 

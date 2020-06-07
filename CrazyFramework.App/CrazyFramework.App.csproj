@@ -13,8 +13,8 @@
 
   <ItemGroup>
     <Folder Include="Entities\Enums\" />
-    <Folder Include="BusinessServices\Common\" />
-    <Folder Include="BusinessServices\Users\" />
+    <Folder Include="Business\Common\" />
+    <Folder Include="Business\Users\" />
   </ItemGroup>
 
 </Project>

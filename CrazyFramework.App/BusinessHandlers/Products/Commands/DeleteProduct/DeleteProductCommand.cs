@@ -1,10 +1,10 @@
-﻿using CrazyFramework.App.Repositories;
+﻿using CrazyFramework.App.Infrastructure.Repos;
 using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CrazyFramework.App.Business.Products.Commands.DeleteProduct
+namespace CrazyFramework.App.BusinessHandlers.Products.Commands.DeleteProduct
 {
 	public class DeleteProductCommand : IRequest
 	{

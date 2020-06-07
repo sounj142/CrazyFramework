@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8542F4AC-888C-477A-A917-B7E19E099385}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrazyFramework.BusinessServices", "CrazyFramework.BusinessServices\CrazyFramework.BusinessServices.csproj", "{5F4B4F71-405E-44CF-A285-A7C63F979C7B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrazyFramework.Infrastructure.Repos", "Infrastructure\CrazyFramework.Repos\CrazyFramework.Infrastructure.Repos.csproj", "{18368DF5-1302-47F3-ADEC-085058B0C4CB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrazyFramework.SpaApp.Angular", "Presentation\CrazyFramework.SpaApp.Angular\CrazyFramework.SpaApp.Angular.csproj", "{4EC9CBB2-AEE5-4AA8-9E5E-A8011813996E}"
@@ -31,10 +29,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5F4B4F71-405E-44CF-A285-A7C63F979C7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F4B4F71-405E-44CF-A285-A7C63F979C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F4B4F71-405E-44CF-A285-A7C63F979C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F4B4F71-405E-44CF-A285-A7C63F979C7B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{18368DF5-1302-47F3-ADEC-085058B0C4CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{18368DF5-1302-47F3-ADEC-085058B0C4CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18368DF5-1302-47F3-ADEC-085058B0C4CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -68,7 +62,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{5F4B4F71-405E-44CF-A285-A7C63F979C7B} = {19EE3526-D1F9-4B16-8FA5-A512D5A46C6B}
 		{18368DF5-1302-47F3-ADEC-085058B0C4CB} = {19EE3526-D1F9-4B16-8FA5-A512D5A46C6B}
 		{4EC9CBB2-AEE5-4AA8-9E5E-A8011813996E} = {244D43C0-5B34-4054-B029-DCFC26142054}
 		{A88C6CA2-EE91-4299-BE7E-E0ED0F128290} = {244D43C0-5B34-4054-B029-DCFC26142054}

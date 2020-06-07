@@ -1,6 +1,6 @@
-﻿using CrazyFramework.App.Business.Products.Commands.CreateProduct;
+﻿using CrazyFramework.App.BusinessHandlers.Products.Commands.CreateProduct;
 using CrazyFramework.App.Entities.Products;
-using CrazyFramework.App.Repositories;
+using CrazyFramework.App.Infrastructure.Repos;
 using Moq;
 using System;
 using System.Threading;

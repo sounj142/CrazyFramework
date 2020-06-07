@@ -1,4 +1,4 @@
-﻿using CrazyFramework.App.Repositories;
+﻿using CrazyFramework.App.Infrastructure.Repos;
 using CrazyFramework.Infrastructure.Repos.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

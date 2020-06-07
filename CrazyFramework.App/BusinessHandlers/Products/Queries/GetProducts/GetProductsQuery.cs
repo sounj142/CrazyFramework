@@ -1,10 +1,11 @@
-﻿using CrazyFramework.App.Repositories;
+﻿using CrazyFramework.App.Dtos.Products;
+using CrazyFramework.App.Infrastructure.Repos;
 using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CrazyFramework.App.Business.Products.Queries.GetProducts
+namespace CrazyFramework.App.BusinessHandlers.Products.Queries.GetProducts
 {
 	public class GetProductsQuery : IRequest<ProductsDto[]>
 	{

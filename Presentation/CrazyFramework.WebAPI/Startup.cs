@@ -1,5 +1,4 @@
 using CrazyFramework.App;
-using CrazyFramework.BusinessServices;
 using CrazyFramework.Infrastructure.Repos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,7 +25,6 @@ namespace CrazyFramework.WebAPI
 		{
 			services.AddApplication();
 			services.AddRepositories(Configuration, "CrazyDb");
-			services.AddServices(Configuration);
 			services.ConfigWebApi(Configuration);
 		}
 
