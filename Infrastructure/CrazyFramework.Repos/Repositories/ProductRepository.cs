@@ -25,27 +25,33 @@ namespace CrazyFramework.Infrastructure.Repos.Repositories
 
 		private DbSet<ProductDAO> ProductsDbSet => _dbContext.Set<ProductDAO>();
 
-		private IQueryable<Product> ProductsNoTrackingDbSet => ProductsDbSet.AsNoTracking()
-				.Select(p => new Product
-				{
-					Id = p.Id,
-					Name = p.Name,
-					Price = p.Price
-				});
-
 		public async Task<Product> GetById(Guid id)
 		{
-			var product = await ProductsNoTrackingDbSet
+			var product = await ProductsDbSet.AsNoTracking()
+				.Select(p => new
+				{
+					p.Id,
+					p.Name,
+					p.Price
+				})
 				.FirstOrDefaultAsync(p => p.Id == id);
 
-			return product;
+			return product == null ? null : new Product(id: product.Id, name: product.Name, price: product.Price);
 		}
 
 		public async Task<IList<Product>> GetAll()
 		{
-			var products = await ProductsNoTrackingDbSet
+			var products = (await ProductsDbSet.AsNoTracking()
+				.Select(p => new
+				{
+					p.Id,
+					p.Name,
+					p.Price
+				})
 				.OrderBy(p => p.Name)
-				.ToListAsync();
+				.ToListAsync())
+				.Select(p => new Product(id: p.Id, name: p.Name, price: p.Price))
+				.ToList();
 
 			return products;
 		}

@@ -8,17 +8,25 @@ namespace CrazyFramework.App.Entities.Orders
 	{
 		public Guid Id { get; private set; }
 		public DateTimeOffset OrderDate { get; private set; }
-		public decimal Amount { get; private set; }
 
-		private readonly List<OrderItem> _items;
-		public IReadOnlyCollection<OrderItem> Items => _items.AsReadOnly();
+		private readonly List<OrderItem> _orderItems;
+		public IReadOnlyCollection<OrderItem> OrderItems => _orderItems.AsReadOnly();
 
-		public Order(Guid id, DateTimeOffset orderDate, decimal amount, IEnumerable<OrderItem> items)
+		public Order(Guid id, DateTimeOffset orderDate, List<OrderItem> orderItems)
 		{
 			Id = id;
 			OrderDate = orderDate;
-			Amount = amount;
-			_items = items.ToList();
+			_orderItems = orderItems;
+		}
+
+		public decimal Amount()
+		{
+			var total = 0m;
+			foreach (var item in _orderItems)
+			{
+				total += item.Price * item.Quantity;
+			}
+			return total;
 		}
 	}
 }

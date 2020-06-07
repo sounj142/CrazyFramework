@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CrazyFramework.Infrastructure.Repos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200607064756_InitialDatabase")]
+    [Migration("20200607080613_InitialDatabase")]
     partial class InitialDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -23,12 +23,10 @@ namespace CrazyFramework.App.Handlers.Products.Commands.CreateProduct
 
 			public async Task<Guid> Handle(CreateProductCommand request, CancellationToken cancellationToken)
 			{
-				var product = new Product
-				{
-					Id = Guid.NewGuid(),
-					Name = request.Name,
-					Price = request.Price
-				};
+				var product = new Product(
+					id: Guid.NewGuid(),
+					name: request.Name,
+					price: request.Price);
 				await _productRepository.Create(product);
 				return product.Id;
 			}

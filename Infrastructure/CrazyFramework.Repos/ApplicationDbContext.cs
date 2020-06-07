@@ -58,12 +58,12 @@ namespace CrazyFramework.Infrastructure.Repos
 				{
 					case EntityState.Added:
 						entry.Entity.CreatedBy = _currentUserService.UserId;
-						entry.Entity.CreatedDate = _dateTimeService.UtcNow;
+						entry.Entity.CreatedDate = _dateTimeService.Now;
 						break;
 
 					case EntityState.Modified:
 						entry.Entity.LastModifiedBy = _currentUserService.UserId;
-						entry.Entity.LastModifyDate = _dateTimeService.UtcNow;
+						entry.Entity.LastModifyDate = _dateTimeService.Now;
 						break;
 				}
 			}

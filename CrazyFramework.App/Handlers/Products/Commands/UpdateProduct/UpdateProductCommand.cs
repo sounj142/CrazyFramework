@@ -24,12 +24,11 @@ namespace CrazyFramework.App.Handlers.Products.Commands.UpdateProduct
 
 			public async Task<Unit> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
 			{
-				var product = new Product
-				{
-					Id = request.Id,
-					Name = request.Name,
-					Price = request.Price
-				};
+				var product = new Product(
+					id: request.Id,
+					name: request.Name,
+					price: request.Price
+				);
 				await _productRepository.Update(product);
 				return Unit.Value;
 			}

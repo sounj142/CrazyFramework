@@ -19,7 +19,7 @@ namespace CrazyFramework.Infrastructure.Repos.IntegrationTests.Repositories
 		public async Task GetAll_ShouldReturnProductList()
 		{
 			// Arrange
-			_dateTimeMock.Setup(m => m.UtcNow)
+			_dateTimeMock.Setup(m => m.Now)
 				.Returns(TestConstants.FixUtcNow);
 			_currentRequestContextMock.Setup(m => m.UserId)
 				.Returns(TestConstants.CurrentUserId);

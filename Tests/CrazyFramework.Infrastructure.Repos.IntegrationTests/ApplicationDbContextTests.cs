@@ -12,7 +12,7 @@ namespace CrazyFramework.Infrastructure.Repos.IntegrationTests
 		public async Task SaveChangesAsync_WhenCreateProduct_ShouldAutomaticlySetCreatedDateAndCreatedBy()
 		{
 			// Arrange
-			_dateTimeMock.Setup(m => m.UtcNow)
+			_dateTimeMock.Setup(m => m.Now)
 				.Returns(TestConstants.FixUtcNow);
 			_currentRequestContextMock.Setup(m => m.UserId)
 				.Returns(TestConstants.CurrentUserId);
@@ -54,7 +54,7 @@ namespace CrazyFramework.Infrastructure.Repos.IntegrationTests
 			Guid lastUpdatedBy = Guid.NewGuid();
 
 			// Arrange
-			_dateTimeMock.Setup(m => m.UtcNow)
+			_dateTimeMock.Setup(m => m.Now)
 				.Returns(TestConstants.FixUtcNow);
 			_currentRequestContextMock.Setup(m => m.UserId)
 				.Returns(TestConstants.CurrentUserId);
@@ -72,7 +72,7 @@ namespace CrazyFramework.Infrastructure.Repos.IntegrationTests
 			productsDbSet.Add(productToCreate);
 			await _dbContext.SaveChangesAsync();
 
-			_dateTimeMock.Setup(m => m.UtcNow)
+			_dateTimeMock.Setup(m => m.Now)
 				.Returns(lastUpdatedDate);
 			_currentRequestContextMock.Setup(m => m.UserId)
 				.Returns(lastUpdatedBy);
