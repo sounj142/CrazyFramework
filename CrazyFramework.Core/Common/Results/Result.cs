@@ -1,4 +1,4 @@
-﻿namespace CrazyFramework.Core.Entities.Results
+﻿namespace CrazyFramework.Core.Common.Results
 {
 	public class Result
 	{
