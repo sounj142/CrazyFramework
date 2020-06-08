@@ -51,7 +51,7 @@ namespace IdentityServer
 						IdentityServerConstants.StandardScopes.Email,
 						"CrazyWebApi"
 					}
-				},
+				}
 
                 //new Client
                 //{

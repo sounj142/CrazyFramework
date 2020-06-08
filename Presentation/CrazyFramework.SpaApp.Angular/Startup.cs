@@ -42,6 +42,11 @@ namespace CrazyFramework.SpaApp.Angular
 					options.ClientId = "SpaApp.Angular";
 					options.ClientSecret = "secret";
 					options.ResponseType = "code";
+
+					options.Scope.Clear();
+					options.Scope.Add("openid");
+					options.Scope.Add("profile");
+					options.Scope.Add("email");
 					options.Scope.Add("CrazyWebApi");
 
 					options.SaveTokens = true;
