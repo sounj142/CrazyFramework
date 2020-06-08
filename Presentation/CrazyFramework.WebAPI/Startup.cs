@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using CrazyFramework.WebAPI.Common;
 using CrazyFramework.Infrastructure.GitHub;
 using System;
+using CrazyFramework.WebAPI.Helpers;
 
 namespace CrazyFramework.WebAPI
 {

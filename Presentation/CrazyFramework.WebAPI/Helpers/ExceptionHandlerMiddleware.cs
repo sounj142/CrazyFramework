@@ -7,14 +7,14 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace CrazyFramework.WebAPI.Common
+namespace CrazyFramework.WebAPI.Helpers
 {
-	public class CustomExceptionHandlerMiddleware
+	public class ExceptionHandlerMiddleware
 	{
 		private readonly RequestDelegate _next;
-		private readonly ILogger<CustomExceptionHandlerMiddleware> _logger;
+		private readonly ILogger<ExceptionHandlerMiddleware> _logger;
 
-		public CustomExceptionHandlerMiddleware(RequestDelegate next, ILogger<CustomExceptionHandlerMiddleware> logger)
+		public ExceptionHandlerMiddleware(RequestDelegate next, ILogger<ExceptionHandlerMiddleware> logger)
 		{
 			_next = next;
 			_logger = logger;
@@ -30,7 +30,7 @@ namespace CrazyFramework.WebAPI.Common
 			{
 				var (code, content) = HandleException(ex);
 
-				context.Response.ContentType = "application/json";
+				context.Response.ContentType = "application/json; charset=utf-8";
 				context.Response.StatusCode = code;
 				await context.Response.WriteAsync(content);
 			}

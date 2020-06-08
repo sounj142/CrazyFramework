@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
-namespace CrazyFramework.SpaApp.Angular.Common
+namespace CrazyFramework.SpaApp.Angular.Helpers
 {
 	public class RequiredAuthenticationMiddleware
 	{

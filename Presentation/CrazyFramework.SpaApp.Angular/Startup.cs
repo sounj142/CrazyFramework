@@ -1,4 +1,4 @@
-using CrazyFramework.SpaApp.Angular.Common;
+using CrazyFramework.SpaApp.Angular.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -42,6 +42,7 @@ namespace CrazyFramework.SpaApp.Angular
 					options.ClientId = "SpaApp.Angular";
 					options.ClientSecret = "secret";
 					options.ResponseType = "code";
+					options.UsePkce = true;
 
 					options.Scope.Clear();
 					options.Scope.Add("openid");
@@ -74,6 +75,8 @@ namespace CrazyFramework.SpaApp.Angular
 			app.UseAuthentication();
 			app.UseAuthorization();
 			app.RequiredAuthentication();
+
+			app.UseTokenEndpoint("/token");
 
 			app.UseStaticFiles();
 			if (!env.IsDevelopment())
