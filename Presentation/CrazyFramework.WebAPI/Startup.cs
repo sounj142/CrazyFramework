@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using CrazyFramework.Infrastructure.GitHub;
 using System;
 using CrazyFramework.WebAPI.Helpers;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace CrazyFramework.WebAPI
 {
@@ -25,6 +26,8 @@ namespace CrazyFramework.WebAPI
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
+
 			services.AddApplication();
 			services.AddRepositories(Configuration, "CrazyDb");
 			services.AddGitHub(Configuration); // an example of Infrastructure from third-party

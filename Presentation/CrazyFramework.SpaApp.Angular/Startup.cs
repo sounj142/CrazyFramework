@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace CrazyFramework.SpaApp.Angular
 {
@@ -21,10 +22,12 @@ namespace CrazyFramework.SpaApp.Angular
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
+			JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
+
 			// In production, the Angular files will be served from this directory
 			services.AddSpaStaticFiles(configuration =>
 			{
-				configuration.RootPath = Configuration.GetValue<string>("ClientAppProductionRootPath");
+				configuration.RootPath = "ClientApp/dist";
 			});
 
 			services
@@ -47,11 +50,9 @@ namespace CrazyFramework.SpaApp.Angular
 					options.Scope.Clear();
 					options.Scope.Add("openid");
 					options.Scope.Add("profile");
-					options.Scope.Add("email");
 					options.Scope.Add("CrazyWebApi");
 
 					options.SaveTokens = true;
-					options.GetClaimsFromUserInfoEndpoint = true;
 				});
 
 			services.AddAuthorization();
@@ -89,7 +90,7 @@ namespace CrazyFramework.SpaApp.Angular
 				// To learn more about options for serving an Angular SPA from ASP.NET Core,
 				// see https://go.microsoft.com/fwlink/?linkid=864501
 
-				spa.Options.SourcePath = Configuration.GetValue<string>("ClientAppDevelopmentFolder");
+				spa.Options.SourcePath = "ClientApp";
 
 				if (env.IsDevelopment())
 				{
