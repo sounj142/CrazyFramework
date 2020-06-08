@@ -27,7 +27,28 @@ namespace CrazyFramework.SpaApp.Angular
 				configuration.RootPath = Configuration.GetValue<string>("ClientAppProductionRootPath");
 			});
 
-			//services.AddAuthorization();
+			services
+				.AddAuthentication(options =>
+				{
+					options.DefaultScheme = "Cookies";
+					options.DefaultChallengeScheme = "oidc";
+				})
+				.AddCookie("Cookies")
+				.AddOpenIdConnect("oidc", options =>
+				{
+					options.Authority = "https://localhost:5000";
+					options.RequireHttpsMetadata = true;
+
+					options.ClientId = "SpaApp.Angular";
+					options.ClientSecret = "secret";
+					options.ResponseType = "code";
+					options.Scope.Add("CrazyWebApi");
+
+					options.SaveTokens = true;
+					options.GetClaimsFromUserInfoEndpoint = true;
+				});
+
+			services.AddAuthorization();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,18 +58,23 @@ namespace CrazyFramework.SpaApp.Angular
 			{
 				app.UseDeveloperExceptionPage();
 			}
+			else
+			{
+				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+				app.UseHsts();
+			}
 
 			app.UseHttpsRedirection();
 
-			app.UseRequiredAuthentication();
+			app.UseAuthentication();
+			app.UseAuthorization();
+			app.RequiredAuthentication();
 
 			app.UseStaticFiles();
 			if (!env.IsDevelopment())
 			{
 				app.UseSpaStaticFiles();
 			}
-
-			app.UseRouting();
 
 			app.UseSpa(spa =>
 			{

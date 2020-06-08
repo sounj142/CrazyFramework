@@ -29,7 +29,7 @@ namespace CrazyFramework.SpaApp.Angular.Common
 
 	public static class RequiredAuthenticationMiddlewareExtensions
 	{
-		public static IApplicationBuilder UseRequiredAuthentication(this IApplicationBuilder builder)
+		public static IApplicationBuilder RequiredAuthentication(this IApplicationBuilder builder)
 		{
 			return builder.UseMiddleware<RequiredAuthenticationMiddleware>();
 		}

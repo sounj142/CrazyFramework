@@ -14,25 +14,13 @@ namespace IdentityServer
 			{
 				new IdentityResources.OpenId(),
 				new IdentityResources.Profile(),
-				new IdentityResources.Email(),
-				new IdentityResource
-				{
-					Name = IdentityServerConstants.StandardScopes.Address,
-					DisplayName = "Address",
-					UserClaims = new [] { "address", "phone_number" }
-				},
-				new IdentityResource
-				{
-					Name = "api_role",
-					DisplayName = "Api Role",
-					UserClaims = new [] { "api_role" }
-				}
+				new IdentityResources.Email()
 			};
 
 		public static IEnumerable<ApiResource> Apis =>
 			new List<ApiResource>
 			{
-				new ApiResource("api", "Weather Forecast API", new[] { "api_role" })
+				new ApiResource("CrazyWebApi", "Crazy API")
 			};
 
 		public static IEnumerable<Client> Clients =>
@@ -40,24 +28,28 @@ namespace IdentityServer
 			{
 				new Client
 				{
-					ClientId = "Client.Code",
-					ClientName = "Client.Code",
+					ClientId = "SpaApp.Angular",
+					ClientName = "SpaApp.Angular",
+					ClientSecrets = { new Secret("secret".Sha256()) },
 
 					AllowedGrantTypes = GrantTypes.Code,
-					RequireClientSecret = false,
 					RequirePkce = true,
 
+                     // where to redirect to after login
 					RedirectUris = {
-						"http://localhost:5005/signin-callback-oidc",
+						"https://localhost:44348/signin-oidc",
 					},
-					PostLogoutRedirectUris = { "http://localhost:5005/" },
+                    // where to redirect to after logout
+					PostLogoutRedirectUris = {
+						"https://localhost:44348/signout-callback-oidc"
+					},
 
 					AllowedScopes =
 					{
 						IdentityServerConstants.StandardScopes.OpenId,
 						IdentityServerConstants.StandardScopes.Profile,
 						IdentityServerConstants.StandardScopes.Email,
-						"api"
+						"CrazyWebApi"
 					}
 				},
 
