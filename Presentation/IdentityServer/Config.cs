@@ -37,11 +37,11 @@ namespace IdentityServer
 
                      // where to redirect to after login
 					RedirectUris = {
-						"https://localhost:44348/signin-oidc",
+						"https://localhost:44310/signin-oidc",
 					},
                     // where to redirect to after logout
 					PostLogoutRedirectUris = {
-						"https://localhost:44348/signout-callback-oidc"
+						"https://localhost:44310/signout-callback-oidc"
 					},
 
 					AllowedScopes =

@@ -36,7 +36,7 @@ namespace CrazyFramework.SpaApp.Angular
 				.AddCookie("Cookies")
 				.AddOpenIdConnect("oidc", options =>
 				{
-					options.Authority = "https://localhost:5000";
+					options.Authority = "https://localhost:44333";
 					options.RequireHttpsMetadata = true;
 
 					options.ClientId = "SpaApp.Angular";
