@@ -36,10 +36,10 @@ namespace CrazyFramework.WebAPI
 			services.AddCors(options =>
 			{
 				options.AddPolicy("DevelopmentCors", builder => builder
-							.AllowAnyOrigin()
-							.AllowAnyMethod()
-							.AllowAnyHeader()
-				 );
+					.AllowAnyOrigin()
+					.AllowAnyMethod()
+					.AllowAnyHeader()
+				);
 			});
 
 			services.AddAuthentication("Bearer")

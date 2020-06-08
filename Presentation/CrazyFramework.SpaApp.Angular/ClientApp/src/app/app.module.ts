@@ -6,28 +6,33 @@ import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BaseUrlInterceptor } from './utils/baseurl.interceptor';
 import { ProductSummaryComponent } from './components/products-list/products-list.component';
+import { UnauthorizedInterceptor } from './auth/unauthorized.interceptor';
+import { ErrorInterceptor } from './utils/error.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProductSummaryComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+  declarations: [AppComponent, ProductSummaryComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
     {
       provide: 'BASE_API_URL',
-      useValue: environment.apiUrl
+      useValue: environment.apiUrl,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: BaseUrlInterceptor,
       multi: true,
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UnauthorizedInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

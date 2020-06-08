@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace CrazyFramework.SpaApp.Angular
@@ -23,6 +25,11 @@ namespace CrazyFramework.SpaApp.Angular
 		public void ConfigureServices(IServiceCollection services)
 		{
 			JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
+
+			JsonConvert.DefaultSettings = () => new JsonSerializerSettings()
+			{
+				ContractResolver = new CamelCasePropertyNamesContractResolver()
+			};
 
 			// In production, the Angular files will be served from this directory
 			services.AddSpaStaticFiles(configuration =>
