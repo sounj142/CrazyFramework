@@ -7,10 +7,10 @@ namespace CrazyFramework.WebAPI.Services
 {
 	public class CurrentRequestContext : ICurrentRequestContext
 	{
-		private const string USER_ID_CLAIM = ClaimTypes.NameIdentifier;
+		private const string USER_ID_CLAIM = "sub";
 		private const string USER_NAME_CLAIM = "email";
 
-		public Guid? UserId { get; }
+		public string UserId { get; }
 		public string UserName { get; }
 
 		public int MaxTimeForRunningRequest { get; private set; }
@@ -21,8 +21,7 @@ namespace CrazyFramework.WebAPI.Services
 
 			if (httpContextAccessor?.HttpContext?.User != null)
 			{
-				var userIdStr = httpContextAccessor.HttpContext.User.FindFirstValue(USER_ID_CLAIM);
-				UserId = Guid.TryParse(userIdStr, out var userId) ? (Guid?)userId : null;
+				UserId = httpContextAccessor.HttpContext.User.FindFirstValue(USER_ID_CLAIM);
 
 				UserName = httpContextAccessor.HttpContext.User.FindFirstValue(USER_NAME_CLAIM);
 			}

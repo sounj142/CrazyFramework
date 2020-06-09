@@ -40,7 +40,7 @@ namespace CrazyFramework.WebAPI.IntegrationTests.ProductsController
 		}
 
 		public static void ConfirmProductUpdated(ProductDAO[] productsDbNew, Guid id, string name, decimal price,
-			Guid? createdBy, DateTimeOffset? createdDate, DateTimeOffset? lastModifyDate)
+			string createdBy, DateTimeOffset? createdDate, DateTimeOffset? lastModifyDate)
 		{
 			var productNew = productsDbNew.First(p => p.Id == id);
 			Assert.Equal(productNew.Price, price);

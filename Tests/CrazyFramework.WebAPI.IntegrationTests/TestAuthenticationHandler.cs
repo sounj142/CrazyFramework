@@ -22,7 +22,11 @@ namespace CrazyFramework.WebAPI.IntegrationTests
 		{
 			if (Request.Headers.ContainsKey("Authorization") && Request.Headers["Authorization"].Contains(TestConstants.TestToken))
 			{
-				var claims = new[] { new Claim(ClaimTypes.Name, "Test user") };
+				var claims = new[] {
+					new Claim(ClaimTypes.Name, "Test user"),
+					new Claim("sub", "id11102"),
+					new Claim("email", "testuser@test.com")
+				};
 				var identity = new ClaimsIdentity(claims, "Test");
 				var principal = new ClaimsPrincipal(identity);
 				var ticket = new AuthenticationTicket(principal, "Test");

@@ -51,7 +51,7 @@ namespace CrazyFramework.Infrastructure.Repos.IntegrationTests
 		{
 			const string newProductName = "New name";
 			var lastUpdatedDate = DateTimeOffset.UtcNow;
-			Guid lastUpdatedBy = Guid.NewGuid();
+			var lastUpdatedBy = "aax1bb";
 
 			// Arrange
 			_dateTimeMock.Setup(m => m.Now)

@@ -1,6 +1,9 @@
-﻿namespace CrazyFramework.App.Business.Products
+﻿using System.Threading.Tasks;
+
+namespace CrazyFramework.App.Business.Products
 {
-	internal interface IProductBusiness
+	public interface IProductBusiness
 	{
+		Task DoSomething();
 	}
 }

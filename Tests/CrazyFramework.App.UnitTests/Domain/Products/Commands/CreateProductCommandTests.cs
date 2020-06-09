@@ -1,4 +1,5 @@
-﻿using CrazyFramework.App.Entities.Products;
+﻿using CrazyFramework.App.Business.Products;
+using CrazyFramework.App.Entities.Products;
 using CrazyFramework.App.Handlers.Products.Commands.CreateProduct;
 using CrazyFramework.App.Infrastructure.Repos;
 using Moq;
@@ -14,10 +15,12 @@ namespace CrazyFramework.App.UnitTests.Domain.Products.Commands
 		private readonly string _name = "Toyota";
 		private readonly decimal _price = 100;
 		private readonly Mock<IProductRepository> _productRepositoryMock;
+		private readonly Mock<IProductBusiness> _productBusinessMock;
 
 		public CreateProductCommandTests()
 		{
 			_productRepositoryMock = new Mock<IProductRepository>();
+			_productBusinessMock = new Mock<IProductBusiness>();
 		}
 
 		[Fact]
@@ -29,7 +32,7 @@ namespace CrazyFramework.App.UnitTests.Domain.Products.Commands
 				Name = _name,
 				Price = _price,
 			};
-			var commandHandler = new CreateProductCommand.CreateProductCommandHandler(_productRepositoryMock.Object);
+			var commandHandler = new CreateProductCommand.CreateProductCommandHandler(_productRepositoryMock.Object, _productBusinessMock.Object);
 
 			// Act
 			var guidId = await commandHandler.Handle(request, CancellationToken.None);
