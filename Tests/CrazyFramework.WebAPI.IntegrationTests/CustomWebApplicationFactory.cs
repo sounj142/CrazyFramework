@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using CrazyFramework.Infrastructure.Repos;
 using CrazyFramework.Infrastructure.Repos.Models.Products;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication;
 
 namespace CrazyFramework.WebAPI.IntegrationTests
 {
@@ -31,6 +32,10 @@ namespace CrazyFramework.WebAPI.IntegrationTests
 						TestConstants.DbConnection,
 						b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
 					);
+
+				services.AddAuthentication("Test")
+						.AddScheme<AuthenticationSchemeOptions, TestAuthenticationHandler>(
+							"Test", options => { });
 
 				// Build the service provider.
 				var serviceProvider = services.BuildServiceProvider();

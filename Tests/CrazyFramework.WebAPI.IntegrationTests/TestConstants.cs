@@ -13,5 +13,6 @@ namespace CrazyFramework.WebAPI.IntegrationTests
 		public static readonly string ContentType = "application/json; charset=utf-8";
 		public static readonly string DbConnection = "Server=(localdb)\\MSSQLLocalDB;Database=CrazyFrameworkDb_Test;Trusted_Connection=True;MultipleActiveResultSets=true";
 		public static readonly string ProductApiBaseUrl = "/api/Products";
+		public static readonly string TestToken = "Test-Token";
 	}
 }

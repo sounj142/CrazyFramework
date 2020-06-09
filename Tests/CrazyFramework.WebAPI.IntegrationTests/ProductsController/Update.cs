@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -15,6 +16,25 @@ namespace CrazyFramework.WebAPI.IntegrationTests.ProductsController
 		public Update(CustomWebApplicationFactory<Startup> factory)
 		{
 			_factory = factory;
+		}
+
+		[Fact]
+		public async Task Update_WhenDoesntHaveAuthenticationToken_ShouldReturn401Code()
+		{
+			// Arrange
+			var updateProductData = new UpdateProductCommand
+			{
+				Id = Guid.NewGuid(),
+				Name = "",
+				Price = 0
+			};
+			var client = _factory.CreateClient();
+
+			// Act
+			var response = await client.PutAsync($"{TestConstants.ProductApiBaseUrl}/{updateProductData.Id}", updateProductData.SerializeToStringContent());
+
+			// Assert
+			Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
 		}
 
 		[Fact]
@@ -37,6 +57,7 @@ namespace CrazyFramework.WebAPI.IntegrationTests.ProductsController
 			};
 
 			var client = _factory.CreateClient();
+			client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(TestConstants.TestToken);
 
 			// Act
 			var response = await client.PutAsync($"{TestConstants.ProductApiBaseUrl}/{updateProductData.Id}", updateProductData.SerializeToStringContent());
@@ -75,6 +96,7 @@ namespace CrazyFramework.WebAPI.IntegrationTests.ProductsController
 			};
 
 			var client = _factory.CreateClient();
+			client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(TestConstants.TestToken);
 
 			// Act
 			var response = await client.PutAsync($"{TestConstants.ProductApiBaseUrl}/{updateProductData.Id}", updateProductData.SerializeToStringContent());
