@@ -60,7 +60,7 @@ namespace CrazyFramework.WebAPI
 
 			app.UseEndpoints(endpoints =>
 			{
-				endpoints.MapControllers(); //.RequireAuthorization();
+				endpoints.MapControllers().RequireAuthorization();
 			});
 		}
 	}
