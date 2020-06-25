@@ -70,11 +70,9 @@ namespace CrazyFramework.WebAPI
 			app.UseHealthChecks("/health");
 			app.UseHttpsRedirection();
 
-			app.UseSwagger();
-			app.UseSwaggerUI(c =>
-			{
-				c.SwaggerEndpoint("/swagger/v1/swagger.json", "Crazy API V1");
-			});
+			// Register the Swagger generator and the Swagger UI middlewares
+			app.UseOpenApi();
+			app.UseSwaggerUi3();
 
 			app.UseRouting();
 
