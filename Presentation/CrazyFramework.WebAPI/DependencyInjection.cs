@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using CrazyFramework.App.BusinessServices;
 using CrazyFramework.Infrastructure.Repos;
 using CrazyFramework.WebAPI.Services;
@@ -44,6 +45,29 @@ namespace CrazyFramework.WebAPI
 
 				configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
 			});
+
+			services.AddCors(options =>
+			{
+				options.AddPolicy("DevelopmentCors", builder => builder
+					.AllowAnyOrigin()
+					.AllowAnyMethod()
+					.AllowAnyHeader()
+				);
+			});
+
+			services.AddAuthentication("Bearer")
+				.AddJwtBearer("Bearer", options =>
+				{
+					options.Authority = "https://localhost:44333";
+					options.RequireHttpsMetadata = true;
+
+					options.Audience = "CrazyWebApi";
+
+					// set these values to enforce authentication check whether access token was expired
+					options.TokenValidationParameters.ValidateLifetime = true;
+					options.TokenValidationParameters.ClockSkew = TimeSpan.Zero;
+				});
+			services.AddAuthorization();
 
 			return services;
 		}

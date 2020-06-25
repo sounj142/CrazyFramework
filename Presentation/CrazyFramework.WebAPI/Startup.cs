@@ -6,9 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CrazyFramework.Infrastructure.GitHub;
-using System;
 using CrazyFramework.WebAPI.Helpers;
 using System.IdentityModel.Tokens.Jwt;
+using Serilog;
 
 namespace CrazyFramework.WebAPI
 {
@@ -32,29 +32,6 @@ namespace CrazyFramework.WebAPI
 			services.AddRepositories(Configuration, "CrazyDb");
 			services.AddGitHub(Configuration); // an example of Infrastructure from third-party
 			services.ConfigWebApi(Configuration);
-
-			services.AddCors(options =>
-			{
-				options.AddPolicy("DevelopmentCors", builder => builder
-					.AllowAnyOrigin()
-					.AllowAnyMethod()
-					.AllowAnyHeader()
-				);
-			});
-
-			services.AddAuthentication("Bearer")
-				.AddJwtBearer("Bearer", options =>
-				{
-					options.Authority = "https://localhost:44333";
-					options.RequireHttpsMetadata = true;
-
-					options.Audience = "CrazyWebApi";
-
-					// set these values to enforce authentication check whether access token was expired
-					options.TokenValidationParameters.ValidateLifetime = true;
-					options.TokenValidationParameters.ClockSkew = TimeSpan.Zero;
-				});
-			services.AddAuthorization();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,6 +42,8 @@ namespace CrazyFramework.WebAPI
 				app.UseDeveloperExceptionPage();
 				app.UseCors("DevelopmentCors");
 			}
+
+			app.UseSerilogRequestLogging();
 
 			app.UseCustomExceptionHandler();
 			app.UseHealthChecks("/health");
@@ -81,7 +60,7 @@ namespace CrazyFramework.WebAPI
 
 			app.UseEndpoints(endpoints =>
 			{
-				endpoints.MapControllers().RequireAuthorization();
+				endpoints.MapControllers(); //.RequireAuthorization();
 			});
 		}
 	}

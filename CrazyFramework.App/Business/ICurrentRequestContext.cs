@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CrazyFramework.App.BusinessServices
+﻿namespace CrazyFramework.App.BusinessServices
 {
 	public interface ICurrentRequestContext
 	{
