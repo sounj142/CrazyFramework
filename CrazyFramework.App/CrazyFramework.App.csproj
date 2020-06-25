@@ -16,4 +16,8 @@
     <Folder Include="Constants\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CrazyFramework.Dtos\CrazyFramework.Dtos.csproj" />
+  </ItemGroup>
+
 </Project>

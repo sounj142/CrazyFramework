@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
-namespace CrazyFramework.WebAPI.Controllers
+namespace CrazyFramework.API.Controllers
 {
 	public class ProductsController : ApiController
 	{

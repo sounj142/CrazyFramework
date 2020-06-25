@@ -1,4 +1,4 @@
-﻿using CrazyFramework.App.Dtos.Products;
+﻿using CrazyFramework.Dtos.Products;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;

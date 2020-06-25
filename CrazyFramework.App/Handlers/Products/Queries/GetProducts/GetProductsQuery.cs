@@ -1,4 +1,4 @@
-﻿using CrazyFramework.App.Dtos.Products;
+﻿using CrazyFramework.Dtos.Products;
 using CrazyFramework.App.Infrastructure.Repos;
 using MediatR;
 using Microsoft.Extensions.Logging;

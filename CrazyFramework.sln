@@ -42,6 +42,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrazyFramework.API", "Prese
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrazyFramework.Client", "Presentation\CrazyFramework.Client\CrazyFramework.Client.csproj", "{099475A4-360C-40CD-B714-8C963F1AF5D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyFramework.Dtos", "CrazyFramework.Dtos\CrazyFramework.Dtos.csproj", "{9C547E2A-12BB-4615-AF38-B9330AFBBF9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,10 @@ Global
 		{099475A4-360C-40CD-B714-8C963F1AF5D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{099475A4-360C-40CD-B714-8C963F1AF5D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{099475A4-360C-40CD-B714-8C963F1AF5D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C547E2A-12BB-4615-AF38-B9330AFBBF9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C547E2A-12BB-4615-AF38-B9330AFBBF9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C547E2A-12BB-4615-AF38-B9330AFBBF9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C547E2A-12BB-4615-AF38-B9330AFBBF9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +116,7 @@ Global
 		{76F33484-CB96-4D07-BFB0-05B1FC706932} = {361A3BDF-0359-40C9-8EB9-64B240A8B03A}
 		{9535C7A4-F83A-4D91-AC4F-5C1E1AB65C13} = {066D80EB-5839-4A31-869B-DC5F8931D206}
 		{099475A4-360C-40CD-B714-8C963F1AF5D3} = {066D80EB-5839-4A31-869B-DC5F8931D206}
+		{9C547E2A-12BB-4615-AF38-B9330AFBBF9C} = {19EE3526-D1F9-4B16-8FA5-A512D5A46C6B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A3599B6-3015-4C65-BC0B-6D85BD941805}
