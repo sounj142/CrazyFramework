@@ -3,7 +3,7 @@ using CrazyFramework.Client.Models.Users;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 
-namespace CrazyFramework.Client.Components.Users
+namespace CrazyFramework.Client.Components.Layout
 {
 	public partial class UserProfile
 	{
