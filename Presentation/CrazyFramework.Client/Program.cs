@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using CrazyFramework.Client.Models;
 using CrazyFramework.Client.Providers;
+using CrazyFramework.Client.Services;
 using MatBlazor;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -22,6 +23,7 @@ namespace CrazyFramework.Client
 				.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) }
 					.EnableIntercept(sp)
 				);
+			builder.Services.AddTransient<IProductService, ProductService>();
 
 			builder.Services.AddAuthorizationCore(config =>
 			{

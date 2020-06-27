@@ -1,6 +1,7 @@
 ﻿using CrazyFramework.App.Business.Products;
 using CrazyFramework.App.Entities.Products;
 using CrazyFramework.App.Infrastructure.Repos;
+using CrazyFramework.Dtos.Products;
 using MediatR;
 using System;
 using System.Threading;
@@ -8,11 +9,8 @@ using System.Threading.Tasks;
 
 namespace CrazyFramework.App.Handlers.Products.Commands.CreateProduct
 {
-	public class CreateProductCommand : IRequest<Guid>
+	public class CreateProductCommand : CreateProductDto, IRequest<Guid>
 	{
-		public string Name { get; set; }
-		public decimal Price { get; set; }
-
 		public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Guid>
 		{
 			private readonly IProductRepository _productRepository;

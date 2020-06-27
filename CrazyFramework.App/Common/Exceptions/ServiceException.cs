@@ -4,10 +4,6 @@ namespace CrazyFramework.App.Common.Exceptions
 {
 	public class ServiceException : FrameworkException
 	{
-		public ServiceException(string errorCode) : base(errorCode)
-		{
-		}
-
 		public ServiceException(string errorCode, string message) : base(errorCode, message)
 		{
 		}

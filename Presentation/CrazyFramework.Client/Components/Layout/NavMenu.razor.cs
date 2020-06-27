@@ -25,7 +25,7 @@ namespace CrazyFramework.Client.Components.Layout
 				IsLoggedIn = true;
 			}
 
-			if (user.IsInRole(Role.Administrator))
+			if (user.IsInRole(RoleType.Administrator))
 			{
 				// Perform some action only available to users in the 'admin' role
 				//Console.WriteLine(DefaultRoleNames.Administrator);

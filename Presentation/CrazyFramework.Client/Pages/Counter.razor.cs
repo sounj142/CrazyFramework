@@ -8,9 +8,17 @@ namespace CrazyFramework.Client.Pages
 		[Inject]
 		public AppState appState { get; set; }
 
+		private int currentCount;
+
+		protected override void OnInitialized()
+		{
+			this.currentCount = appState.GetCurrentCount();
+		}
+
 		private void IncrementCount()
 		{
-			appState.CurrentCount++;
+			currentCount++;
+			appState.UpdateCurrentCount(currentCount);
 		}
 	}
 }

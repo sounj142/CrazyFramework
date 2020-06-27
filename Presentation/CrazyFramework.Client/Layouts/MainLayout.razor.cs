@@ -3,7 +3,7 @@ using CrazyFramework.Client.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 
-namespace CrazyFramework.Client.Shared
+namespace CrazyFramework.Client.Layouts
 {
 	public partial class MainLayout
 	{

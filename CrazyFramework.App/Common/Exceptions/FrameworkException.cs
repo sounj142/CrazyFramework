@@ -6,11 +6,6 @@ namespace CrazyFramework.App.Common.Exceptions
 	{
 		public string ErrorCode { get; }
 
-		public FrameworkException(string errorCode)
-		{
-			ErrorCode = errorCode;
-		}
-
 		public FrameworkException(string errorCode, string message) : base(message)
 		{
 			ErrorCode = errorCode;

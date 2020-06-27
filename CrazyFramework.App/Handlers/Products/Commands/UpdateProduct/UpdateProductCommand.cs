@@ -1,18 +1,14 @@
 ﻿using CrazyFramework.App.Entities.Products;
 using CrazyFramework.App.Infrastructure.Repos;
+using CrazyFramework.Dtos.Products;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace CrazyFramework.App.Handlers.Products.Commands.UpdateProduct
 {
-	public class UpdateProductCommand : IRequest
+	public class UpdateProductCommand : UpdateProductDto, IRequest
 	{
-		public Guid Id { get; set; }
-		public string Name { get; set; }
-		public decimal Price { get; set; }
-
 		public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand>
 		{
 			private readonly IProductRepository _productRepository;

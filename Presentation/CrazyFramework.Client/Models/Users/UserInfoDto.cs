@@ -1,6 +1,6 @@
 ﻿namespace CrazyFramework.Client.Models.Users
 {
-	public class UserInfo
+	public class UserInfoDto
 	{
 		public string UserName { get; set; }
 	}

@@ -11,7 +11,7 @@ namespace CrazyFramework.Client.Components.Layout
 		public AuthenticationStateProvider authStateProvider { get; set; }
 
 		public bool IsLoggedIn = false;
-		private UserInfo userInfo = null;
+		private UserInfoDto userInfo = null;
 
 		[CascadingParameter]
 		private Task<AuthenticationState> authenticationStateTask { get; set; }
