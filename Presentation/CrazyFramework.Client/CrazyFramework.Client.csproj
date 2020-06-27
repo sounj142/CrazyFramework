@@ -19,8 +19,4 @@
     <ProjectReference Include="..\..\CrazyFramework.Dtos\CrazyFramework.Dtos.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
-
 </Project>

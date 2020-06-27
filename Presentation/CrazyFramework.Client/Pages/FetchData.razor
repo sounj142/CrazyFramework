@@ -1,13 +1,12 @@
 @page "/fetch_data"
-@inherits ExceptionSafeComponentBase
 
 <h1>Product list</h1>
 
-<MatTable Class="mat-elevation-z5" Items="@products" Striped="true" FilterByColumnName="Title" DebounceMilliseconds="150" PageSize="10" Id="product-list">
+<MatTable Class="mat-elevation-z5" Items="@products" Striped="true" FilterByColumnName="Name" DebounceMilliseconds="150" PageSize="10" Id="product-list">
 	<MatTableHeader>
 		<th class="product-actions">
 			<div>
-				<MatButton Icon="playlist_add" Label="Add" OnClick="@((e) => OpenDialog())" Raised="true"></MatButton>
+				<MatButton Icon="playlist_add" Label="Add" OnClick="@((e) => OpenDialog(null))" Raised="true"></MatButton>
 			</div>
 		</th>
 		<th class="product-id">Id</th>
@@ -17,6 +16,7 @@
 	<MatTableRow Context="ProductRow">
 		<td>
 			<MatIconButton Icon="delete" OnClick="@(() => OpenDeleteDialog(ProductRow.Id))"></MatIconButton>
+			<MatIconButton Icon="edit" OnClick="@(() => OpenDialog(ProductRow.Id))"></MatIconButton>
 		</td>
 		<td>@ProductRow.Id</td>
 		<td>@ProductRow.Name</td>
@@ -25,22 +25,33 @@
 </MatTable>
 
 <MatDialog @bind-IsOpen="@dialogIsOpen">
-	<MatDialogTitle>Create Product</MatDialogTitle>
-	<MatDialogContent>
-		<EditForm Model="@product" OnValidSubmit="@NewProduct">
+	<MatDialogTitle>@(isEditing ? "Edit Product" : "Create Product")</MatDialogTitle>
+	<EditForm Model="@product" OnValidSubmit="@CreateOrUpdateProduct">
+		<MatDialogContent>
+
 			<DataAnnotationsValidator />
 			<ValidationSummary />
 			<fieldset>
 				<div class="form-group">
-					<MatTextField @bind-Value="@product.Name" Label="Title" Icon="title" IconTrailing="true" FullWidth="true" Required="true"></MatTextField>
+					<MatTextField @bind-Value="@product.Name"
+								  Label="Name" Icon="title"
+								  IconTrailing="true"
+								  FullWidth="true">
+					</MatTextField>
+
+					<MatNumericUpDownField Label="Price"
+										   @bind-Value=@product.Price
+										   FieldType="MatNumericUpDownFieldType.Currency"
+										   DecimalPlaces="2">
+					</MatNumericUpDownField>
 				</div>
 			</fieldset>
-		</EditForm>
-	</MatDialogContent>
-	<MatDialogActions>
-		<MatButton OnClick="@(e => { dialogIsOpen = false; })">Cancel</MatButton>
-		<MatButton OnClick="@NewProduct">Create Product</MatButton>
-	</MatDialogActions>
+		</MatDialogContent>
+		<MatDialogActions>
+			<MatButton Type="button" OnClick="@(e => { dialogIsOpen = false; })">Cancel</MatButton>
+			<MatButton Type="submit">@(isEditing ? "Update" : "Create")</MatButton>
+		</MatDialogActions>
+	</EditForm>
 </MatDialog>
 
 <MatDialog @bind-IsOpen="@deleteDialogOpen" Style="z-index:100">
@@ -50,6 +61,6 @@
 	</MatDialogContent>
 	<MatDialogActions>
 		<MatButton OnClick="@(e => { deleteDialogOpen = false; })">Cancel</MatButton>
-		<MatButton OnClick="@Delete">Delete</MatButton>
+		<MatButton OnClick="@DeleteProduct">Delete</MatButton>
 	</MatDialogActions>
 </MatDialog>

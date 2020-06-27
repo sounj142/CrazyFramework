@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using CrazyFramework.Client.Helpers;
+using CrazyFramework.Client.Models.Products;
 using CrazyFramework.Client.Services;
+using CrazyFramework.Client.Shared;
 using CrazyFramework.Dtos.Products;
+using MatBlazor;
 using Microsoft.AspNetCore.Components;
 
 namespace CrazyFramework.Client.Pages
@@ -10,84 +15,127 @@ namespace CrazyFramework.Client.Pages
 	public partial class FetchData
 	{
 		[Inject]
+		public IMatToaster matToaster { get; set; }
+
+		[Inject]
 		public IProductService productService { get; set; }
 
 		private bool deleteDialogOpen = false;
 		private bool dialogIsOpen = false;
+		private bool isEditing = false;
 
 		private IList<ProductDto> products = new List<ProductDto>();
 
-		private ProductDto product { get; set; } = new ProductDto();
+		private Product product { get; set; } = new Product();
 
-		protected override async Task OnInitializedAsync()
+		protected override Task OnInitializedAsync()
+		{
+			return matToaster.CatchAndDisplayErrors(LoadData);
+		}
+
+		private async Task LoadData()
 		{
 			products = await productService.GetProducts();
 		}
 
-		public async void Update(ProductDto product)
+		public Task UpdateProduct()
 		{
-			//try
-			//{
-			//	product.IsCompleted = !product.IsCompleted;
+			return matToaster.CatchAndDisplayErrors(async () =>
+			{
+				await productService.UpdateProduct(new UpdateProductDto
+				{
+					Id = product.Id,
+					Name = product.Name,
+					Price = product.Price
+				});
 
-			//	await apiClient.SaveChanges();
+				await LoadData();
 
-			//	matToaster.Add($"{product.Title} updated", MatToastType.Success, L["Operation Successful"]);
-			//}
-			//catch (Exception ex)
-			//{
-			//	matToaster.Add(ex.GetBaseException().Message, MatToastType.Danger, L["Operation Failed"]);
-			//}
+				matToaster.Add($"{product.Name} edited", MatToastType.Success, "Operation Successful");
+
+				dialogIsOpen = false;
+				product = new Product();
+			});
 		}
 
-		public async Task Delete()
+		public Task CreateOrUpdateProduct()
 		{
-			//try
-			//{
-			//	product.EntityAspect.Delete();
-			//	await apiClient.SaveChanges();
-			//	products.Remove(product);
-			//	matToaster.Add($"{product.Title} deleted", MatToastType.Success, L["Operation Successful"]);
-			//}
-			//catch (Exception ex)
-			//{
-			//	matToaster.Add(ex.GetBaseException().Message, MatToastType.Danger, L["Operation Failed"]);
-			//}
-
-			//product = new Product();
-
-			//deleteDialogOpen = false;
+			return isEditing ? UpdateProduct() : CreateProduct();
 		}
 
-		public void OpenDialog()
+		public Task DeleteProduct()
 		{
-			dialogIsOpen = true;
+			return matToaster.CatchAndDisplayErrors(async () =>
+			{
+				await productService.RemoveProduct(product.Id);
+
+				await LoadData();
+
+				matToaster.Add($"{product.Name} deleted", MatToastType.Success, "Operation Successful");
+
+				product = new Product();
+
+				deleteDialogOpen = false;
+			});
+		}
+
+		public void OpenDialog(Guid? productId = null)
+		{
+			if (productId == null)
+			{
+				dialogIsOpen = true;
+				isEditing = false;
+				product = new Product();
+			}
+			else
+			{
+				var productDto = products.Where(x => x.Id == productId).FirstOrDefault();
+				if (productDto != null)
+				{
+					dialogIsOpen = true;
+					isEditing = true;
+					product = new Product
+					{
+						Id = productDto.Id,
+						Name = productDto.Name,
+						Price = productDto.Price
+					};
+				}
+			}
 		}
 
 		public void OpenDeleteDialog(Guid productId)
 		{
-			//product = products.Where(x => x.Id == productId).SingleOrDefault();
-			//deleteDialogOpen = true;
+			var productDto = products.Where(x => x.Id == productId).FirstOrDefault();
+			if (productDto != null)
+			{
+				product = new Product
+				{
+					Id = productDto.Id,
+					Name = productDto.Name,
+					Price = productDto.Price
+				};
+				deleteDialogOpen = true;
+			}
 		}
 
-		public async Task NewProduct()
+		public Task CreateProduct()
 		{
-			//dialogIsOpen = false;
+			return matToaster.CatchAndDisplayErrors(async () =>
+			{
+				await productService.CreateProduct(new CreateProductDto
+				{
+					Name = product.Name,
+					Price = product.Price
+				});
 
-			//try
-			//{
-			//	apiClient.AddEntity(product);
+				await LoadData();
 
-			//	await apiClient.SaveChanges();
+				matToaster.Add($"{product.Name} created", MatToastType.Success, "Operation Successful");
 
-			//	await LoadMainEntities();
-			//}
-			//catch (Exception ex)
-			//{
-			//	matToaster.Add(ex.GetBaseException().Message, MatToastType.Danger, L["Operation Failed"]);
-			//}
-
-			//product = new Product();
+				dialogIsOpen = false;
+				product = new Product();
+			});
 		}
 	}
 }
