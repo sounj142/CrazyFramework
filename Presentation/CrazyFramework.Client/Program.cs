@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using CrazyFramework.Client.Models;
 using CrazyFramework.Client.Providers;
 using CrazyFramework.Client.Services;
+using FluentValidation;
 using MatBlazor;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -46,6 +47,8 @@ namespace CrazyFramework.Client
 				config.MaximumOpacity = 95;
 				config.VisibleStateDuration = 3000;
 			});
+
+			builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
 			await builder
 				.Build()

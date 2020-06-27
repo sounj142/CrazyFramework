@@ -46,7 +46,7 @@ namespace CrazyFramework.Client.Pages
 				{
 					Id = product.Id,
 					Name = product.Name,
-					Price = product.Price
+					Price = product.Price ?? 0
 				});
 
 				await LoadData();
@@ -126,7 +126,7 @@ namespace CrazyFramework.Client.Pages
 				await productService.CreateProduct(new CreateProductDto
 				{
 					Name = product.Name,
-					Price = product.Price
+					Price = product.Price ?? 0
 				});
 
 				await LoadData();

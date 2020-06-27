@@ -811,3 +811,7 @@ div.refresh-timer-interval-wrapper {
 	#product-list.mdc-table td.product-price {
 		width: 140px;
 	}
+
+#product-create-popup .mdc-dialog__surface {
+	width: 800px;
+}

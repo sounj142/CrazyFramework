@@ -24,26 +24,28 @@
 	</MatTableRow>
 </MatTable>
 
-<MatDialog @bind-IsOpen="@dialogIsOpen">
+<MatDialog @bind-IsOpen="@dialogIsOpen" Id="product-create-popup">
 	<MatDialogTitle>@(isEditing ? "Edit Product" : "Create Product")</MatDialogTitle>
 	<EditForm Model="@product" OnValidSubmit="@CreateOrUpdateProduct">
 		<MatDialogContent>
 
-			<DataAnnotationsValidator />
-			<ValidationSummary />
+			<FluentValidator></FluentValidator>
+
 			<fieldset>
 				<div class="form-group">
-					<MatTextField @bind-Value="@product.Name"
-								  Label="Name" Icon="title"
-								  IconTrailing="true"
+					<MatTextField Label="Name"
+								  @bind-Value="@product.Name"
 								  FullWidth="true">
 					</MatTextField>
+					<ValidationMessage For="@(() => product.Name)" />
 
 					<MatNumericUpDownField Label="Price"
 										   @bind-Value=@product.Price
 										   FieldType="MatNumericUpDownFieldType.Currency"
-										   DecimalPlaces="2">
+										   DecimalPlaces="2"
+										   FullWidth="true">
 					</MatNumericUpDownField>
+					<ValidationMessage For="@(() => product.Price)" />
 				</div>
 			</fieldset>
 		</MatDialogContent>
