@@ -37,39 +37,32 @@ namespace CrazyFramework.API.Helpers
 		}
 
 		private (int Code, string Content) HandleException(Exception exception)
-		{
-			HttpStatusCode code;
-			string result;
-
-			switch (exception)
+			=> exception switch
 			{
-				case ValidationException validationException:
-					code = HttpStatusCode.BadRequest;
-					result = JsonConvert.SerializeObject(validationException.Failures);
-					break;
-
-				case NotFoundException notFoundException:
-					code = HttpStatusCode.NotFound;
-					result = JsonConvert.SerializeObject(DictionaryHelper.CreateErrorObject(notFoundException.ErrorCode, notFoundException.Message));
-					break;
-
-				case FrameworkException frameworkException:
-					code = HttpStatusCode.BadRequest;
-					result = JsonConvert.SerializeObject(DictionaryHelper.CreateErrorObject(frameworkException.ErrorCode, frameworkException.Message));
-					break;
-
-				default:
-					code = HttpStatusCode.InternalServerError;
-					// TODO: apply multi languages
-					result = JsonConvert.SerializeObject(DictionaryHelper.CreateErrorObject("Errors", "Unknown error"));
-
+				ValidationException validationException => (
+						Code: (int)HttpStatusCode.BadRequest,
+						Content: JsonConvert.SerializeObject(validationException.Failures)
+				),
+				NotFoundException notFoundException => (
+						Code: (int)HttpStatusCode.NotFound,
+						Content: JsonConvert.SerializeObject(DictionaryHelper.CreateErrorObject(notFoundException.ErrorCode, notFoundException.Message))
+				),
+				FrameworkException frameworkException => (
+						Code: (int)HttpStatusCode.BadRequest,
+						Content: JsonConvert.SerializeObject(DictionaryHelper.CreateErrorObject(frameworkException.ErrorCode, frameworkException.Message))
+				),
+				_ => ((Func<(int Code, string Content)>)(() =>
+				{
 					// we expect that before throw FrameworkException and its derived exceptions, developers should write necessary logs
 					// so we only need to write log for other kinds of unhandled exception
 					_logger.LogError(exception, exception.Message);
-					break;
-			}
 
-			return (Code: (int)code, Content: result);
-		}
+					return (
+						Code: (int)HttpStatusCode.InternalServerError,
+						// TODO: apply multi languages
+						Content: JsonConvert.SerializeObject(DictionaryHelper.CreateErrorObject("Errors", "Unknown error"))
+					);
+				}))()
+			};
 	}
 }
