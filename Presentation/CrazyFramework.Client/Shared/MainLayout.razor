@@ -1,6 +1,4 @@
 ﻿@inherits LayoutComponentBase
-@inject NavigationManager navigationManager
-@inject AppState appState
 
 <MatDrawerContainer Style="width: 100vw; height: 100vh;" Class="@bbDrawerClass">
 	<MatDrawer @bind-Opened="@_navMenuOpened">
@@ -45,78 +43,3 @@
 		</MatAppBarContainer>
 	</MatDrawerContent>
 </MatDrawerContainer>
-
-@code {
-	bool _navMenuOpened = true;
-	bool _navMinified = false;
-	public string bbDrawerClass = string.Empty;
-
-	[CascadingParameter]
-	Task<AuthenticationState> authenticationStateTask { get; set; }
-
-	protected override async Task OnInitializedAsync()
-	{
-		// Uncomment to secure entire app  with no anonymous user access
-		//navigationManager.NavigateTo(Shared.Settings.LoginPath);
-
-		// Set Default landing page if you want for anonymous user.
-		// Authenticated users are redirected after successful login.
-		//navigationManager.NavigateTo("/");
-
-		var user = (await authenticationStateTask).User;
-
-		//// TODO1
-		//if (user.Identity.IsAuthenticated)
-		//{
-		//	var profile = await appState.GetUserProfile();
-
-		//	_navMenuOpened = profile.IsNavOpen;
-		//	_navMinified = profile.IsNavMinified;
-		//}
-	}
-
-	void NavToggle()
-	{
-		_navMenuOpened = !_navMenuOpened;
-
-		if (_navMenuOpened)
-		{
-			bbDrawerClass = "full";
-		}
-		else
-		{
-			bbDrawerClass = "closed";
-		}
-
-		StateHasChanged();
-	}
-
-	void NavLock()
-	{
-		//Todo Lock Nav
-	}
-
-	void NavMinify()
-	{
-		_navMinified = !_navMinified;
-
-		if (!_navMenuOpened)
-		{
-			_navMinified = true;
-		}
-
-		if (_navMinified)
-		{
-			bbDrawerClass = "mini";
-			_navMenuOpened = true;
-		}
-		else if (_navMenuOpened)
-		{
-			bbDrawerClass = "full";
-		}
-
-		_navMenuOpened = true;
-
-		StateHasChanged();
-	}
-}

@@ -1,0 +1,16 @@
+﻿<ul class="breadcrumb">
+	<li>
+		<a href="/">@RootLinkTitle</a>
+	</li>
+	@foreach (var path in paths.Select((value, i) => (value, i)))
+	{
+		if (path.i == paths.Count())
+		{
+			<li><a href="@(baseUrl + String.Join("/", paths))">@path.value.Replace("_", " ")</a></li>
+		}
+		else
+		{
+			<li>@path.value.Replace("_", " ")</li>
+		}
+	}
+</ul>

@@ -1,6 +1,3 @@
-@using Microsoft.AspNetCore.Components;
-@inject NavigationManager navigationManager
-
 <MatNavMenu Multi="true" Class="app-sidebar">
 	<MatNavItem Href="@navigationManager.ToAbsoluteUri(" ").AbsoluteUri" NavLinkMatch="NavLinkMatch.All">
 		<MatIcon>home</MatIcon> <span class="miniHover">Home page</span>
@@ -55,28 +52,3 @@
 		<MatIcon>attach_money</MatIcon> <span class="miniHover">Sponsors</span>
 	</MatNavItem>
 </MatNavMenu>
-
-@code {
-
-	public bool IsLoggedIn = false;
-
-	[CascadingParameter]
-	Task<AuthenticationState> authenticationStateTask { get; set; }
-
-	protected override async Task OnParametersSetAsync()
-	{
-		IsLoggedIn = false;
-		var user = (await authenticationStateTask).User;
-
-		if (user.Identity.IsAuthenticated)
-		{
-			IsLoggedIn = true;
-		}
-
-		if (user.IsInRole(Role.Administrator))
-		{
-			// Perform some action only available to users in the 'admin' role
-			//Console.WriteLine(DefaultRoleNames.Administrator);
-		}
-	}
-}

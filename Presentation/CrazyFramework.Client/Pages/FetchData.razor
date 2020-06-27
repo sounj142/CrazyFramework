@@ -1,5 +1,4 @@
 @page "/fetch_data"
-@inject HttpClient Http
 
 @if (forecasts == null)
 {
@@ -26,14 +25,4 @@ else
 			}
 		</tbody>
 	</table>
-}
-
-@code {
-	private ProductDto[] forecasts;
-
-	protected override async Task OnInitializedAsync()
-	{
-		forecasts = await Http.GetFromJsonAsync<ProductDto[]>("api/products");
-	}
-
 }

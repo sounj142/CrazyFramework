@@ -12,7 +12,7 @@
 	<title>CrazyFramework.Blazor</title>
 
 	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
-	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
 	<link href="_content/MatBlazor/dist/matBlazor.css" rel="stylesheet" />
@@ -20,7 +20,16 @@
 </head>
 
 <body>
-	<app></app>
+	<app>
+		<div class="triangle-container">
+			<div class="triangles">
+			</div>
+		</div>
+		<div class="loading-container">
+			<img src="images/logo.svg" alt="Loading" title="Loading BlazorBoilerplate" /><br />
+			Loading Crazy App...
+		</div>
+	</app>
 
 	<div id="blazor-error-ui">
 		An unhandled error has occurred.
