@@ -40,16 +40,16 @@ namespace CrazyFramework.WebAPI.Helpers
 			=> exception switch
 			{
 				ValidationException validationException => (
-						Code: (int)HttpStatusCode.BadRequest,
-						Content: JsonConvert.SerializeObject(validationException.Failures)
+					Code: (int)HttpStatusCode.BadRequest,
+					Content: JsonConvert.SerializeObject(validationException.Failures)
 				),
 				NotFoundException notFoundException => (
-						Code: (int)HttpStatusCode.NotFound,
-						Content: JsonConvert.SerializeObject(DictionaryHelper.CreateErrorObject(notFoundException.ErrorCode, notFoundException.Message))
+					Code: (int)HttpStatusCode.NotFound,
+					Content: JsonConvert.SerializeObject(DictionaryHelper.CreateErrorObject(notFoundException.ErrorCode, notFoundException.Message))
 				),
 				FrameworkException frameworkException => (
-						Code: (int)HttpStatusCode.BadRequest,
-						Content: JsonConvert.SerializeObject(DictionaryHelper.CreateErrorObject(frameworkException.ErrorCode, frameworkException.Message))
+					Code: (int)HttpStatusCode.BadRequest,
+					Content: JsonConvert.SerializeObject(DictionaryHelper.CreateErrorObject(frameworkException.ErrorCode, frameworkException.Message))
 				),
 				_ => ((Func<(int Code, string Content)>)(() =>
 				{
