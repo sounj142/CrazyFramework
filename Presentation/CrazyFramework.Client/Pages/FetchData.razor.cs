@@ -51,7 +51,7 @@ namespace CrazyFramework.Client.Pages
 
 				await LoadData();
 
-				matToaster.Add($"{product.Name} edited", MatToastType.Success, "Operation Successful");
+				matToaster.Add($"{product.Name} updated", MatToastType.Success, "Operation Successful");
 
 				dialogIsOpen = false;
 				product = new Product();
