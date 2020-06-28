@@ -2,7 +2,7 @@
 
 <h1>Product list</h1>
 
-<MatTable Class="mat-elevation-z5" Items="@products" Striped="true" FilterByColumnName="Name" DebounceMilliseconds="150" PageSize="10" Id="product-list">
+<MatTable Class="mat-elevation-z5" Items="@products" Striped="true" FilterByColumnName="Name" DebounceMilliseconds="150" Id="product-list" PageSize="@pageSize" @ref="tableRef">
 	<MatTableHeader>
 		<th class="product-actions">
 			<div>

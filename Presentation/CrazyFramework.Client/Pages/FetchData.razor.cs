@@ -23,6 +23,8 @@ namespace CrazyFramework.Client.Pages
 		private bool deleteDialogOpen = false;
 		private bool dialogIsOpen = false;
 		private bool isEditing = false;
+		private int pageSize = 10;
+		private BaseMatTable tableRef;
 
 		private IList<ProductDto> products = new List<ProductDto>();
 
@@ -31,6 +33,12 @@ namespace CrazyFramework.Client.Pages
 		protected override Task OnInitializedAsync()
 		{
 			return matToaster.CatchAndDisplayErrors(LoadData);
+		}
+
+		protected override bool ShouldRender()
+		{
+			pageSize = tableRef!.PageSize;
+			return base.ShouldRender();
 		}
 
 		private async Task LoadData()
