@@ -23,13 +23,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\Infrastructure\CrazyFramework.Infrastructure.AspNetIdentityRepos\CrazyFramework.Infrastructure.AspNetIdentityRepos.csproj" />
 		<ProjectReference Include="..\CrazyFramework.Client\CrazyFramework.Client.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\CrazyFramework.App\CrazyFramework.App.csproj" />
 		<ProjectReference Include="..\..\Infrastructure\CrazyFramework.Infrastructure.GitHub\CrazyFramework.Infrastructure.GitHub.csproj" />
-		<ProjectReference Include="..\..\Infrastructure\CrazyFramework.Repos\CrazyFramework.Infrastructure.Repos.csproj" />
 	</ItemGroup>
 
 </Project>

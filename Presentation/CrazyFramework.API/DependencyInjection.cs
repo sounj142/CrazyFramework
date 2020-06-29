@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using CrazyFramework.App.BusinessServices;
-using CrazyFramework.Infrastructure.Repos;
+using CrazyFramework.Infrastructure.AspNetIdentityRepos;
 using CrazyFramework.API.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;

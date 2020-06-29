@@ -1,5 +1,5 @@
 using CrazyFramework.App;
-using CrazyFramework.Infrastructure.Repos;
+using CrazyFramework.Infrastructure.AspNetIdentityRepos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

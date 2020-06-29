@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\CrazyFramework.Repos\CrazyFramework.Infrastructure.Repos.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\CrazyFramework.Infrastructure.Repos\CrazyFramework.Infrastructure.Repos.csproj" />
   </ItemGroup>
 
 </Project>
