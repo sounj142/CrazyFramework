@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CrazyFramework.Infrastructure.AspNetIdentityRepos.Models.Users;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
@@ -31,9 +33,9 @@ namespace CrazyFramework.Infrastructure.AspNetIdentityRepos
 			{
 				try
 				{
-					var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+					var userManager = scope.ServiceProvider.GetRequiredService<UserManager<UserDAO>>();
 
-					await ApplicationDbContextSeed.SeedAsync(dbContext);
+					await ApplicationDbContextSeed.SeedAsync(userManager);
 				}
 				catch (Exception ex)
 				{

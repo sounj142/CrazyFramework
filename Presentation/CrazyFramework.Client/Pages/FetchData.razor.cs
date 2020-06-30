@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using CrazyFramework.Client.Helpers;
 using CrazyFramework.Client.Models.Products;
 using CrazyFramework.Client.Services;
-using CrazyFramework.Client.Shared;
 using CrazyFramework.Dtos.Products;
 using MatBlazor;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 
 namespace CrazyFramework.Client.Pages
 {
+	[Authorize]
 	public partial class FetchData
 	{
 		[Inject]

@@ -2,6 +2,7 @@
 {
 	public static class Settings
 	{
-		public const string LoginPath = "/Account/Login";
+		public const string LoginPath = "authentication/login";
+		public const string LogoutPath = "authentication/logout";
 	}
 }

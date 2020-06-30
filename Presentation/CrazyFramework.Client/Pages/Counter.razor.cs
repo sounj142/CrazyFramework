@@ -1,8 +1,10 @@
 ﻿using CrazyFramework.Client.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 
 namespace CrazyFramework.Client.Pages
 {
+	[Authorize]
 	public partial class Counter
 	{
 		[Inject]

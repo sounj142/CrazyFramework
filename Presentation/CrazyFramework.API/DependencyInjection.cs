@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NSwag;
 using NSwag.Generation.Processors.Security;
+using Microsoft.AspNetCore.Authentication;
 
 namespace CrazyFramework.API
 {
@@ -48,19 +49,8 @@ namespace CrazyFramework.API
 				configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
 			});
 
-			services.AddAuthentication("Bearer")
-				.AddJwtBearer("Bearer", options =>
-				{
-					options.Authority = "https://localhost:44333";
-					options.RequireHttpsMetadata = true;
-
-					options.Audience = "CrazyWebApi";
-
-					// set these values to enforce authentication check whether access token was expired
-					options.TokenValidationParameters.ValidateLifetime = true;
-					options.TokenValidationParameters.ClockSkew = TimeSpan.Zero;
-				});
-			services.AddAuthorization();
+			services.AddAuthentication()
+				.AddIdentityServerJwt();
 
 			return services;
 		}

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CrazyFramework.Client.Shared;
 using MatBlazor;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 namespace CrazyFramework.Client.Helpers
 {
@@ -29,6 +30,10 @@ namespace CrazyFramework.Client.Helpers
 			try
 			{
 				await action();
+			}
+			catch (AccessTokenNotAvailableException exception)
+			{
+				exception.Redirect();
 			}
 			catch (BussinessException ex)
 			{

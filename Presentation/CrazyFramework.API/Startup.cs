@@ -65,6 +65,7 @@ namespace CrazyFramework.API
 
 			app.UseRouting();
 
+			app.UseIdentityServer();
 			app.UseAuthentication();
 			app.UseAuthorization();
 

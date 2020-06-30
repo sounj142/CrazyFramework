@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
 namespace CrazyFramework.Client
 {
 	public class Program
@@ -20,21 +22,28 @@ namespace CrazyFramework.Client
 			var builder = WebAssemblyHostBuilder.CreateDefault(args);
 			builder.RootComponents.Add<App>("app");
 
-			builder.Services
-				.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) }
-					.EnableIntercept(sp)
-				);
+			//builder.Services
+			//	.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) }
+			//		.EnableIntercept(sp)
+			//	);
+
+			builder.Services.AddHttpClient("CrazyFramework.API", (sp, client) =>
+			{
+				client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
+				client.EnableIntercept(sp);
+			})
+				.AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+
+			// Supply HttpClient instances that include access tokens when making requests to the server project
+			builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("CrazyFramework.API"));
+
 			builder.Services.AddTransient<IProductService, ProductService>();
 
-			builder.Services.AddAuthorizationCore(config =>
-			{
-				//config.AddPolicy(Policies.IsAdmin, Policies.IsAdminPolicy());
-				//config.AddPolicy(Policies.IsUser, Policies.IsUserPolicy());
-				//config.AddPolicy(Policies.IsReadOnly, Policies.IsUserPolicy());
-				// config.AddPolicy(Policies.IsMyDomain, Policies.IsMyDomainPolicy());  Only works on the server end
-			});
+			builder.Services.AddApiAuthorization();
 
-			builder.Services.AddScoped<AuthenticationStateProvider, IdentityAuthenticationStateProvider>();
+			//builder.Services.AddApiAuthorization()
+			//	.AddAccountClaimsPrincipalFactory<CustomUserFactory>();
+
 			builder.Services.AddSingleton<AppState>();
 
 			builder.Services.AddLoadingBar();

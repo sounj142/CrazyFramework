@@ -3,6 +3,7 @@
 @code {
 	protected override void OnInitialized()
 	{
-		Navigation.NavigateTo($"{CrazyFramework.Client.Settings.LoginPath}?returnurl={Uri.EscapeDataString(Navigation.Uri)}", true);
+		Navigation.NavigateTo($"{CrazyFramework.Client.Settings.LoginPath}?returnUrl=" +
+			Uri.EscapeDataString(Navigation.Uri));
 	}
 }

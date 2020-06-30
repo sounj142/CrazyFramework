@@ -1,22 +1,27 @@
 ﻿using CrazyFramework.App.BusinessServices;
 using CrazyFramework.App.Common;
 using CrazyFramework.Infrastructure.AspNetIdentityRepos.Models;
+using CrazyFramework.Infrastructure.AspNetIdentityRepos.Models.Users;
+using IdentityServer4.EntityFramework.Options;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace CrazyFramework.Infrastructure.AspNetIdentityRepos
 {
-	public class ApplicationDbContext : DbContext
+	public class ApplicationDbContext : ApiAuthorizationDbContext<UserDAO>
 	{
 		private readonly ICurrentRequestContext _currentUserService;
 		private readonly IDateTime _dateTimeService;
 
 		public ApplicationDbContext(
 			DbContextOptions<ApplicationDbContext> options,
+			IOptions<OperationalStoreOptions> operationalStoreOptions,
 			ICurrentRequestContext currentUserService,
-			IDateTime dateTimeService) : base(options)
+			IDateTime dateTimeService) : base(options, operationalStoreOptions)
 		{
 			_currentUserService = currentUserService;
 			_dateTimeService = dateTimeService;

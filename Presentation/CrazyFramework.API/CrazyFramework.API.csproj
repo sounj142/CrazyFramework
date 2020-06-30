@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<UserSecretsId>CrazyFramework.API-BFF0A52B-1B62-42AC-BBBE-7E049A0CDE1C</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
