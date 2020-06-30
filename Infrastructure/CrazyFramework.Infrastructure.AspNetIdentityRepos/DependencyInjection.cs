@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CrazyFramework.App.Helpers;
 
 namespace CrazyFramework.Infrastructure.AspNetIdentityRepos
 {
@@ -26,20 +27,35 @@ namespace CrazyFramework.Infrastructure.AspNetIdentityRepos
 				);
 
 			services.AddDefaultIdentity<UserDAO>(options =>
-					options.SignIn.RequireConfirmedAccount = true
-				)
+				{
+					options.SignIn.RequireConfirmedAccount = false;
+					options.SignIn.RequireConfirmedEmail = false;
+					options.SignIn.RequireConfirmedPhoneNumber = false;
+
+					options.Lockout.MaxFailedAccessAttempts = 10;
+
+					options.User.RequireUniqueEmail = true;
+
+					options.Password.RequireDigit = false;
+					options.Password.RequiredUniqueChars = 0;
+					options.Password.RequireLowercase = false;
+					options.Password.RequireNonAlphanumeric = false;
+					options.Password.RequireUppercase = false;
+				})
 				//.AddRoles<IdentityRole>()
 				.AddEntityFrameworkStores<ApplicationDbContext>();
 
 			services.AddIdentityServer()
-				.AddApiAuthorization<UserDAO, ApplicationDbContext>();
-			//.AddApiAuthorization<UserDAO, ApplicationDbContext>(options =>
-			//{
-			//	options.IdentityResources["openid"].UserClaims.Add("name");
-			//	options.ApiResources.Single().UserClaims.Add("name");
-			//	options.IdentityResources["openid"].UserClaims.Add("role");
-			//	options.ApiResources.Single().UserClaims.Add("role");
-			//});
+				.AddApiAuthorization<UserDAO, ApplicationDbContext>(options =>
+				{
+					//options.IdentityResources["openid"].UserClaims.Add("name");
+					//options.ApiResources.Single().UserClaims.Add("name");
+					//options.IdentityResources["openid"].UserClaims.Add("role");
+					//options.ApiResources.Single().UserClaims.Add("role");
+
+					options.Clients.ForEach(x => x.AccessTokenLifetime = 7200);
+				});
+			//.AddApiAuthorization<UserDAO, ApplicationDbContext>()
 
 			//JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
 

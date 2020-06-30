@@ -379,7 +379,7 @@ app {
 	.drawer-profile a,
 	.drawer-profile .material-icons {
 		color: #fff;
-		vertical-align: text-bottom;
+		vertical-align: middle;
 	}
 
 .app-sidebar .material-icons {

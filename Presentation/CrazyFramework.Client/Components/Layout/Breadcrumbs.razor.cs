@@ -47,23 +47,18 @@ namespace CrazyFramework.Client.Components.Layout
 		protected override async Task OnInitializedAsync()
 		{
 			baseUrl = navigationManager.BaseUri;
-			await BuildBreadcrumbsAsync();
+			BuildBreadcrumbsAsync();
 			navigationManager.LocationChanged += OnLocationChanges;
 			await base.OnInitializedAsync();
 		}
 
 		private void OnLocationChanges(object sender, LocationChangedEventArgs e) => BuildBreadcrumbsAsync();
 
-		private async Task BuildBreadcrumbsAsync()
+		private void BuildBreadcrumbsAsync()
 		{
 			string uri = navigationManager.Uri.Split('?')[0].Replace(baseUrl, string.Empty).Trim();
 
-			if (IsLoggedIn)
-			{
-				//*TODO1 await appState.SaveLastVisitedUri(uri);
-			}
-
-			paths = String.IsNullOrEmpty(uri) ? new string[] { } : uri.Split('/');
+			paths = string.IsNullOrEmpty(uri) ? new string[] { } : uri.Split('/');
 			StateHasChanged();
 		}
 

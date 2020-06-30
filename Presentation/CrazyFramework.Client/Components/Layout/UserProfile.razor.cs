@@ -21,10 +21,13 @@ namespace CrazyFramework.Client.Components.Layout
 			userInfo = null;
 			var user = (await authenticationStateTask).User;
 
-			//TODO1 if (user.Identity.IsAuthenticated)
-			//{
-			//	userInfo = await ((IdentityAuthenticationStateProvider)authStateProvider).GetUserInfo();
-			//}
+			if (user.Identity.IsAuthenticated)
+			{
+				userInfo = new UserInfo
+				{
+					UserName = user.Identity.Name
+				};
+			}
 		}
 	}
 }
