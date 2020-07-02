@@ -16,11 +16,6 @@ namespace CrazyFramework.Client
 	{
 		public static void ConfigureServices(IServiceCollection services, IWebAssemblyHostEnvironment environment)
 		{
-			//services
-			//	.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) }
-			//		.EnableIntercept(sp)
-			//	);
-
 			services.AddHttpClient("CrazyFramework.API", (sp, client) =>
 				{
 					client.BaseAddress = new Uri(environment.BaseAddress);
