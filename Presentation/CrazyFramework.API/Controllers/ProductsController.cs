@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace CrazyFramework.API.Controllers
 {
-	[Authorize]
+	[Authorize(Roles = "admin")]
 	public class ProductsController : ApiController
 	{
 		[HttpGet]

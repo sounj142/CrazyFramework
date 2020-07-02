@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -70,6 +71,11 @@ namespace CrazyFramework.Client.Services
 				Console.WriteLine($"ERROR: {ex.Message}");
 				Console.WriteLine(ex);
 				throw new BussinessException("Network connection error");
+			}
+
+			if (response.StatusCode == HttpStatusCode.Forbidden)
+			{
+				throw new BussinessException("You are not authorized to do this action.");
 			}
 
 			IDictionary<string, string[]> errors;

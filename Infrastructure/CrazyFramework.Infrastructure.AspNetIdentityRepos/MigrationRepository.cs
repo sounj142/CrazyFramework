@@ -34,8 +34,9 @@ namespace CrazyFramework.Infrastructure.AspNetIdentityRepos
 				try
 				{
 					var userManager = scope.ServiceProvider.GetRequiredService<UserManager<UserDAO>>();
+					var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-					await ApplicationDbContextSeed.SeedAsync(userManager);
+					await ApplicationDbContextSeed.SeedAsync(userManager, roleManager);
 				}
 				catch (Exception ex)
 				{

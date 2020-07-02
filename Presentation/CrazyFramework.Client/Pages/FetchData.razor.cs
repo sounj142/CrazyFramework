@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace CrazyFramework.Client.Pages
 {
-	[Authorize]
+	[Authorize(Roles = "admin")]
 	public partial class FetchData
 	{
 		[Inject]

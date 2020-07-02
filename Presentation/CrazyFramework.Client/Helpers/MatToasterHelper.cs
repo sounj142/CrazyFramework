@@ -6,13 +6,17 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 namespace CrazyFramework.Client.Helpers
 {
-	public static class IMatToasterHelper
+	public static class MatToasterHelper
 	{
 		public static void CatchAndDisplayErrors(this IMatToaster matToaster, Action action)
 		{
 			try
 			{
 				action();
+			}
+			catch (AccessTokenNotAvailableException exception)
+			{
+				exception.Redirect();
 			}
 			catch (BussinessException ex)
 			{

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using CrazyFramework.Client.Providers;
 
 namespace CrazyFramework.Client
 {
@@ -21,10 +22,10 @@ namespace CrazyFramework.Client
 			//	);
 
 			services.AddHttpClient("CrazyFramework.API", (sp, client) =>
-			{
-				client.BaseAddress = new Uri(environment.BaseAddress);
-				client.EnableIntercept(sp);
-			})
+				{
+					client.BaseAddress = new Uri(environment.BaseAddress);
+					client.EnableIntercept(sp);
+				})
 				.AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 			// Supply HttpClient instances that include access tokens when making requests to the server project
@@ -32,10 +33,8 @@ namespace CrazyFramework.Client
 
 			services.AddTransient<IProductService, ProductService>();
 
-			services.AddApiAuthorization();
-
-			//services.AddApiAuthorization()
-			//	.AddAccountClaimsPrincipalFactory<CustomUserFactory>();
+			services.AddApiAuthorization()
+				.AddAccountClaimsPrincipalFactory<CustomUserFactory>();
 
 			services.AddSingleton<AppState>();
 
