@@ -49,7 +49,7 @@ namespace CrazyFramework.Infrastructure.AspNetIdentityRepos
 					//options.IdentityResources["openid"].UserClaims.Add("role");
 					//options.ApiResources.Single().UserClaims.Add("role");
 
-					options.Clients.First().AccessTokenLifetime = 60;
+					options.Clients.First().AccessTokenLifetime = 7200;
 				});
 			//.AddApiAuthorization<UserDAO, ApplicationDbContext>()
 
