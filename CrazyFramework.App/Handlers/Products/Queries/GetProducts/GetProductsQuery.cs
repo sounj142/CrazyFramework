@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using CrazyFramework.App.Common.Exceptions;
 
 namespace CrazyFramework.App.Handlers.Products.Queries.GetProducts
 {

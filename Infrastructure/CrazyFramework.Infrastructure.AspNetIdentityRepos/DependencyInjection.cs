@@ -1,14 +1,10 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using CrazyFramework.App.Infrastructure.Repos;
 using CrazyFramework.Infrastructure.AspNetIdentityRepos.Models.Users;
 using CrazyFramework.Infrastructure.AspNetIdentityRepos.Repositories;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CrazyFramework.App.Helpers;
 
 namespace CrazyFramework.Infrastructure.AspNetIdentityRepos
 {
@@ -53,7 +49,7 @@ namespace CrazyFramework.Infrastructure.AspNetIdentityRepos
 					//options.IdentityResources["openid"].UserClaims.Add("role");
 					//options.ApiResources.Single().UserClaims.Add("role");
 
-					options.Clients.ForEach(x => x.AccessTokenLifetime = 7200);
+					options.Clients.First().AccessTokenLifetime = 60;
 				});
 			//.AddApiAuthorization<UserDAO, ApplicationDbContext>()
 
