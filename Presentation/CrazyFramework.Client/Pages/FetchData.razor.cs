@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CrazyFramework.Client.Helpers;
 using CrazyFramework.Client.Models.Products;
+using CrazyFramework.Client.Models.Users;
 using CrazyFramework.Client.Services;
 using CrazyFramework.Dtos.Products;
 using MatBlazor;
@@ -12,7 +13,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace CrazyFramework.Client.Pages
 {
-	[Authorize(Roles = "admin")]
+	[Authorize(Roles = RoleType.Administrator)]
 	public partial class FetchData
 	{
 		[Inject]

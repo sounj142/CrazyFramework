@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using CrazyFramework.App.Entities.Accounts;
 using CrazyFramework.Infrastructure.AspNetIdentityRepos.Models.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -11,8 +12,8 @@ namespace CrazyFramework.Infrastructure.AspNetIdentityRepos
 		{
 			if (!await roleManager.Roles.AnyAsync())
 			{
-				await roleManager.CreateAsync(new IdentityRole("admin"));
-				await roleManager.CreateAsync(new IdentityRole("user"));
+				await roleManager.CreateAsync(new IdentityRole(RoleType.Administrator));
+				await roleManager.CreateAsync(new IdentityRole(RoleType.User));
 			}
 
 			const string adminEmail = "hoang.luong@altsrc.net";
@@ -25,7 +26,7 @@ namespace CrazyFramework.Infrastructure.AspNetIdentityRepos
 
 				var createdUser = await userManager.FindByNameAsync(adminEmail);
 
-				await userManager.AddToRolesAsync(createdUser, new[] { "admin", "user" });
+				await userManager.AddToRolesAsync(createdUser, new[] { RoleType.Administrator, RoleType.User });
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using CrazyFramework.Infrastructure.AspNetIdentityRepos.Models.Users
+
 @inject SignInManager<UserDAO> SignInManager
 @inject UserManager<UserDAO> UserManager
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -18,6 +19,12 @@
 		<li class="nav-item">
 			<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
 		</li>
+		@if (User.IsInRole(RoleType.Administrator))
+		{
+			<li class="nav-item">
+				<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register" asp-route-returnUrl="@returnUrl">Register User</a>
+			</li>
+		}
 		<li class="nav-item">
 			<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/" method="post">
 				<button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
@@ -26,9 +33,9 @@
 	}
 	else
 	{
-		<li class="nav-item">
-			<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register" asp-route-returnUrl="@returnUrl">Register</a>
-		</li>
+		@*<li class="nav-item">
+				<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register" asp-route-returnUrl="@returnUrl">Register</a>
+			</li>*@
 		<li class="nav-item">
 			<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login" asp-route-returnUrl="@returnUrl">Login</a>
 		</li>

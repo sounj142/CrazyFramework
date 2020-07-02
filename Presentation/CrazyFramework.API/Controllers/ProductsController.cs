@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using CrazyFramework.App.Entities.Accounts;
 
 namespace CrazyFramework.API.Controllers
 {
-	[Authorize(Roles = "admin")]
+	[Authorize(Roles = RoleType.Administrator)]
 	public class ProductsController : ApiController
 	{
 		[HttpGet]

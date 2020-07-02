@@ -46,13 +46,14 @@ namespace CrazyFramework.API
 				app.UseHsts();
 			}
 
+			app.UseCustomExceptionHandler();
+
 			app.UseHttpsRedirection();
 			app.UseBlazorFrameworkFiles();
 			app.UseStaticFiles();
 
 			app.UseSerilogRequestLogging();
 
-			app.UseCustomExceptionHandler();
 			app.UseHealthChecks("/health");
 			app.UseHttpsRedirection();
 

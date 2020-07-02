@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\Enums\" />
     <Folder Include="Constants\" />
+    <Folder Include="Entities\Enums\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -10,35 +10,40 @@ using Microsoft.AspNetCore.WebUtilities;
 namespace CrazyFramework.API.Areas.Identity.Pages.Account
 {
 	[AllowAnonymous]
-    public class ConfirmEmailModel : PageModel
-    {
-        private readonly UserManager<UserDAO> _userManager;
+	public class ConfirmEmailModel : PageModel
+	{
+		private readonly UserManager<UserDAO> _userManager;
 
-        public ConfirmEmailModel(UserManager<UserDAO> userManager)
-        {
-            _userManager = userManager;
-        }
+		public ConfirmEmailModel(UserManager<UserDAO> userManager)
+		{
+			_userManager = userManager;
+		}
 
-        [TempData]
-        public string StatusMessage { get; set; }
+		[TempData]
+		public string StatusMessage { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string userId, string code)
-        {
-            if (userId == null || code == null)
-            {
-                return RedirectToPage("/Index");
-            }
+		public IActionResult OnGetAsync()
+		{
+			return RedirectToPage("./AccessDenied");
+		}
 
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{userId}'.");
-            }
+		//public async Task<IActionResult> OnGetAsync(string userId, string code)
+		//{
+		//	if (userId == null || code == null)
+		//	{
+		//		return RedirectToPage("/Index");
+		//	}
 
-            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
-            var result = await _userManager.ConfirmEmailAsync(user, code);
-            StatusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
-            return Page();
-        }
-    }
+		//	var user = await _userManager.FindByIdAsync(userId);
+		//	if (user == null)
+		//	{
+		//		return NotFound($"Unable to load user with ID '{userId}'.");
+		//	}
+
+		//	code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+		//	var result = await _userManager.ConfirmEmailAsync(user, code);
+		//	StatusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
+		//	return Page();
+		//}
+	}
 }

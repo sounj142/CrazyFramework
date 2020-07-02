@@ -1,6 +1,8 @@
 ﻿using CrazyFramework.App.Common.Exceptions;
 using CrazyFramework.App.Helpers;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
@@ -13,11 +15,13 @@ namespace CrazyFramework.API.Helpers
 	{
 		private readonly RequestDelegate _next;
 		private readonly ILogger<ExceptionHandlerMiddleware> _logger;
+		private readonly IWebHostEnvironment _environment;
 
-		public ExceptionHandlerMiddleware(RequestDelegate next, ILogger<ExceptionHandlerMiddleware> logger)
+		public ExceptionHandlerMiddleware(RequestDelegate next, ILogger<ExceptionHandlerMiddleware> logger, IWebHostEnvironment environment)
 		{
 			_next = next;
 			_logger = logger;
+			_environment = environment;
 		}
 
 		public async Task Invoke(HttpContext context)
@@ -57,10 +61,12 @@ namespace CrazyFramework.API.Helpers
 					// so we only need to write log for other kinds of unhandled exception
 					_logger.LogError(exception, exception.Message);
 
+					// TODO: apply multi languages
+					var message = _environment.IsDevelopment() ? exception.Message : "Unknown error";
+
 					return (
 						Code: (int)HttpStatusCode.InternalServerError,
-						// TODO: apply multi languages
-						Content: JsonConvert.SerializeObject(DictionaryHelper.CreateErrorObject("Errors", "Unknown error"))
+						Content: JsonConvert.SerializeObject(DictionaryHelper.CreateErrorObject("Errors", message))
 					);
 				}))()
 			};
