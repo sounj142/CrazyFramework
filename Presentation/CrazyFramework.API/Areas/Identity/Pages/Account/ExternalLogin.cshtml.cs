@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -17,7 +14,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CrazyFramework.API.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
+	[AllowAnonymous]
     public class ExternalLoginModel : PageModel
     {
         private readonly SignInManager<UserDAO> _signInManager;

@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Linq;
@@ -14,7 +11,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CrazyFramework.API.Areas.Identity.Pages.Account.Manage
 {
-    public class EnableAuthenticatorModel : PageModel
+	public class EnableAuthenticatorModel : PageModel
     {
         private readonly UserManager<UserDAO> _userManager;
         private readonly ILogger<EnableAuthenticatorModel> _logger;

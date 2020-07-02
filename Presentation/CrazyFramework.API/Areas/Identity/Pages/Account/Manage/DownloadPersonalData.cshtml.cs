@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using CrazyFramework.Infrastructure.AspNetIdentityRepos.Models.Users;
@@ -12,7 +11,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CrazyFramework.API.Areas.Identity.Pages.Account.Manage
 {
-    public class DownloadPersonalDataModel : PageModel
+	public class DownloadPersonalDataModel : PageModel
     {
         private readonly UserManager<UserDAO> _userManager;
         private readonly ILogger<DownloadPersonalDataModel> _logger;

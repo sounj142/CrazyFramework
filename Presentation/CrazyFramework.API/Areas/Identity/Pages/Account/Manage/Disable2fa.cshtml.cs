@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using CrazyFramework.Infrastructure.AspNetIdentityRepos.Models.Users;
 using Microsoft.AspNetCore.Identity;
@@ -10,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CrazyFramework.API.Areas.Identity.Pages.Account.Manage
 {
-    public class Disable2faModel : PageModel
+	public class Disable2faModel : PageModel
     {
         private readonly UserManager<UserDAO> _userManager;
         private readonly ILogger<Disable2faModel> _logger;

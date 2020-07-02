@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using CrazyFramework.Infrastructure.AspNetIdentityRepos.Models.Users;
 using Microsoft.AspNetCore.Identity;
@@ -10,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 namespace CrazyFramework.API.Areas.Identity.Pages.Account.Manage
 {
-    public class ChangePasswordModel : PageModel
+	public class ChangePasswordModel : PageModel
     {
         private readonly UserManager<UserDAO> _userManager;
         private readonly SignInManager<UserDAO> _signInManager;

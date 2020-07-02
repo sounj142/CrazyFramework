@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CrazyFramework.Infrastructure.AspNetIdentityRepos.Models.Users;
@@ -10,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CrazyFramework.API.Areas.Identity.Pages.Account.Manage
 {
-    public class GenerateRecoveryCodesModel : PageModel
+	public class GenerateRecoveryCodesModel : PageModel
     {
         private readonly UserManager<UserDAO> _userManager;
         private readonly ILogger<GenerateRecoveryCodesModel> _logger;

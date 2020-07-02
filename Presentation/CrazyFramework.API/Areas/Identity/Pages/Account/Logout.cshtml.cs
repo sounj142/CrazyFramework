@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using CrazyFramework.Infrastructure.AspNetIdentityRepos.Models.Users;
 using Microsoft.AspNetCore.Identity;
@@ -11,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CrazyFramework.API.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
+	[AllowAnonymous]
     public class LogoutModel : PageModel
     {
         private readonly SignInManager<UserDAO> _signInManager;
