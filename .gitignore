@@ -332,3 +332,4 @@ ASALocalRun/
 /src/HLSoft.BlazorWebAssembly.Authentication.OpenIdConnect/package-lock.json
 /Presentation/CrazyFramework.WebAPI/Logs/log.txt
 /Presentation/CrazyFramework.API/Logs/log.txt
+/Presentation/CrazyFramework.API/appsettings.Production.json
