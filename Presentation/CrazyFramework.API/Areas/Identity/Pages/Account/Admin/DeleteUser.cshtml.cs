@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using CrazyFramework.App.BusinessServices;
-using CrazyFramework.App.Entities;
 using CrazyFramework.Infrastructure.AspNetIdentityRepos.Models.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,24 +12,18 @@ namespace CrazyFramework.API.Areas.Identity.Pages.Account.Admin
 	public class DeleteUserModel : PageModel
 	{
 		private readonly UserManager<UserDAO> _userManager;
-		private readonly SignInManager<UserDAO> _signInManager;
 		private readonly ILogger<DeleteUserModel> _logger;
-		private readonly AppSettings _appSettings;
 		private readonly IIdentityLogic _identityLogic;
 		private readonly ICurrentRequestContext _requestContext;
 
 		public DeleteUserModel(
 			UserManager<UserDAO> userManager,
-			SignInManager<UserDAO> signInManager,
 			ILogger<DeleteUserModel> logger,
-			AppSettings appSettings,
 			IIdentityLogic identityLogic,
 			ICurrentRequestContext requestContext)
 		{
 			_userManager = userManager;
-			_signInManager = signInManager;
 			_logger = logger;
-			_appSettings = appSettings;
 			_identityLogic = identityLogic;
 			_requestContext = requestContext;
 		}

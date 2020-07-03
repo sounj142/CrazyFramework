@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using CrazyFramework.App.Entities.Accounts;
 using CrazyFramework.App.Helpers;
 using Microsoft.EntityFrameworkCore;
-using CrazyFramework.App.Entities;
 using CrazyFramework.App.BusinessServices;
 
 namespace CrazyFramework.API.Areas.Identity.Pages.Account.Admin
@@ -19,20 +18,17 @@ namespace CrazyFramework.API.Areas.Identity.Pages.Account.Admin
 	{
 		private readonly RoleManager<IdentityRole> _roleManager;
 		private readonly UserManager<UserDAO> _userManager;
-		private readonly AppSettings _appSettings;
 		private readonly ICurrentRequestContext _requestContext;
 		private readonly IIdentityLogic _identityLogic;
 
 		public UsersModel(
 			UserManager<UserDAO> userManager,
 			RoleManager<IdentityRole> roleManager,
-			AppSettings appSettings,
 			ICurrentRequestContext requestContext,
 			IIdentityLogic identityLogic)
 		{
 			_userManager = userManager;
 			_roleManager = roleManager;
-			_appSettings = appSettings;
 			_requestContext = requestContext;
 			_identityLogic = identityLogic;
 		}

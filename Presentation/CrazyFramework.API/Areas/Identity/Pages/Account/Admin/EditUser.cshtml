@@ -1,7 +1,7 @@
 ﻿@page
-@model CreateUserModel
+@model EditUserModel
 @{
-	ViewData["Title"] = "Create User";
+	ViewData["Title"] = "Edit User";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -11,14 +11,10 @@
 
 		<div class="col-md-8">
 
-			<h4>User Infomation</h4>
+			<h4>User '@Model.Input.UserName'</h4>
 			<hr />
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<div class="form-group">
-				<label asp-for="Input.Email"></label>
-				<input asp-for="Input.Email" class="form-control" />
-				<span asp-validation-for="Input.Email" class="text-danger"></span>
-			</div>
+
 			<div class="form-group">
 				<label asp-for="Input.Password"></label>
 				<input asp-for="Input.Password" class="form-control" />
@@ -29,7 +25,10 @@
 				<input asp-for="Input.ConfirmPassword" class="form-control" />
 				<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
 			</div>
-			<button type="submit" class="btn btn-primary">Create</button>
+
+			<input asp-for="Input.UserName" type="hidden" />
+			<p class="font-italic text-info">Note: If you don't want to change password, don't input it.</p>
+			<button type="submit" class="btn btn-primary">Update</button>
 			<a class="btn btn-secondary" asp-area="Identity" asp-page="/Account/Admin/Users">Cancel</a>
 		</div>
 		<div class="col-md-4">

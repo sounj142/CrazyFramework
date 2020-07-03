@@ -35,7 +35,7 @@
 							}
 						</td>
 						<td align="right">
-							<a class="text-dark users-list-icon" asp-area="Identity" asp-page="/Account/Admin/EditUser" title="Edit User">
+							<a class="text-dark users-list-icon" asp-area="Identity" asp-page="/Account/Admin/EditUser" asp-route-userName="@user.UserName" title="Edit User">
 								<i class="fa fa-edit"></i>
 							</a>
 							@if (user.AllowDelete)
