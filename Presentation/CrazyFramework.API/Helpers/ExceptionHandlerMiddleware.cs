@@ -1,5 +1,4 @@
 ﻿using CrazyFramework.App.Common.Exceptions;
-using CrazyFramework.App.Entities;
 using CrazyFramework.App.Helpers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,36 +16,27 @@ namespace CrazyFramework.API.Helpers
 		private readonly RequestDelegate _next;
 		private readonly ILogger<ExceptionHandlerMiddleware> _logger;
 		private readonly IWebHostEnvironment _environment;
-		private readonly AppSettings _appSettings;
 
-		public ExceptionHandlerMiddleware(RequestDelegate next, ILogger<ExceptionHandlerMiddleware> logger, IWebHostEnvironment environment, AppSettings appSettings)
+		public ExceptionHandlerMiddleware(RequestDelegate next, ILogger<ExceptionHandlerMiddleware> logger, IWebHostEnvironment environment)
 		{
 			_next = next;
 			_logger = logger;
 			_environment = environment;
-			_appSettings = appSettings;
 		}
 
 		public async Task Invoke(HttpContext context)
 		{
-			if (_appSettings.UseCustomExceptionHandler)
-			{
-				try
-				{
-					await _next(context);
-				}
-				catch (Exception ex)
-				{
-					var (code, content) = HandleException(ex);
-
-					context.Response.ContentType = "application/json; charset=utf-8";
-					context.Response.StatusCode = code;
-					await context.Response.WriteAsync(content);
-				}
-			}
-			else
+			try
 			{
 				await _next(context);
+			}
+			catch (Exception ex)
+			{
+				var (code, content) = HandleException(ex);
+
+				context.Response.ContentType = "application/json; charset=utf-8";
+				context.Response.StatusCode = code;
+				await context.Response.WriteAsync(content);
 			}
 		}
 
