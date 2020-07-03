@@ -40,7 +40,13 @@
 							</a>
 							@if (user.AllowDelete)
 							{
-								<a class="text-dark users-list-icon users-list-delete-icon" asp-area="Identity" asp-page="/Account/Admin/DeleteUser" asp-route-userName="@user.UserName" title="Delete User">
+								<a class="text-dark users-list-icon" asp-area="Identity" asp-page="/Account/Admin/DeleteUser" asp-route-userName="@user.UserName" title="Delete User">
+									<i class="fa fa-trash"></i>
+								</a>
+							}
+							else
+							{
+								<a class="text-dark users-list-icon delete-disabled" href="javascript:void(0)">
 									<i class="fa fa-trash"></i>
 								</a>
 							}
@@ -60,5 +66,14 @@
 			padding-left: 10px;
 			padding-right: 10px;
 		}
+
+		a.text-dark.delete-disabled {
+			color: gray !important;
+			cursor: not-allowed;
+		}
+
+			a.text-dark.delete-disabled:hover {
+				color: gray !important;
+			}
 	</style>
 }

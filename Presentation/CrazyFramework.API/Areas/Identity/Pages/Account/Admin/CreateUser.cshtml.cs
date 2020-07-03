@@ -34,6 +34,9 @@ namespace CrazyFramework.API.Areas.Identity.Pages.Account.Admin
 			_requestContext = requestContext;
 		}
 
+		[TempData]
+		public string StatusMessage { get; set; }
+
 		[BindProperty]
 		public InputModel Input { get; set; }
 
@@ -102,11 +105,13 @@ namespace CrazyFramework.API.Areas.Identity.Pages.Account.Admin
 
 					if (assignRolesResult.Succeeded)
 					{
-						_logger.LogInformation("{@User} created new account {@Email} with role(s) {@Roles}.", currentUserName, Input.Email, string.Join(',', roleNames));
+						StatusMessage = $"Created user '{user.UserName}'.";
+						_logger.LogInformation("{@User} created new account {@UserName} with role(s) {@Roles}.", currentUserName, user.UserName, string.Join(',', roleNames));
 					}
 					else
 					{
-						_logger.LogWarning("{@User} created new account {@Email}, but failed when assigned him to role(s) {@Roles}.", currentUserName, Input.Email, string.Join(',', roleNames));
+						StatusMessage = $"Created user '{user.UserName}' but there was some problems when tried to assign user to role(s).";
+						_logger.LogWarning("{@User} created new account {@UserName}, but failed when assigned him to role(s) {@Roles}.", currentUserName, user.UserName, string.Join(',', roleNames));
 					}
 
 					return RedirectToPage("Users");

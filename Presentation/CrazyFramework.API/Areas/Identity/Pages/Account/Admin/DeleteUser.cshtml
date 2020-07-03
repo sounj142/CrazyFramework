@@ -16,10 +16,12 @@
 	<form id="delete-user" method="post" class="form-group">
 		<div asp-validation-summary="All" class="text-danger"></div>
 
-		<div class="form-group">
-			<input asp-for="Input.UserName" type="hidden" />
-		</div>
-
-		<button class="btn btn-danger" type="submit">Delete user</button>
+		<h2>
+			Are you sure you want to delete user '@Model.UserName'?
+		</h2>
+		<br />
+		<input asp-for="UserName" type="hidden" />
+		<button class="btn btn-danger" type="submit">Yes, let's delete this user</button>
+		<a class="btn btn-secondary" asp-area="Identity" asp-page="/Account/Admin/Users">Cancel</a>
 	</form>
 </div>

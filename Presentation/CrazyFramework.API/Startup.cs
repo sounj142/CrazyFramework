@@ -46,7 +46,7 @@ namespace CrazyFramework.API
 				app.UseHsts();
 			}
 
-			app.UseCustomExceptionHandler();
+			//app.UseCustomExceptionHandler();
 
 			app.UseHttpsRedirection();
 			app.UseBlazorFrameworkFiles();

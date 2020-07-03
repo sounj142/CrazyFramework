@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using CrazyFramework.App.BusinessServices;
 using CrazyFramework.App.Entities;
 using CrazyFramework.Infrastructure.AspNetIdentityRepos.Models.Users;
 using Microsoft.AspNetCore.Identity;
@@ -15,74 +17,73 @@ namespace CrazyFramework.API.Areas.Identity.Pages.Account.Admin
 		private readonly ILogger<DeleteUserModel> _logger;
 		private readonly AppSettings _appSettings;
 		private readonly IIdentityLogic _identityLogic;
+		private readonly ICurrentRequestContext _requestContext;
 
 		public DeleteUserModel(
 			UserManager<UserDAO> userManager,
 			SignInManager<UserDAO> signInManager,
 			ILogger<DeleteUserModel> logger,
 			AppSettings appSettings,
-			IIdentityLogic identityLogic)
+			IIdentityLogic identityLogic,
+			ICurrentRequestContext requestContext)
 		{
 			_userManager = userManager;
 			_signInManager = signInManager;
 			_logger = logger;
 			_appSettings = appSettings;
 			_identityLogic = identityLogic;
+			_requestContext = requestContext;
 		}
+
+		[TempData]
+		public string StatusMessage { get; set; }
 
 		[BindProperty]
-		public InputModel Input { get; set; }
-
-		public class InputModel
-		{
-			public string UserName { get; set; }
-		}
+		public string UserName { get; set; }
 
 		public async Task<IActionResult> OnGet(string userName)
 		{
+			UserName = userName;
 			var user = await _userManager.FindByNameAsync(userName);
 			if (user == null)
 			{
-				return NotFound($"Unable to load user '{userName}'.");
+				return NotFound($"Unable to load user '{UserName}'.");
 			}
 
-			Input.UserName = userName;
 			return Page();
 		}
 
-		//public async Task<IActionResult> OnPostAsync()
-		//{
-		//	var user = await _userManager.FindByNameAsync(Input.UserName);
-		//	if (user == null)
-		//	{
-		//		return NotFound($"Unable to load user '{Input.UserName}'.");
-		//	}
+		public async Task<IActionResult> OnPostAsync()
+		{
+			var currentUserName = _requestContext.GetCurrentUserName();
 
-		//	if (_appSettings.SuperUsers.Any(userName => user.UserName.Equals(userName, StringComparison.OrdinalIgnoreCase)))
-		//	{
-		//		ModelState.AddModelError(string.Empty, $"User '{user.UserName}' is super user, you do not have permission to delete it.");
-		//		return Page();
-		//	}
-		//	RequirePassword = await _userManager.HasPasswordAsync(user);
-		//	if (RequirePassword)
-		//	{
-		//		if (!await _userManager.CheckPasswordAsync(user, Input.Password))
-		//		{
-		//		}
-		//	}
+			var user = await _userManager.FindByNameAsync(UserName);
+			if (user == null)
+			{
+				return NotFound($"Unable to load user '{UserName}'.");
+			}
 
-		//	var result = await _userManager.DeleteAsync(user);
-		//	var userId = await _userManager.GetUserIdAsync(user);
-		//	if (!result.Succeeded)
-		//	{
-		//		throw new InvalidOperationException($"Unexpected error occurred deleting user with ID '{userId}'.");
-		//	}
+			if (!_identityLogic.IsLegalToDeleteUser(user.UserName))
+			{
+				ModelState.AddModelError(string.Empty, $"You do not have permission to delete user '{user.UserName}'.");
+				return Page();
+			}
 
-		//	await _signInManager.SignOutAsync();
+			var result = await _userManager.DeleteAsync(user);
+			if (!result.Succeeded)
+			{
+				ModelState.AddModelError(string.Empty, $"Unexpected error occurred when deleting user '{user.UserName}'.");
 
-		//	_logger.LogInformation("User with ID '{UserId}' deleted themselves.", userId);
+				_logger.LogWarning("Unexpected error occurred when {@User} deleting user {@UserName}, Errors: {@Errors}.", currentUserName, user.UserName,
+					string.Join(", ", result.Errors.Select(x => x.Description)));
+				return Page();
+			}
 
-		//	return Redirect("~/");
-		//}
+			_logger.LogInformation("{@User} deleted user {@UserName}.", currentUserName, user.UserName);
+
+			StatusMessage = $"Deleted user '{user.UserName}'.";
+
+			return RedirectToPage("Users");
+		}
 	}
 }
