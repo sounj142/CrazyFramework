@@ -8,30 +8,15 @@ namespace CrazyFramework.API.Services
 	{
 		private const string USER_ID_CLAIM = "sub";
 		private const string USER_NAME_CLAIM = "email";
+		private readonly IHttpContextAccessor _httpContextAccessor;
 
-		public string UserId { get; }
-		public string UserName { get; }
+		public string GetCurrentUserId() => _httpContextAccessor.HttpContext?.User?.FindFirstValue(USER_ID_CLAIM);
 
-		public int MaxTimeForRunningRequest { get; private set; }
+		public string GetCurrentUserName() => _httpContextAccessor.HttpContext?.User?.FindFirstValue(USER_NAME_CLAIM);
 
 		public CurrentRequestContext(IHttpContextAccessor httpContextAccessor)
 		{
-			MaxTimeForRunningRequest = 500;
-
-			if (httpContextAccessor?.HttpContext?.User != null)
-			{
-				UserId = httpContextAccessor.HttpContext.User.FindFirstValue(USER_ID_CLAIM);
-
-				UserName = httpContextAccessor.HttpContext.User.FindFirstValue(USER_NAME_CLAIM);
-			}
-		}
-
-		/// <summary>
-		/// In some special request (export pdf, reporting ...), maybe we need to increase this maximum value
-		/// </summary>
-		public void ChangeMaxTimeForRunningRequest(int value)
-		{
-			MaxTimeForRunningRequest = value;
+			_httpContextAccessor = httpContextAccessor;
 		}
 	}
 }

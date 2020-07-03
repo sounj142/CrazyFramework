@@ -1,0 +1,25 @@
+﻿@page
+@model DeleteUserModel
+@{
+	ViewData["Title"] = "Delete User";
+}
+
+<h4>@ViewData["Title"]</h4>
+
+<div class="alert alert-warning" role="alert">
+	<p>
+		<strong>Deleting user will permanently remove user, and this cannot be recovered.</strong>
+	</p>
+</div>
+
+<div>
+	<form id="delete-user" method="post" class="form-group">
+		<div asp-validation-summary="All" class="text-danger"></div>
+
+		<div class="form-group">
+			<input asp-for="Input.UserName" type="hidden" />
+		</div>
+
+		<button class="btn btn-danger" type="submit">Delete user</button>
+	</form>
+</div>

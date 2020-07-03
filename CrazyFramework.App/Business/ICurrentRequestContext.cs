@@ -2,8 +2,8 @@
 {
 	public interface ICurrentRequestContext
 	{
-		string UserId { get; }
-		string UserName { get; }
-		int MaxTimeForRunningRequest { get; }
+		string GetCurrentUserId();
+
+		string GetCurrentUserName();
 	}
 }

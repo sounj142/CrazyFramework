@@ -6,8 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CrazyFramework.Infrastructure.GitHub;
-using CrazyFramework.API.Helpers;
 using Serilog;
+using CrazyFramework.API.Helpers;
 
 namespace CrazyFramework.API
 {

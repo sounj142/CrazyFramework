@@ -6,7 +6,7 @@ namespace CrazyFramework.Infrastructure.Repos.IntegrationTests
 	internal static class TestConstants
 	{
 		public static readonly DateTimeOffset FixUtcNow = new DateTime(2020, 1, 1);
-		public static readonly string CurrentUserId = "112h3";
+		public static readonly string CurrentUserName = "admin@abc.com";
 
 		public static ProductDAO[] GetProducts()
 		{

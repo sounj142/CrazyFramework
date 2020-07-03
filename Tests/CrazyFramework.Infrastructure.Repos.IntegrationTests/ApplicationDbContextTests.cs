@@ -14,8 +14,8 @@ namespace CrazyFramework.Infrastructure.Repos.IntegrationTests
 			// Arrange
 			_dateTimeMock.Setup(m => m.Now)
 				.Returns(TestConstants.FixUtcNow);
-			_currentRequestContextMock.Setup(m => m.UserId)
-				.Returns(TestConstants.CurrentUserId);
+			_currentRequestContextMock.Setup(m => m.GetCurrentUserName())
+				.Returns(TestConstants.CurrentUserName);
 
 			var product = new ProductDAO
 			{
@@ -39,7 +39,7 @@ namespace CrazyFramework.Infrastructure.Repos.IntegrationTests
 			Assert.Equal(product.Name, responseProduct.Name);
 			Assert.Equal(product.Price, responseProduct.Price);
 
-			Assert.Equal(responseProduct.CreatedBy, TestConstants.CurrentUserId);
+			Assert.Equal(responseProduct.CreatedBy, TestConstants.CurrentUserName);
 			Assert.Equal(responseProduct.CreatedDate, TestConstants.FixUtcNow);
 
 			Assert.Null(responseProduct.LastModifiedBy);
@@ -56,8 +56,8 @@ namespace CrazyFramework.Infrastructure.Repos.IntegrationTests
 			// Arrange
 			_dateTimeMock.Setup(m => m.Now)
 				.Returns(TestConstants.FixUtcNow);
-			_currentRequestContextMock.Setup(m => m.UserId)
-				.Returns(TestConstants.CurrentUserId);
+			_currentRequestContextMock.Setup(m => m.GetCurrentUserName())
+				.Returns(TestConstants.CurrentUserName);
 
 			var productId = Guid.NewGuid();
 			var productToCreate = new ProductDAO
@@ -74,7 +74,7 @@ namespace CrazyFramework.Infrastructure.Repos.IntegrationTests
 
 			_dateTimeMock.Setup(m => m.Now)
 				.Returns(lastUpdatedDate);
-			_currentRequestContextMock.Setup(m => m.UserId)
+			_currentRequestContextMock.Setup(m => m.GetCurrentUserName())
 				.Returns(lastUpdatedBy);
 
 			var productToUpdate = await productsDbSet.FirstAsync(p => p.Id == productId);
@@ -94,7 +94,7 @@ namespace CrazyFramework.Infrastructure.Repos.IntegrationTests
 			Assert.Equal(product.Name, newProductName);
 			Assert.Equal(product.Price, responseProduct.Price);
 
-			Assert.Equal(responseProduct.CreatedBy, TestConstants.CurrentUserId);
+			Assert.Equal(responseProduct.CreatedBy, TestConstants.CurrentUserName);
 			Assert.Equal(responseProduct.CreatedDate, TestConstants.FixUtcNow);
 
 			Assert.Equal(responseProduct.LastModifiedBy, lastUpdatedBy);

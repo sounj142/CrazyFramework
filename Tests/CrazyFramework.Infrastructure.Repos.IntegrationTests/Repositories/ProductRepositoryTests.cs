@@ -21,8 +21,8 @@ namespace CrazyFramework.Infrastructure.Repos.IntegrationTests.Repositories
 			// Arrange
 			_dateTimeMock.Setup(m => m.Now)
 				.Returns(TestConstants.FixUtcNow);
-			_currentRequestContextMock.Setup(m => m.UserId)
-				.Returns(TestConstants.CurrentUserId);
+			_currentRequestContextMock.Setup(m => m.GetCurrentUserName())
+				.Returns(TestConstants.CurrentUserName);
 
 			var dbProducts = TestConstants.GetProducts();
 

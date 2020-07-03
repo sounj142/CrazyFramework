@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using NSwag;
 using NSwag.Generation.Processors.Security;
 using Microsoft.AspNetCore.Authentication;
+using CrazyFramework.App.Entities;
 
 namespace CrazyFramework.API
 {
@@ -50,6 +51,8 @@ namespace CrazyFramework.API
 
 			services.AddAuthentication()
 				.AddIdentityServerJwt();
+
+			services.AddSingleton(configuration.GetSection("AppSettings").Get<AppSettings>(options => options.BindNonPublicProperties = true));
 
 			return services;
 		}

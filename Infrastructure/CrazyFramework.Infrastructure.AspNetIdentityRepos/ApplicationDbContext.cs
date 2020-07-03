@@ -56,17 +56,18 @@ namespace CrazyFramework.Infrastructure.AspNetIdentityRepos
 
 		private void AutomaticSetupAuditData()
 		{
+			var currentUserName = _currentUserService.GetCurrentUserName();
 			foreach (var entry in ChangeTracker.Entries<AuditableDAO>())
 			{
 				switch (entry.State)
 				{
 					case EntityState.Added:
-						entry.Entity.CreatedBy = _currentUserService.UserId;
+						entry.Entity.CreatedBy = currentUserName;
 						entry.Entity.CreatedDate = _dateTimeService.Now;
 						break;
 
 					case EntityState.Modified:
-						entry.Entity.LastModifiedBy = _currentUserService.UserId;
+						entry.Entity.LastModifiedBy = currentUserName;
 						entry.Entity.LastModifyDate = _dateTimeService.Now;
 						break;
 				}
