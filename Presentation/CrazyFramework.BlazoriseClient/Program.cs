@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
+using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 namespace CrazyFramework.BlazoriseClient
 {
@@ -21,18 +22,7 @@ namespace CrazyFramework.BlazoriseClient
 			var builder = WebAssemblyHostBuilder.CreateDefault(args);
 			builder.RootComponents.Add<App>("app");
 
-			builder.Services
-				.AddBlazorise(options =>
-				{
-					options.ChangeTextOnKeyPress = true;
-				})
-				.AddBootstrapProviders()
-				.AddFontAwesomeIcons();
-
-			// Supply HttpClient instances that include access tokens when making requests to the server project
-			builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("CrazyFramework.API"));
-
-			// builder.Services.AddApiAuthorization();
+			Startup.ConfigureServices(builder.Services, builder.HostEnvironment);
 
 			var host = builder.Build();
 
@@ -40,7 +30,9 @@ namespace CrazyFramework.BlazoriseClient
 				.UseBootstrapProviders()
 				.UseFontAwesomeIcons();
 
-			await host.RunAsync();
+			await host
+				.UseLoadingBar()
+				.RunAsync();
 		}
 	}
 }
