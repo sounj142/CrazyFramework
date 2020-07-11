@@ -25,8 +25,8 @@ namespace CrazyFramework.BlazoriseClient.Shared
 
 		public string GetErrorMessage()
 		{
-			var msg = string.Join(" | ", _errors.Values.SelectMany(e => e));
-			msg = string.IsNullOrEmpty(Message) ? msg : string.IsNullOrEmpty(msg) ? Message : $"[{Message}]: {msg}";
+			var msg = string.Join("<br>", _errors.Values.SelectMany(e => e));
+			msg = string.IsNullOrEmpty(Message) ? msg : (string.IsNullOrEmpty(msg) ? Message : $"{Message}:<br>{msg}");
 			return string.IsNullOrEmpty(msg) ? "Unknown error" : msg;
 		}
 	}

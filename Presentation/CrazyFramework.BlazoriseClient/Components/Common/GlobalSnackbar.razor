@@ -1,0 +1,6 @@
+<Snackbar @ref="snackbar" Multiline="true" Location="SnackbarLocation.Right" Color="color">
+	<SnackbarBody>
+		@message
+	</SnackbarBody>
+	<SnackbarAction Clicked="@(()=>snackbar.Hide())">Close</SnackbarAction>
+</Snackbar>

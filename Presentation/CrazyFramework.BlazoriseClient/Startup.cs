@@ -11,6 +11,7 @@ using CrazyFramework.BlazoriseClient.Models;
 using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
+using CrazyFramework.BlazoriseClient.Shared;
 
 namespace CrazyFramework.BlazoriseClient
 {
@@ -34,6 +35,7 @@ namespace CrazyFramework.BlazoriseClient
 				.AddAccountClaimsPrincipalFactory<CustomUserFactory>();
 
 			services.AddSingleton<AppState>();
+			services.AddSingleton(NotificationService.Instance);
 
 			services.AddLoadingBar();
 
@@ -46,6 +48,15 @@ namespace CrazyFramework.BlazoriseClient
 				})
 				.AddBootstrapProviders()
 				.AddFontAwesomeIcons();
+		}
+
+		public static void Configure(WebAssemblyHost host)
+		{
+			host.Services
+				.UseBootstrapProviders()
+				.UseFontAwesomeIcons();
+
+			host.UseLoadingBar();
 		}
 	}
 }

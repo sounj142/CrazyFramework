@@ -26,13 +26,9 @@ namespace CrazyFramework.BlazoriseClient
 
 			var host = builder.Build();
 
-			host.Services
-				.UseBootstrapProviders()
-				.UseFontAwesomeIcons();
+			Startup.Configure(host);
 
-			await host
-				.UseLoadingBar()
-				.RunAsync();
+			await host.RunAsync();
 		}
 	}
 }
