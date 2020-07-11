@@ -46,6 +46,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrazyFramework.Infrastructu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrazyFramework.Infrastructure.AspNetIdentityRepos", "Infrastructure\CrazyFramework.Infrastructure.AspNetIdentityRepos\CrazyFramework.Infrastructure.AspNetIdentityRepos.csproj", "{A2D471AF-B80E-4A32-BADF-B19F68718C29}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrazyFramework.BlazoriseClient", "Presentation\CrazyFramework.BlazoriseClient\CrazyFramework.BlazoriseClient.csproj", "{5ABF1DA4-C95F-4F6B-B226-9B3A0154150A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,10 @@ Global
 		{A2D471AF-B80E-4A32-BADF-B19F68718C29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2D471AF-B80E-4A32-BADF-B19F68718C29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2D471AF-B80E-4A32-BADF-B19F68718C29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ABF1DA4-C95F-4F6B-B226-9B3A0154150A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ABF1DA4-C95F-4F6B-B226-9B3A0154150A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ABF1DA4-C95F-4F6B-B226-9B3A0154150A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ABF1DA4-C95F-4F6B-B226-9B3A0154150A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -124,6 +130,7 @@ Global
 		{9C547E2A-12BB-4615-AF38-B9330AFBBF9C} = {19EE3526-D1F9-4B16-8FA5-A512D5A46C6B}
 		{91AB37BE-8D9C-44C4-8635-014B05BD7779} = {19EE3526-D1F9-4B16-8FA5-A512D5A46C6B}
 		{A2D471AF-B80E-4A32-BADF-B19F68718C29} = {19EE3526-D1F9-4B16-8FA5-A512D5A46C6B}
+		{5ABF1DA4-C95F-4F6B-B226-9B3A0154150A} = {066D80EB-5839-4A31-869B-DC5F8931D206}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A3599B6-3015-4C65-BC0B-6D85BD941805}
