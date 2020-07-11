@@ -3,13 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Blazorise;
+using CrazyFramework.BlazoriseClient.Models.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace CrazyFramework.BlazoriseClient.Layouts
 {
 	public partial class MainLayout
 	{
+		[CascadingParameter]
+		private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+		protected bool siderVisible = true;
+		protected bool uiElementsVisible = true;
+
+		[CascadingParameter]
+		protected Theme Theme { get; set; }
+
+		protected UserInfo userInfo = null;
+
+		protected override async Task OnParametersSetAsync()
+		{
+			var user = (await authenticationStateTask).User;
+
+			if (user.Identity.IsAuthenticated)
+			{
+				userInfo = new UserInfo
+				{
+					UserName = user.Identity.Name
+				};
+			}
+		}
+
 		private void OnThemeEnabledChanged(bool value)
 		{
 			if (Theme == null)
@@ -73,16 +99,10 @@ namespace CrazyFramework.BlazoriseClient.Layouts
 			Theme.ThemeHasChanged();
 		}
 
-		protected bool siderVisible = true;
-		protected bool uiElementsVisible = true;
-
 		private void ToggleSidebar()
 		{
 			siderVisible = !siderVisible;
 			StateHasChanged();
 		}
-
-		[CascadingParameter]
-		protected Theme Theme { get; set; }
 	}
 }
