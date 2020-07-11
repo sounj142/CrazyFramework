@@ -8,11 +8,11 @@ namespace CrazyFramework.BlazoriseClient.Pages.Tests
 {
 	public partial class DataGridPage
 	{
-		private DataGridEditMode editMode = DataGridEditMode.Form;
-		private bool editable = true;
-		private bool sortable = true;
-		private bool filterable = true;
-		private bool showPager = true;
+		protected DataGridEditMode editMode = DataGridEditMode.Form;
+		protected bool editable = true;
+		protected bool sortable = true;
+		protected bool filterable = true;
+		protected bool showPager = true;
 
 		// TODO: add options to control the commands
 		//bool newCommandAllowed = true;
@@ -22,7 +22,7 @@ namespace CrazyFramework.BlazoriseClient.Pages.Tests
 		//bool deleteCommandAllowed = true;
 		//bool clearFilterCommandAllowed = true;
 
-		private Employee selectedEmployee;
+		protected Employee selectedEmployee;
 
 		public class Employee
 		{
@@ -119,7 +119,7 @@ namespace CrazyFramework.BlazoriseClient.Pages.Tests
 			//}
 		}
 
-		private string customFilterValue;
+		protected string customFilterValue;
 
 		private bool OnCustomFilter(Employee model)
 		{

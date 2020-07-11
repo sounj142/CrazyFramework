@@ -11,9 +11,9 @@ namespace CrazyFramework.BlazoriseClient.Components.Common
 {
 	public partial class GlobalSnackbar
 	{
-		private Snackbar snackbar;
-		private SnackbarColor color = SnackbarColor.Info;
-		private MarkupString message = (MarkupString)string.Empty;
+		protected Snackbar snackbar;
+		protected SnackbarColor color = SnackbarColor.Info;
+		protected MarkupString message = (MarkupString)string.Empty;
 
 		[Inject]
 		public NotificationService notificationService { get; set; }

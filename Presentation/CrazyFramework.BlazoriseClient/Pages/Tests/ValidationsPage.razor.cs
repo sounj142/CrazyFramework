@@ -9,14 +9,14 @@ namespace CrazyFramework.BlazoriseClient.Pages.Tests
 {
 	public partial class ValidationsPage
 	{
-		private Validations validations;
+		protected Validations validations;
 
-		private Validations annotationsValidations;
+		protected Validations annotationsValidations;
 
-		private User user = new User();
-		private User manualUser = new User();
+		protected User user = new User();
+		protected User manualUser = new User();
 
-		private string password;
+		protected string password;
 
 		private void ValidatePassword(ValidatorEventArgs e)
 		{

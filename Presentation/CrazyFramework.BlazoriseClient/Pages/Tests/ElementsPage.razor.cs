@@ -8,25 +8,25 @@ namespace CrazyFramework.BlazoriseClient.Pages.Tests
 {
 	public partial class ElementsPage
 	{
-		private Snackbar snackbar;
-		private Snackbar snackbarAction;
-		private Snackbar snackbarMultiline;
-		private Snackbar snackbarLeft;
-		private Snackbar snackbarRight;
+		protected Snackbar snackbar;
+		protected Snackbar snackbarAction;
+		protected Snackbar snackbarMultiline;
+		protected Snackbar snackbarLeft;
+		protected Snackbar snackbarRight;
 
-		private Snackbar snackbarPrimary;
-		private Snackbar snackbarSecondary;
-		private Snackbar snackbarSuccess;
-		private Snackbar snackbarDanger;
-		private Snackbar snackbarWarning;
-		private Snackbar snackbarInfo;
-		private Snackbar snackbarLight;
-		private Snackbar snackbarDark;
+		protected Snackbar snackbarPrimary;
+		protected Snackbar snackbarSecondary;
+		protected Snackbar snackbarSuccess;
+		protected Snackbar snackbarDanger;
+		protected Snackbar snackbarWarning;
+		protected Snackbar snackbarInfo;
+		protected Snackbar snackbarLight;
+		protected Snackbar snackbarDark;
 
-		private bool dismisableAlert1 = true;
-		private bool dismisableAlert2 = true;
-		private bool dismisableAlert3 = true;
-		private bool dismisableAlert4 = true;
-		private bool dismisableAlert5 = true;
+		protected bool dismisableAlert1 = true;
+		protected bool dismisableAlert2 = true;
+		protected bool dismisableAlert3 = true;
+		protected bool dismisableAlert4 = true;
+		protected bool dismisableAlert5 = true;
 	}
 }

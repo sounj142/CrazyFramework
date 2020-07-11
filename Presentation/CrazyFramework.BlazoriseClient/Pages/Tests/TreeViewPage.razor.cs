@@ -11,8 +11,8 @@ namespace CrazyFramework.BlazoriseClient.Pages.Tests
 {
 	public partial class TreeViewPage : ComponentBase
 	{
-		private IList<NodeInfo> ExpandedNodes = new List<NodeInfo>();
-		private NodeInfo selectedNode;
+		protected IList<NodeInfo> ExpandedNodes = new List<NodeInfo>();
+		protected NodeInfo selectedNode;
 
 		public class NodeInfo
 		{

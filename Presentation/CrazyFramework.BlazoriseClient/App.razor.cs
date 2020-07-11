@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Snackbar;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CrazyFramework.BlazoriseClient
 {

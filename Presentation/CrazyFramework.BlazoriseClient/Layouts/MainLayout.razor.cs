@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Blazorise;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 
 namespace CrazyFramework.BlazoriseClient.Layouts
@@ -72,8 +73,8 @@ namespace CrazyFramework.BlazoriseClient.Layouts
 			Theme.ThemeHasChanged();
 		}
 
-		private bool siderVisible = true;
-		private bool uiElementsVisible = true;
+		protected bool siderVisible = true;
+		protected bool uiElementsVisible = true;
 
 		private void ToggleSidebar()
 		{

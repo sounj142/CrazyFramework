@@ -1,0 +1,20 @@
+﻿@page "/authentication/{action}"
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+@if (Action?.ToLower() == "logged-out")
+{
+	<LoadingBackground ShowLogoBox="true">
+		<div class="login-body">
+			<label>You are logged out.</label>
+		</div>
+	</LoadingBackground>
+}
+else
+{
+	<RemoteAuthenticatorView Action="@Action" />
+}
+
+@code{
+	[Parameter]
+	public string Action { get; set; }
+}

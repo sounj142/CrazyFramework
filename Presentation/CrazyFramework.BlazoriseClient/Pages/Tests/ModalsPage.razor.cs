@@ -8,10 +8,10 @@ namespace CrazyFramework.BlazoriseClient.Pages.Tests
 {
 	public partial class ModalsPage
 	{
-		private Modal modalRef;
-		private bool centered = false;
-		private ModalSize modalSize = ModalSize.Default;
-		private int? maxHeight = null;
+		protected Modal modalRef;
+		protected bool centered = false;
+		protected ModalSize modalSize = ModalSize.Default;
+		protected int? maxHeight = null;
 
 		private void ShowModal(ModalSize modalSize, int? maxHeight = null, bool centered = false)
 		{
