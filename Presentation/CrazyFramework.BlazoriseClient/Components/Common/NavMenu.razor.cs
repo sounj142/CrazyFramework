@@ -16,8 +16,8 @@ namespace CrazyFramework.BlazoriseClient.Components.Common
 		public AppState appState { get; set; }
 
 		protected UserInfo userInfo = null;
-		protected bool uiElementsVisible = true;
-
+		protected bool uiBusinessVisible = true;
+		protected bool uiElementsVisible;
 		protected bool siderBarVisible;
 
 		protected override async Task OnParametersSetAsync()

@@ -1,0 +1,170 @@
+﻿@page "/products"
+
+<Row id="product-panels">
+	<Column ColumnSize="ColumnSize.Is12">
+		<Card Margin="Margin.Is4.OnY">
+			<CardHeader>
+				<CardTitle>
+					Products
+					<Button Color="Color.Success" Float="Float.Right" Clicked="@(() => ShowProductModal(null))">
+						Add Product
+					</Button>
+				</CardTitle>
+			</CardHeader>
+			<CardBody>
+
+				<Table Striped="true">
+					<TableHeader>
+						<TableRow>
+							<TableHeaderCell>#</TableHeaderCell>
+							<TableHeaderCell>Name</TableHeaderCell>
+							<TableHeaderCell>Price</TableHeaderCell>
+							<TableHeaderCell Class="product-action-column"></TableHeaderCell>
+						</TableRow>
+					</TableHeader>
+					<TableBody>
+						@for (var i = 0; i < products.Count; i++)
+						{
+							var product = products[i];
+							<TableRow>
+								<TableRowHeader>@i</TableRowHeader>
+								<TableRowCell>@product.Name</TableRowCell>
+								<TableRowCell>@product.Price.ToString("C")</TableRowCell>
+								<TableRowCell>
+									<Tooltip Text="Edit Product" Inline="true" Class="edit-product-icon text-primary">
+										<Icon Name="IconName.Edit" @onclick="@(() => ShowProductModal(product.Id))" />
+									</Tooltip>
+									<Tooltip Text="Delete Product" Inline="true" Class="delete-product-icon text-danger">
+										<Icon Name="IconName.Delete" @onclick="@(() => ShowDeleteModal(product.Id))" />
+									</Tooltip>
+								</TableRowCell>
+							</TableRow>
+						}
+					</TableBody>
+				</Table>
+
+				@*<Pagination Alignment="Alignment.End">
+						<PaginationItem>
+							<PaginationLink>
+								<span aria-hidden="true">«</span>
+							</PaginationLink>
+						</PaginationItem>
+						<PaginationItem>
+							<PaginationLink>
+								1
+							</PaginationLink>
+						</PaginationItem>
+						<PaginationItem Active="true">
+							<PaginationLink>
+								2
+							</PaginationLink>
+						</PaginationItem>
+						<PaginationItem>
+							<PaginationLink>
+								3
+							</PaginationLink>
+						</PaginationItem>
+						<PaginationItem>
+							<PaginationLink>
+								4
+							</PaginationLink>
+						</PaginationItem>
+						<PaginationItem>
+							<PaginationLink>
+								5
+							</PaginationLink>
+						</PaginationItem>
+						<PaginationItem>
+							<PaginationLink>
+								<span aria-hidden="true">»</span>
+							</PaginationLink>
+						</PaginationItem>
+					</Pagination>*@
+			</CardBody>
+		</Card>
+	</Column>
+</Row>
+
+<Modal @ref="updateModal">
+	<ModalBackdrop />
+	<ModalContent Size="ModalSize.Default" Centered="true">
+		<ModalHeader>
+			<ModalTitle>
+				@if (isEditing)
+				{
+					<Icon Name="IconName.Edit" />
+					<Text>Update Product</Text>
+				}
+				else
+				{
+					<Icon Name="IconName.Add" />
+					<Text>Create Product</Text>
+				}
+			</ModalTitle>
+			<CloseButton Clicked="@HideProductModal" />
+		</ModalHeader>
+
+		<EditForm Model="@product" OnValidSubmit="@CreateOrUpdateProduct">
+
+			<ModalBody>
+				<FluentValidator></FluentValidator>
+
+				<Field>
+					<FieldLabel>Name</FieldLabel>
+					<TextEdit Placeholder="Enter product name..." @bind-Text="product.Name" />
+					<ValidationMessage For="@(() => product.Name)" />
+				</Field>
+				<Field>
+					<FieldLabel>Price</FieldLabel>
+					<NumericEdit TValue="decimal?" Placeholder="Enter product price..." @bind-Value="product.Price" />
+					<ValidationMessage For="@(() => product.Price)" />
+				</Field>
+			</ModalBody>
+
+			<ModalFooter>
+				<Button Color="Color.Secondary" Clicked="@HideProductModal">Close</Button>
+				<Button Color="Color.Primary" Type="ButtonType.Submit">
+					@(isEditing ? "Update" : "Create")
+				</Button>
+			</ModalFooter>
+		</EditForm>
+	</ModalContent>
+</Modal>
+
+<Modal @ref="deleteModal">
+	<ModalBackdrop />
+	<ModalContent Size="ModalSize.Default" Centered="true">
+
+		<ModalHeader>
+			<ModalTitle>
+				<Icon Name="IconName.Delete" />
+				Delete Confirmation
+			</ModalTitle>
+			<CloseButton Clicked="@HideDeleteModal" />
+		</ModalHeader>
+
+		<ModalBody>
+			Are you sure you want to delete product "@product.Name" ?
+		</ModalBody>
+
+		<ModalFooter>
+			<Button Color="Color.Secondary" Clicked="@HideDeleteModal">Close</Button>
+			<Button Color="Color.Danger" Type="ButtonType.Button" Clicked="DeleteProduct">
+				Delete
+			</Button>
+		</ModalFooter>
+	</ModalContent>
+</Modal>
+
+<style type="text/css">
+	#product-panels .product-action-column {
+		width: 5rem;
+	}
+
+	#product-panels .edit-product-icon {
+	}
+
+	#product-panels .delete-product-icon {
+		margin-left: 1rem;
+	}
+</style>

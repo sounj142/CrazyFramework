@@ -17,6 +17,7 @@ namespace CrazyFramework.API.Controllers
 		[HttpGet]
 		public async Task<ActionResult<ProductDto[]>> Get()
 		{
+			// await Task.Delay(1000);
 			return await Mediator.Send(new GetProductsQuery());
 		}
 
