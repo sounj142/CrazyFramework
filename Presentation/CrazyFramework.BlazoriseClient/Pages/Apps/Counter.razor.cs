@@ -19,13 +19,13 @@ namespace CrazyFramework.BlazoriseClient.Pages.Apps
 
 		protected override void OnInitialized()
 		{
-			currentCount = appState.GetCurrentCount();
+			currentCount = appState.Counter.CurrentCount;
 		}
 
 		private void IncrementCount()
 		{
 			currentCount++;
-			appState.UpdateCurrentCount(currentCount);
+			appState.Counter.UpdateCurrentCount(currentCount);
 			notificationService.ShowSuccessSnackbar("<b>sdsdsd sdd</b> sdsd<br> asdaas");
 		}
 	}

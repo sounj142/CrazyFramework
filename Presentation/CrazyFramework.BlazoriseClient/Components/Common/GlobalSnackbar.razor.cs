@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace CrazyFramework.BlazoriseClient.Components.Common
 {
-	public partial class GlobalSnackbar
+	public partial class GlobalSnackbar : IDisposable
 	{
 		protected Snackbar snackbar;
 		protected SnackbarColor color = SnackbarColor.Info;
@@ -30,6 +30,11 @@ namespace CrazyFramework.BlazoriseClient.Components.Common
 
 			snackbar.Show();
 			StateHasChanged();
+		}
+
+		public void Dispose()
+		{
+			notificationService.SnackbarNotify -= ToggleSnackbar;
 		}
 	}
 }

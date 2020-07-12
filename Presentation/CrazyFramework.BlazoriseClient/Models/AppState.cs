@@ -1,4 +1,6 @@
-﻿namespace CrazyFramework.BlazoriseClient.Models
+﻿using System;
+
+namespace CrazyFramework.BlazoriseClient.Models
 {
 	public partial class AppState
 	{
@@ -6,20 +8,23 @@
 
 		public string AppName { get; } = "Crazy App";
 
-		private int _currentCount = 0;
+		private bool _siderBarVisible = true;
+
+		public event Action SiderBarChanged;
 
 		#endregion State Data
 
 		#region State Methods
 
-		public int GetCurrentCount()
+		public bool GetSiderBarVisible()
 		{
-			return _currentCount;
+			return _siderBarVisible;
 		}
 
-		public void UpdateCurrentCount(int count)
+		public void ToggleSiderBarVisible()
 		{
-			_currentCount = count;
+			_siderBarVisible = !_siderBarVisible;
+			SiderBarChanged?.Invoke();
 		}
 
 		#endregion State Methods
