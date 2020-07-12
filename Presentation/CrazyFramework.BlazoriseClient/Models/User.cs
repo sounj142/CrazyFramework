@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace CrazyFramework.BlazoriseClient.Models
 {
-    public class User
+	public class User
     {
         [Required]
         [StringLength( 10, ErrorMessage = "Name is too long." )]

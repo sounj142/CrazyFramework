@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CrazyFramework.BlazoriseClient.Pages.Tests
+﻿namespace CrazyFramework.BlazoriseClient.Pages.Tests
 {
 	public partial class FormsPage
 	{

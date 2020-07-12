@@ -1,5 +1,4 @@
-﻿using Blazorise.Snackbar;
-using CrazyFramework.BlazoriseClient.Models;
+﻿using CrazyFramework.BlazoriseClient.Models;
 using CrazyFramework.BlazoriseClient.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;

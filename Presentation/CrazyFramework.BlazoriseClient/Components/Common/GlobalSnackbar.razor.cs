@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Blazorise.Snackbar;
-using CrazyFramework.BlazoriseClient.Models;
 using CrazyFramework.BlazoriseClient.Shared;
 using Microsoft.AspNetCore.Components;
 
