@@ -107,18 +107,17 @@
 		<EditForm Model="@product" OnValidSubmit="@CreateOrUpdateProduct">
 
 			<ModalBody>
-				<FluentValidator></FluentValidator>
+				<FluentValidator />
+				<ValidationChangingSupport @ref="validationChangingSupport" />
 
-				<Field>
+				<ValidationMessageSection For="@(() => product.Name)">
 					<FieldLabel>Name</FieldLabel>
-					<TextEdit Placeholder="Enter product name..." @bind-Text="product.Name" />
-					<ValidationMessage For="@(() => product.Name)" />
-				</Field>
-				<Field>
+					<TextEdit Placeholder="Enter product name..." @bind-Text="@product.Name" @onchange="OnFormElementChanged" />
+				</ValidationMessageSection>
+				<ValidationMessageSection For="@(() => product.Price)">
 					<FieldLabel>Price</FieldLabel>
-					<NumericEdit TValue="decimal?" Placeholder="Enter product price..." @bind-Value="product.Price" />
-					<ValidationMessage For="@(() => product.Price)" />
-				</Field>
+					<NumericEdit TValue="decimal?" Placeholder="Enter product price..." @bind-Value="product.Price" @onchange="OnFormElementChanged" />
+				</ValidationMessageSection>
 			</ModalBody>
 
 			<ModalFooter>

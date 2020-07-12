@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Blazorise;
-using CrazyFramework.BlazoriseClient.Models;
 using CrazyFramework.BlazoriseClient.Models.Products;
 using CrazyFramework.BlazoriseClient.Models.Users;
 using CrazyFramework.BlazoriseClient.Services;
@@ -150,6 +149,13 @@ namespace CrazyFramework.BlazoriseClient.Pages.Apps
 		public void HideDeleteModal()
 		{
 			deleteModal.Hide();
+		}
+
+		protected ValidationChangingSupport validationChangingSupport;
+
+		public void OnFormElementChanged()
+		{
+			validationChangingSupport?.OnModelChanged();
 		}
 	}
 }

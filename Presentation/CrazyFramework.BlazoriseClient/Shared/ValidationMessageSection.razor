@@ -1,0 +1,19 @@
+﻿@typeparam TValue
+
+@{
+	var messages = CurrentEditContext?.GetValidationMessages(_fieldIdentifier).ToArray() ?? new string[0];
+}
+<Field Class="@(messages.Length > 0 ? "invalid-validation" : "valid-validation")">
+	@ChildContent
+	@if (messages.Length > 0)
+	{
+		foreach (var message in messages)
+		{
+			<div class="validation-message">@message</div>
+		}
+	}
+	else if (AddEmptyErrorDiv)
+	{
+		<div class="validation-message">&nbsp;</div>
+	}
+</Field>

@@ -90,8 +90,12 @@
 	margin: 0 auto;
 }
 
-.form-group .validation-message {
+.invalid-validation .validation-message {
 	color: red;
 	font-style: italic;
 	font-size: 0.9rem;
+}
+
+.invalid-validation input {
+	border: solid 1px red;
 }
