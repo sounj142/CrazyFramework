@@ -6,7 +6,7 @@ namespace CrazyFramework.BlazoriseClient.Shared
 {
 	public static class ErrorDisplayingHelper
 	{
-		public static void CatchAndDisplayErrors(Action action)
+		public static void CatchAndDisplayErrors(this NotificationService notificationService, Action action)
 		{
 			try
 			{
@@ -18,11 +18,11 @@ namespace CrazyFramework.BlazoriseClient.Shared
 			}
 			catch (BussinessException ex)
 			{
-				NotificationService.Instance.ShowDangerSnackbar(ex.GetErrorMessage());
+				notificationService.ShowDangerSnackbar(ex.GetErrorMessage());
 			}
 		}
 
-		public static async Task CatchAndDisplayErrors(Func<Task> action)
+		public static async Task CatchAndDisplayErrors(this NotificationService notificationService, Func<Task> action)
 		{
 			try
 			{
@@ -34,7 +34,7 @@ namespace CrazyFramework.BlazoriseClient.Shared
 			}
 			catch (BussinessException ex)
 			{
-				NotificationService.Instance.ShowDangerSnackbar(ex.GetErrorMessage());
+				notificationService.ShowDangerSnackbar(ex.GetErrorMessage());
 			}
 		}
 	}

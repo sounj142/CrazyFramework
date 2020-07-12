@@ -5,12 +5,6 @@ namespace CrazyFramework.BlazoriseClient.Shared
 {
 	public class NotificationService
 	{
-		public static NotificationService Instance = new NotificationService();
-
-		private NotificationService()
-		{
-		}
-
 		#region Snackbar
 
 		public event Action<SnackbarColor, string> SnackbarNotify;

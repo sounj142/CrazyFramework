@@ -35,7 +35,7 @@ namespace CrazyFramework.BlazoriseClient
 				.AddAccountClaimsPrincipalFactory<CustomUserFactory>();
 
 			services.AddSingleton<AppState>();
-			services.AddSingleton(NotificationService.Instance);
+			services.AddSingleton<NotificationService>();
 
 			services.AddLoadingBar();
 
