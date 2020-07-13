@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -14,6 +15,12 @@ namespace CrazyFramework.BlazoriseClient.Shared
 		private Expression<Func<TValue>> _previousFieldAccessor;
 		private readonly EventHandler<ValidationStateChangedEventArgs> _validationStateChangedHandler;
 		private FieldIdentifier _fieldIdentifier;
+
+		/// <summary>
+		/// Gets or sets a collection of additional attributes that will be applied to the created <c>div</c> element.
+		/// </summary>
+		[Parameter(CaptureUnmatchedValues = true)]
+		public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
 
 		[CascadingParameter]
 		private EditContext CurrentEditContext { get; set; } = default!;

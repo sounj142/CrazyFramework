@@ -25,9 +25,10 @@
 					<TableBody>
 						@for (var i = 0; i < products.Count; i++)
 						{
+							var index = i + 1;
 							var product = products[i];
 							<TableRow>
-								<TableRowHeader>@i</TableRowHeader>
+								<TableRowCell>@index</TableRowCell>
 								<TableRowCell>@product.Name</TableRowCell>
 								<TableRowCell>@product.Price.ToString("C")</TableRowCell>
 								<TableRowCell>

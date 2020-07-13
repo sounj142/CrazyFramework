@@ -3,7 +3,7 @@
 @{
 	var messages = CurrentEditContext?.GetValidationMessages(_fieldIdentifier).ToArray() ?? new string[0];
 }
-<Field Class="@(messages.Length > 0 ? "invalid-validation" : "valid-validation")">
+<Field Class="@(messages.Length > 0 ? "invalid-validation" : "valid-validation")" @attributes="AdditionalAttributes">
 	@ChildContent
 	@if (messages.Length > 0)
 	{
