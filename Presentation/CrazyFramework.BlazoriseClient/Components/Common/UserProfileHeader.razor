@@ -1,0 +1,20 @@
+﻿<AuthorizeView Context="AuthorizeContext">
+	<Authorized>
+		@if (userInfo != null)
+		{
+			<BarItem>
+				<BarLink To="@Settings.UserProfilePath">
+					Hello, @userInfo.UserName
+				</BarLink>
+			</BarItem>
+		}
+		<BarItem>
+			<BarLink Clicked="LogoutClick">Log out</BarLink>
+		</BarItem>
+	</Authorized>
+	<NotAuthorized>
+		<BarItem>
+			<BarLink To="@Settings.LoginPath">Log in</BarLink>
+		</BarItem>
+	</NotAuthorized>
+</AuthorizeView>

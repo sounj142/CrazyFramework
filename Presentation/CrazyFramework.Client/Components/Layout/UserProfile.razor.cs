@@ -7,11 +7,8 @@ namespace CrazyFramework.Client.Components.Layout
 {
 	public partial class UserProfile
 	{
-		[Inject]
-		public AuthenticationStateProvider authStateProvider { get; set; }
-
 		public bool IsLoggedIn = false;
-		private UserInfo userInfo = null;
+		private UserInfo userInfo;
 
 		[CascadingParameter]
 		private Task<AuthenticationState> authenticationStateTask { get; set; }
