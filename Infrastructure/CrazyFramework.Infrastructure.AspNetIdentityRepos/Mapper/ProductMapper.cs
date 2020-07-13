@@ -21,25 +21,5 @@ namespace CrazyFramework.Infrastructure.AspNetIdentityRepos.Mapper
 			productDAO.Name = product.Name;
 			productDAO.Price = product.Price;
 		}
-
-		//public static Product MapToDomain(this ProductDAO productDAO)
-		//{
-		//	if (productDAO == null)
-		//		return null;
-
-		//	var product = new Product();
-		//	productDAO.MapToDomain(product, true);
-		//	return product;
-		//}
-
-		//public static void MapToDomain(this ProductDAO productDAO, Product product, bool mapId = false)
-		//{
-		//	if (mapId)
-		//	{
-		//		product.Id = productDAO.Id;
-		//	}
-		//	product.Name = productDAO.Name;
-		//	product.Price = productDAO.Price;
-		//}
 	}
 }

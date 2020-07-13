@@ -8,6 +8,7 @@ namespace CrazyFramework.Infrastructure.AspNetIdentityRepos.Configurations
 	{
 		public void Configure(EntityTypeBuilder<OrderItemDAO> builder)
 		{
+			builder.BaseConfigure();
 			builder.ToTable("OrderItems");
 
 			builder.HasOne(x => x.Product)

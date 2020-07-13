@@ -8,6 +8,7 @@ namespace CrazyFramework.Infrastructure.AspNetIdentityRepos.Configurations
 	{
 		public void Configure(EntityTypeBuilder<ProductDAO> builder)
 		{
+			builder.BaseConfigure();
 			builder.ToTable("Products");
 
 			builder.Property(t => t.Name)
