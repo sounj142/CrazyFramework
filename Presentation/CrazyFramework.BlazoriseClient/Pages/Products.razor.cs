@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Blazorise;
 using CrazyFramework.BlazoriseClient.Components.Products;
-using CrazyFramework.BlazoriseClient.Models.Products;
 using CrazyFramework.BlazoriseClient.Models.Users;
 using CrazyFramework.BlazoriseClient.Services;
 using CrazyFramework.BlazoriseClient.Shared;
