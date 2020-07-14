@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CrazyFramework.API.Controllers
 {
 	[AllowAnonymous]
+	[ApiExplorerSettings(IgnoreApi = true)]
 	public class OidcConfigurationController : Controller
 	{
 		public OidcConfigurationController(IClientRequestParametersProvider clientRequestParametersProvider)

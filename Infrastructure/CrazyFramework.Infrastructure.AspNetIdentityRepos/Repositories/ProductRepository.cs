@@ -12,18 +12,17 @@ using CrazyFramework.App.Infrastructure.Repos;
 
 namespace CrazyFramework.Infrastructure.AspNetIdentityRepos.Repositories
 {
-	public class ProductRepository : IProductRepository
+	internal class ProductRepository : IProductRepository
 	{
 		private readonly ApplicationDbContext _dbContext;
 		private readonly ILogger<ProductRepository> _logger;
+		private DbSet<ProductDAO> ProductsDbSet => _dbContext.Set<ProductDAO>();
 
 		public ProductRepository(ApplicationDbContext dbContext, ILogger<ProductRepository> logger)
 		{
 			_dbContext = dbContext;
 			_logger = logger;
 		}
-
-		private DbSet<ProductDAO> ProductsDbSet => _dbContext.Set<ProductDAO>();
 
 		public async Task<Product> GetById(Guid id)
 		{
@@ -61,6 +60,8 @@ namespace CrazyFramework.Infrastructure.AspNetIdentityRepos.Repositories
 			var productDAO = product.MapToDAO();
 			ProductsDbSet.Add(productDAO);
 
+			_logger.LogInformation("Creating product {@ProductId}, {@ProductName}", product.Id, product.Name);
+
 			await _dbContext.SaveChangesAsync();
 		}
 
@@ -69,14 +70,15 @@ namespace CrazyFramework.Infrastructure.AspNetIdentityRepos.Repositories
 			var productDAO = await ProductsDbSet
 				.FirstOrDefaultAsync(p => p.Id == product.Id);
 
+			_logger.LogInformation("Updating product {@ProductId}, {@ProductName}", product.Id, product.Name);
+
 			if (productDAO == null)
 			{
-				_logger.LogInformation($"Update rejected. Product ({product.Id}) was not found.");
+				_logger.LogWarning("Update rejected. Product {@ProductId} was not found.", product.Id);
 				throw new NotFoundException("Product", product.Id);
 			}
 
 			product.MapToDAO(productDAO);
-
 			await _dbContext.SaveChangesAsync();
 		}
 
@@ -87,12 +89,13 @@ namespace CrazyFramework.Infrastructure.AspNetIdentityRepos.Repositories
 
 			if (productDAO == null)
 			{
-				_logger.LogInformation($"Deletion rejected. Product ({id}) was not found.");
+				_logger.LogWarning("Deletion rejected. Product {@ProductId} was not found.", id);
 				throw new NotFoundException("Product", id);
 			}
 
-			ProductsDbSet.Remove(productDAO);
+			_logger.LogInformation("Deleting product {@ProductId}, {@ProductName}", productDAO.Id, productDAO.Name);
 
+			ProductsDbSet.Remove(productDAO);
 			await _dbContext.SaveChangesAsync();
 		}
 	}

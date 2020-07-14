@@ -33,4 +33,8 @@
 		<ProjectReference Include="..\CrazyFramework.BlazoriseClient\CrazyFramework.BlazoriseClient.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Logs\" />
+	</ItemGroup>
+
 </Project>

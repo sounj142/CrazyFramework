@@ -58,10 +58,8 @@ namespace CrazyFramework.Infrastructure.AspNetIdentityRepos
 
 			JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove(JwtClaimTypes.Role);
 
-			//services.Configure<IdentityOptions>(options =>
-			//	options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
-
 			services.AddScoped<IProductRepository, ProductRepository>();
+			services.AddScoped<IJobTitleRepository, JobTitleRepository>();
 
 			return services;
 		}

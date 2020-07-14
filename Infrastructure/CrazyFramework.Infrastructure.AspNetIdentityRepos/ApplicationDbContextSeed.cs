@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using CrazyFramework.App.Common;
 using CrazyFramework.App.Entities.Accounts;
 using CrazyFramework.Infrastructure.AspNetIdentityRepos.Models;
 using CrazyFramework.Infrastructure.AspNetIdentityRepos.Models.Users;

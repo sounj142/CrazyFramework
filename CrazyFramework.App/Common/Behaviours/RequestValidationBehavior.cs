@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -12,10 +13,12 @@ namespace CrazyFramework.App.Common.Behaviours
 		where TRequest : IRequest<TResponse>
 	{
 		private readonly IEnumerable<IValidator<TRequest>> _validators;
+		private readonly ILogger<RequestValidationBehavior<TRequest, TResponse>> _logger;
 
-		public RequestValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
+		public RequestValidationBehavior(IEnumerable<IValidator<TRequest>> validators, ILogger<RequestValidationBehavior<TRequest, TResponse>> logger)
 		{
 			_validators = validators;
+			_logger = logger;
 		}
 
 		public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
@@ -30,6 +33,7 @@ namespace CrazyFramework.App.Common.Behaviours
 
 			if (failures.Count != 0)
 			{
+				_logger.LogInformation("Validatin error occurred on {@Type}, message(s) {@Messages}", typeof(TRequest).Name, string.Join(",", failures));
 				throw new ValidationException(failures);
 			}
 
