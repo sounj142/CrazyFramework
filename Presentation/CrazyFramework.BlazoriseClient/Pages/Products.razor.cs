@@ -11,7 +11,7 @@ using CrazyFramework.Dtos.Products;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 
-namespace CrazyFramework.BlazoriseClient.Pages.Apps
+namespace CrazyFramework.BlazoriseClient.Pages
 {
 	[Authorize(Roles = RoleType.Administrator)]
 	public partial class Products

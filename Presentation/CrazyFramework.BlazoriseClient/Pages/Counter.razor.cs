@@ -3,7 +3,7 @@ using CrazyFramework.BlazoriseClient.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 
-namespace CrazyFramework.BlazoriseClient.Pages.Apps
+namespace CrazyFramework.BlazoriseClient.Pages
 {
 	[Authorize]
 	public partial class Counter
