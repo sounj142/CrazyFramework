@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Blazorise;
+using CrazyFramework.BlazoriseClient.Components.Products;
 using CrazyFramework.BlazoriseClient.Models.Products;
 using CrazyFramework.BlazoriseClient.Models.Users;
 using CrazyFramework.BlazoriseClient.Services;
@@ -22,14 +23,10 @@ namespace CrazyFramework.BlazoriseClient.Pages
 		[Inject]
 		public IProductService productService { get; set; }
 
-		protected bool isEditing = false;
+		private IList<ProductDto> products = new List<ProductDto>();
 
-		protected IList<ProductDto> products = new List<ProductDto>();
-
-		protected Modal updateModal;
-		protected Modal deleteModal;
-
-		private Product product { get; set; } = new Product();
+		private AddOrUpdateProduct addOrUpdateModal;
+		private DeleteProduct deleteModal;
 
 		protected override Task OnInitializedAsync()
 		{
@@ -41,121 +38,29 @@ namespace CrazyFramework.BlazoriseClient.Pages
 			products = await productService.GetProducts();
 		}
 
-		public Task UpdateProduct()
-		{
-			return notificationService.CatchAndDisplayErrors(async () =>
-			{
-				await productService.UpdateProduct(new UpdateProductDto
-				{
-					Id = product.Id,
-					Name = product.Name,
-					Price = product.Price ?? 0
-				});
-
-				await LoadData();
-
-				notificationService.ShowSuccessSnackbar($"Updated product {product.Name}");
-
-				product = new Product();
-				HideProductModal();
-			});
-		}
-
-		public Task CreateProduct()
-		{
-			return notificationService.CatchAndDisplayErrors(async () =>
-			{
-				await productService.CreateProduct(new CreateProductDto
-				{
-					Name = product.Name,
-					Price = product.Price ?? 0
-				});
-
-				await LoadData();
-
-				notificationService.ShowSuccessSnackbar($"Created product {product.Name}");
-
-				product = new Product();
-				HideProductModal();
-			});
-		}
-
-		public Task CreateOrUpdateProduct()
-		{
-			return isEditing ? UpdateProduct() : CreateProduct();
-		}
-
-		public Task DeleteProduct()
-		{
-			return notificationService.CatchAndDisplayErrors(async () =>
-			{
-				await productService.RemoveProduct(product.Id);
-
-				await LoadData();
-
-				notificationService.ShowSuccessSnackbar($"Deleted product {product.Name}");
-
-				product = new Product();
-
-				HideDeleteModal();
-			});
-		}
-
-		public void ShowProductModal(Guid? productId = null)
+		public void ShowAddOrUpdateModal(Guid? productId = null)
 		{
 			if (productId == null)
 			{
-				isEditing = false;
-				product = new Product();
-				updateModal.Show();
+				addOrUpdateModal.ShowProductModal(null);
 			}
 			else
 			{
-				var productDto = products.Where(x => x.Id == productId).FirstOrDefault();
+				var productDto = products.FirstOrDefault(x => x.Id == productId);
 				if (productDto != null)
 				{
-					isEditing = true;
-					product = new Product
-					{
-						Id = productDto.Id,
-						Name = productDto.Name,
-						Price = productDto.Price
-					};
-					updateModal.Show();
+					addOrUpdateModal.ShowProductModal(productDto);
 				}
 			}
 		}
 
-		public void HideProductModal()
+		private void ShowDeleteModal(Guid productId)
 		{
-			updateModal.Hide();
-		}
-
-		public void ShowDeleteModal(Guid productId)
-		{
-			var productDto = products.Where(x => x.Id == productId).FirstOrDefault();
+			var productDto = products.FirstOrDefault(x => x.Id == productId);
 			if (productDto != null)
 			{
-				product = new Product
-				{
-					Id = productDto.Id,
-					Name = productDto.Name,
-					Price = productDto.Price
-				};
-				deleteModal.Show();
+				deleteModal.ShowDeleteModal(productDto);
 			}
-		}
-
-		public void HideDeleteModal()
-		{
-			deleteModal.Hide();
-		}
-
-		protected ValidationChangingSupport validationChangingSupport;
-
-		public void OnFormElementChanged()
-		{
-			validationChangingSupport?.OnModelChanged();
 		}
 	}
 }

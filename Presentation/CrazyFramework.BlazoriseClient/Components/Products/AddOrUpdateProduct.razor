@@ -1,0 +1,44 @@
+﻿<Modal @ref="updateModal">
+	<ModalBackdrop />
+	<ModalContent Size="ModalSize.Default" Centered="true">
+		<ModalHeader>
+			<ModalTitle>
+				@if (isEditing)
+				{
+					<Icon Name="IconName.Edit" />
+					<Text>Update Product</Text>
+				}
+				else
+				{
+					<Icon Name="IconName.Add" />
+					<Text>Create Product</Text>
+				}
+			</ModalTitle>
+			<CloseButton Clicked="@HideProductModal" />
+		</ModalHeader>
+
+		<EditForm Model="@product" OnValidSubmit="@CreateOrUpdate">
+
+			<ModalBody>
+				<FluentValidator />
+				<ValidationChangingSupport @ref="validationChangingSupport" />
+
+				<ValidationMessageSection For="@(() => product.Name)">
+					<FieldLabel>Name</FieldLabel>
+					<TextEdit Placeholder="Enter product name..." @bind-Text="@product.Name" @onchange="OnFormElementChanged" />
+				</ValidationMessageSection>
+				<ValidationMessageSection For="@(() => product.Price)">
+					<FieldLabel>Price</FieldLabel>
+					<NumericEdit TValue="decimal?" Placeholder="Enter product price..." @bind-Value="product.Price" @onchange="OnFormElementChanged" />
+				</ValidationMessageSection>
+			</ModalBody>
+
+			<ModalFooter>
+				<Button Color="Color.Secondary" Clicked="@HideProductModal">Close</Button>
+				<Button Color="Color.Primary" Type="ButtonType.Submit">
+					@(isEditing ? "Update" : "Create")
+				</Button>
+			</ModalFooter>
+		</EditForm>
+	</ModalContent>
+</Modal>

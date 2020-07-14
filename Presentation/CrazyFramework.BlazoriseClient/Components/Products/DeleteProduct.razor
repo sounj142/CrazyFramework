@@ -1,0 +1,24 @@
+﻿<Modal @ref="deleteModal">
+	<ModalBackdrop />
+	<ModalContent Size="ModalSize.Default" Centered="true">
+
+		<ModalHeader>
+			<ModalTitle>
+				<Icon Name="IconName.Delete" />
+				Delete Confirmation
+			</ModalTitle>
+			<CloseButton Clicked="@HideDeleteModal" />
+		</ModalHeader>
+
+		<ModalBody>
+			Are you sure you want to delete product "@product.Name" ?
+		</ModalBody>
+
+		<ModalFooter>
+			<Button Color="Color.Secondary" Clicked="@HideDeleteModal">Close</Button>
+			<Button Color="Color.Danger" Type="ButtonType.Button" Clicked="Delete">
+				Delete
+			</Button>
+		</ModalFooter>
+	</ModalContent>
+</Modal>
