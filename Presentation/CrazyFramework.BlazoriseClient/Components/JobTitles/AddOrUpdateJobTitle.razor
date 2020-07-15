@@ -1,0 +1,44 @@
+﻿<Modal @ref="updateModal">
+	<ModalBackdrop />
+	<ModalContent Size="ModalSize.Default" Centered="true">
+		<ModalHeader>
+			<ModalTitle>
+				@if (isEditing)
+				{
+					<Icon Name="IconName.Edit" />
+					<Text>Update Job Title</Text>
+				}
+				else
+				{
+					<Icon Name="IconName.Add" />
+					<Text>Create Job Title</Text>
+				}
+			</ModalTitle>
+			<CloseButton Clicked="@HideJobTitleModal" />
+		</ModalHeader>
+
+		<EditForm Model="@jobTitle" OnValidSubmit="@CreateOrUpdate">
+
+			<ModalBody>
+				<FluentValidator />
+				<ValidationChangingSupport @ref="validationChangingSupport" />
+
+				<ValidationMessageSection For="@(() => jobTitle.Name)">
+					<FieldLabel>Name</FieldLabel>
+					<TextEdit Placeholder="Enter name..." @bind-Text="@jobTitle.Name" @onchange="OnFormElementChanged" />
+				</ValidationMessageSection>
+				<ValidationMessageSection For="@(() => jobTitle.Description)">
+					<FieldLabel>Description</FieldLabel>
+					<TextEdit Placeholder="Enter description..." @bind-Text="@jobTitle.Description" @onchange="OnFormElementChanged" />
+				</ValidationMessageSection>
+			</ModalBody>
+
+			<ModalFooter>
+				<Button Color="Color.Secondary" Clicked="@HideJobTitleModal">Close</Button>
+				<Button Color="Color.Primary" Type="ButtonType.Submit">
+					@(isEditing ? "Update" : "Create")
+				</Button>
+			</ModalFooter>
+		</EditForm>
+	</ModalContent>
+</Modal>

@@ -30,6 +30,7 @@ namespace CrazyFramework.BlazoriseClient
 			services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("CrazyFramework.API"));
 
 			services.AddTransient<IProductService, ProductService>();
+			services.AddTransient<IJobTitleService, JobTitleService>();
 
 			services.AddApiAuthorization()
 				.AddAccountClaimsPrincipalFactory<CustomUserFactory>();

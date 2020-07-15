@@ -1,36 +1,36 @@
 ﻿using System.Threading.Tasks;
 using Blazorise;
-using CrazyFramework.BlazoriseClient.Models.Products;
+using CrazyFramework.BlazoriseClient.Models.JobTitles;
 using CrazyFramework.BlazoriseClient.Services;
 using CrazyFramework.BlazoriseClient.Shared;
-using CrazyFramework.Dtos.Products;
+using CrazyFramework.Dtos.JobTitles;
 using Microsoft.AspNetCore.Components;
 
-namespace CrazyFramework.BlazoriseClient.Components.Products
+namespace CrazyFramework.BlazoriseClient.Components.JobTitles
 {
-	public partial class DeleteProduct
+	public partial class DeleteJobTitle
 	{
 		private Modal deleteModal;
-		private Product product = new Product();
+		private JobTitle jobTitle = new JobTitle();
 
 		[Parameter]
 		public EventCallback OnSuccessedCallback { get; set; }
 
 		[Inject]
-		public IProductService productService { get; set; }
+		public IJobTitleService jobTitleService { get; set; }
 
 		[Inject]
 		public NotificationService notificationService { get; set; }
 
-		public void ShowDeleteModal(ProductDto productDto)
+		public void ShowDeleteModal(JobTitleDto jobTitleDto)
 		{
-			if (productDto != null)
+			if (jobTitleDto != null)
 			{
-				product = new Product
+				jobTitle = new JobTitle
 				{
-					Id = productDto.Id,
-					Name = productDto.Name,
-					Price = productDto.Price
+					Id = jobTitleDto.Id,
+					Name = jobTitleDto.Name,
+					Description = jobTitleDto.Description
 				};
 				deleteModal.Show();
 			}
@@ -40,13 +40,13 @@ namespace CrazyFramework.BlazoriseClient.Components.Products
 		{
 			return notificationService.CatchAndDisplayErrors(async () =>
 			{
-				await productService.RemoveProduct(product.Id);
+				await jobTitleService.RemoveJobTitle(jobTitle.Id);
 
 				await OnSuccessedCallback.InvokeAsync(this);
 
-				notificationService.ShowSuccessSnackbar($"Deleted product '{product.Name}'");
+				notificationService.ShowSuccessSnackbar($"Deleted job title '{jobTitle.Name}'");
 
-				product = new Product();
+				jobTitle = new JobTitle();
 
 				HideDeleteModal();
 			});

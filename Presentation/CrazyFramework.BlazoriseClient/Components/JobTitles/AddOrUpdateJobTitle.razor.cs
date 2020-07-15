@@ -1,16 +1,16 @@
 ﻿using System.Threading.Tasks;
 using Blazorise;
-using CrazyFramework.BlazoriseClient.Models.Products;
+using CrazyFramework.BlazoriseClient.Models.JobTitles;
 using CrazyFramework.BlazoriseClient.Services;
 using CrazyFramework.BlazoriseClient.Shared;
-using CrazyFramework.Dtos.Products;
+using CrazyFramework.Dtos.JobTitles;
 using Microsoft.AspNetCore.Components;
 
-namespace CrazyFramework.BlazoriseClient.Components.Products
+namespace CrazyFramework.BlazoriseClient.Components.JobTitles
 {
-	public partial class AddOrUpdateProduct
+	public partial class AddOrUpdateJobTitle
 	{
-		private Product product = new Product();
+		private JobTitle jobTitle = new JobTitle();
 		private bool isEditing = false;
 		private Modal updateModal;
 		private ValidationChangingSupport validationChangingSupport;
@@ -19,27 +19,27 @@ namespace CrazyFramework.BlazoriseClient.Components.Products
 		public NotificationService notificationService { get; set; }
 
 		[Inject]
-		public IProductService productService { get; set; }
+		public IJobTitleService jobTitleService { get; set; }
 
 		[Parameter]
 		public EventCallback OnSuccessedCallback { get; set; }
 
-		public void ShowProductModal(ProductDto productDto = null)
+		public void ShowJobTitleModal(JobTitleDto jobTitleDto = null)
 		{
-			if (productDto == null)
+			if (jobTitleDto == null)
 			{
 				isEditing = false;
-				product = new Product();
+				jobTitle = new JobTitle();
 				updateModal.Show();
 			}
 			else
 			{
 				isEditing = true;
-				product = new Product
+				jobTitle = new JobTitle
 				{
-					Id = productDto.Id,
-					Name = productDto.Name,
-					Price = productDto.Price
+					Id = jobTitleDto.Id,
+					Name = jobTitleDto.Name,
+					Description = jobTitleDto.Description
 				};
 				updateModal.Show();
 			}
@@ -49,19 +49,19 @@ namespace CrazyFramework.BlazoriseClient.Components.Products
 		{
 			return notificationService.CatchAndDisplayErrors(async () =>
 			{
-				await productService.UpdateProduct(new UpdateProductDto
+				await jobTitleService.UpdateJobTitle(new UpdateJobTitleDto
 				{
-					Id = product.Id,
-					Name = product.Name,
-					Price = product.Price ?? 0
+					Id = jobTitle.Id,
+					Name = jobTitle.Name,
+					Description = jobTitle.Description
 				});
 
 				await OnSuccessedCallback.InvokeAsync(this);
 
-				notificationService.ShowSuccessSnackbar($"Updated product '{product.Name}'");
+				notificationService.ShowSuccessSnackbar($"Updated job title '{jobTitle.Name}'");
 
-				product = new Product();
-				HideProductModal();
+				jobTitle = new JobTitle();
+				HideJobTitleModal();
 			});
 		}
 
@@ -69,18 +69,18 @@ namespace CrazyFramework.BlazoriseClient.Components.Products
 		{
 			return notificationService.CatchAndDisplayErrors(async () =>
 			{
-				await productService.CreateProduct(new CreateProductDto
+				await jobTitleService.CreateJobTitle(new CreateJobTitleDto
 				{
-					Name = product.Name,
-					Price = product.Price ?? 0
+					Name = jobTitle.Name,
+					Description = jobTitle.Description
 				});
 
 				await OnSuccessedCallback.InvokeAsync(this);
 
-				notificationService.ShowSuccessSnackbar($"Created product '{product.Name}'");
+				notificationService.ShowSuccessSnackbar($"Created job title '{jobTitle.Name}'");
 
-				product = new Product();
-				HideProductModal();
+				jobTitle = new JobTitle();
+				HideJobTitleModal();
 			});
 		}
 
@@ -89,7 +89,7 @@ namespace CrazyFramework.BlazoriseClient.Components.Products
 			return isEditing ? Update() : Create();
 		}
 
-		private void HideProductModal()
+		private void HideJobTitleModal()
 		{
 			updateModal.Hide();
 		}

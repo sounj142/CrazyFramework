@@ -1,0 +1,66 @@
+﻿@using CrazyFramework.BlazoriseClient.Components.JobTitles
+@page "/job-titles"
+
+<Row id="jobTitle-panels">
+	<Column ColumnSize="ColumnSize.Is12">
+		<Card Margin="Margin.Is4.OnY">
+			<CardHeader>
+				<CardTitle>
+					JobTitles
+					<Button Color="Color.Primary" Float="Float.Right" Clicked="@(() => ShowAddOrUpdateModal(null))">
+						Add Job Title
+					</Button>
+				</CardTitle>
+			</CardHeader>
+			<CardBody>
+
+				<Table Striped="true">
+					<TableHeader>
+						<TableRow>
+							<TableHeaderCell>#</TableHeaderCell>
+							<TableHeaderCell>Name</TableHeaderCell>
+							<TableHeaderCell>Description</TableHeaderCell>
+							<TableHeaderCell Class="jobTitle-action-column"></TableHeaderCell>
+						</TableRow>
+					</TableHeader>
+					<TableBody>
+						@for (var i = 0; i < jobTitles.Count; i++)
+						{
+							var index = i + 1;
+							var jobTitle = jobTitles[i];
+							<TableRow>
+								<TableRowCell>@index</TableRowCell>
+								<TableRowCell>@jobTitle.Name</TableRowCell>
+								<TableRowCell>@jobTitle.Description</TableRowCell>
+								<TableRowCell>
+									<Tooltip Text="Edit Job Title" Inline="true" Class="edit-jobTitle-icon text-primary">
+										<Icon Name="IconName.Edit" @onclick="@(() => ShowAddOrUpdateModal(jobTitle.Id))" />
+									</Tooltip>
+									<Tooltip Text="Delete Job Title" Inline="true" Class="delete-jobTitle-icon text-danger">
+										<Icon Name="IconName.Delete" @onclick="@(() => ShowDeleteModal(jobTitle.Id))" />
+									</Tooltip>
+								</TableRowCell>
+							</TableRow>
+						}
+					</TableBody>
+				</Table>
+			</CardBody>
+		</Card>
+	</Column>
+</Row>
+
+<AddOrUpdateJobTitle @ref="addOrUpdateModal" OnSuccessedCallback="LoadData" />
+<DeleteJobTitle @ref="deleteModal" OnSuccessedCallback="LoadData" />
+
+<style type="text/css">
+	#jobTitle-panels .jobTitle-action-column {
+		width: 5rem;
+	}
+
+	#jobTitle-panels .edit-jobTitle-icon {
+	}
+
+	#jobTitle-panels .delete-jobTitle-icon {
+		margin-left: 1rem;
+	}
+</style>
